@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Data type and data format | Little e-book for MPH1 computer labs</title>
+  <meta name="description" content="This is a little book of essential biostatistic concepts for Master 1 in Public Health." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Data type and data format | Little e-book for MPH1 computer labs" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a little book of essential biostatistic concepts for Master 1 in Public Health." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Data type and data format | Little e-book for MPH1 computer labs" />
+  
+  <meta name="twitter:description" content="This is a little book of essential biostatistic concepts for Master 1 in Public Health." />
+  
+
+<meta name="author" content="Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic" />
+
+
+<meta name="date" content="2022-06-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="programming-environment.html"/>
+<link rel="next" href="data-management.html"/>
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#introduction">Introduction<span></span></a></li>
+<li class="chapter" data-level="1" data-path="programming-environment.html"><a href="programming-environment.html"><i class="fa fa-check"></i><b>1</b> Programming environment<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="programming-environment.html"><a href="programming-environment.html#installation-r-and-stata"><i class="fa fa-check"></i><b>1.1</b> Installation R and Stata<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="programming-environment.html"><a href="programming-environment.html#r-packages"><i class="fa fa-check"></i><b>1.2</b> R packages<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="programming-environment.html"><a href="programming-environment.html#working-directory"><i class="fa fa-check"></i><b>1.3</b> Working directory<span></span></a>
+<ul>
+<li><a href="programming-environment.html#r">R<span></span></a></li>
+<li><a href="programming-environment.html#stata">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="programming-environment.html"><a href="programming-environment.html#log-files-and-history"><i class="fa fa-check"></i><b>1.4</b> Log files and history<span></span></a>
+<ul>
+<li><a href="programming-environment.html#r-1">R<span></span></a></li>
+<li><a href="programming-environment.html#stata-1">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="programming-environment.html"><a href="programming-environment.html#importing-data"><i class="fa fa-check"></i><b>1.5</b> Importing Data<span></span></a>
+<ul>
+<li><a href="programming-environment.html#r-2">R<span></span></a></li>
+<li><a href="programming-environment.html#stata-2">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="programming-environment.html"><a href="programming-environment.html#saving-and-loading-r-and-stata-files"><i class="fa fa-check"></i><b>1.6</b> Saving and loading R and Stata files<span></span></a>
+<ul>
+<li><a href="programming-environment.html#r-3">R<span></span></a></li>
+<li><a href="programming-environment.html#stata-3">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="programming-environment.html"><a href="programming-environment.html#delete-data-from-workspace"><i class="fa fa-check"></i><b>1.7</b> Delete data from workspace<span></span></a>
+<ul>
+<li><a href="programming-environment.html#r-4">R<span></span></a></li>
+<li><a href="programming-environment.html#stata-4">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="programming-environment.html"><a href="programming-environment.html#data-quick-overview"><i class="fa fa-check"></i><b>1.8</b> Data quick overview<span></span></a>
+<ul>
+<li><a href="programming-environment.html#r-5">R<span></span></a></li>
+<li><a href="programming-environment.html#stata-5">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="programming-environment.html"><a href="programming-environment.html#help-pages"><i class="fa fa-check"></i><b>1.9</b> Help pages<span></span></a>
+<ul>
+<li><a href="programming-environment.html#r-6">R<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html"><i class="fa fa-check"></i><b>2</b> Data type and data format<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#data-type"><i class="fa fa-check"></i><b>2.1</b> Data type<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#numeric"><i class="fa fa-check"></i><b>2.1.1</b> Numeric<span></span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#logical"><i class="fa fa-check"></i><b>2.1.2</b> Logical<span></span></a></li>
+<li class="chapter" data-level="2.1.3" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#date"><i class="fa fa-check"></i><b>2.1.3</b> Date<span></span></a></li>
+<li class="chapter" data-level="2.1.4" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#character"><i class="fa fa-check"></i><b>2.1.4</b> Character<span></span></a></li>
+<li class="chapter" data-level="2.1.5" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#factor"><i class="fa fa-check"></i><b>2.1.5</b> Factor<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#data-format"><i class="fa fa-check"></i><b>2.2</b> Data format<span></span></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#data-set"><i class="fa fa-check"></i><b>2.2.3</b> Data (set)<span></span></a></li>
+<li class="chapter" data-level="2.2.4" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#list"><i class="fa fa-check"></i><b>2.2.4</b> List<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3</b> Data management<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-management.html"><a href="data-management.html#renaming-variables"><i class="fa fa-check"></i><b>3.1</b> Renaming variables<span></span></a>
+<ul>
+<li><a href="data-management.html#r-16">R<span></span></a></li>
+<li><a href="data-management.html#stata-16">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-management.html"><a href="data-management.html#missing-values"><i class="fa fa-check"></i><b>3.2</b> Missing values<span></span></a>
+<ul>
+<li><a href="data-management.html#r-17">R<span></span></a></li>
+<li><a href="data-management.html#stata-17">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-management.html"><a href="data-management.html#create-new-variables"><i class="fa fa-check"></i><b>3.3</b> Create new variables<span></span></a>
+<ul>
+<li><a href="data-management.html#r-18">R<span></span></a></li>
+<li><a href="data-management.html#stata-18">Stata<span></span></a></li>
+<li><a href="data-management.html#r-19">R<span></span></a></li>
+<li><a href="data-management.html#stata-19">Stata<span></span></a></li>
+<li><a href="data-management.html#r-20">R<span></span></a></li>
+<li><a href="data-management.html#stata-20">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html#dummy-variables"><i class="fa fa-check"></i><b>3.4</b> Dummy variables<span></span></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#log-transformation"><i class="fa fa-check"></i><b>3.4.1</b> log transformation<span></span></a></li>
+<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#conditional-expression"><i class="fa fa-check"></i><b>3.4.2</b> conditional expression<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quick-summary-statistics"><i class="fa fa-check"></i><b>4.1</b> Quick summary statistics<span></span></a>
+<ul>
+<li><a href="descriptive-statistics.html#r-21">R<span></span></a></li>
+<li><a href="descriptive-statistics.html#stata-21">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-and-deviation-parameters"><i class="fa fa-check"></i><b>4.2</b> Central and deviation parameters<span></span></a>
+<ul>
+<li><a href="descriptive-statistics.html#r-22">R<span></span></a></li>
+<li><a href="descriptive-statistics.html#stata-22">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#confidence-interval"><i class="fa fa-check"></i><b>4.3</b> Confidence interval<span></span></a>
+<ul>
+<li><a href="descriptive-statistics.html#r-23">R<span></span></a></li>
+<li><a href="descriptive-statistics.html#stata-23">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#cross-table"><i class="fa fa-check"></i><b>4.4</b> Cross table<span></span></a>
+<ul>
+<li><a href="descriptive-statistics.html#r-24">R<span></span></a></li>
+<li><a href="descriptive-statistics.html#stata-24">Stata<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>5</b> Plotting<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="plotting.html"><a href="plotting.html#quantitative-data"><i class="fa fa-check"></i><b>5.1</b> Quantitative data<span></span></a>
+<ul>
+<li><a href="plotting.html#r-25">R<span></span></a></li>
+<li><a href="plotting.html#stata-25">Stata<span></span></a></li>
+<li><a href="plotting.html#r-26">R<span></span></a></li>
+<li><a href="plotting.html#stata-26">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="plotting.html"><a href="plotting.html#quanlitative-data"><i class="fa fa-check"></i><b>5.2</b> Quanlitative data<span></span></a>
+<ul>
+<li><a href="plotting.html#r-27">R<span></span></a></li>
+<li><a href="plotting.html#stata-27">Stata<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html"><i class="fa fa-check"></i><b>6</b> Univariate statistical test<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#quantitative-data-1"><i class="fa fa-check"></i><b>6.1</b> Quantitative data<span></span></a>
+<ul>
+<li><a href="univariate-statistical-test.html#r-28">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-28">Stata<span></span></a></li>
+<li><a href="univariate-statistical-test.html#r-29">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-29">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#quanlitative-data-1"><i class="fa fa-check"></i><b>6.2</b> Quanlitative data<span></span></a>
+<ul>
+<li><a href="univariate-statistical-test.html#r-30">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-30">Stata<span></span></a></li>
+<li><a href="univariate-statistical-test.html#r-31">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-31">Stata<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-model.html"><a href="regression-model.html"><i class="fa fa-check"></i><b>7</b> Regression model<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="regression-model.html"><a href="regression-model.html#linear-regression"><i class="fa fa-check"></i><b>7.1</b> Linear regression<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="regression-model.html"><a href="regression-model.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Simple Linear regression<span></span></a>
+<ul>
+<li><a href="regression-model.html#r-32">R<span></span></a></li>
+<li><a href="regression-model.html#stata-32">Stata<span></span></a></li>
+<li><a href="regression-model.html#r-33">R<span></span></a></li>
+<li><a href="regression-model.html#stata-33">Stata<span></span></a></li>
+<li class="chapter" data-level="7.2.1" data-path="regression-model.html"><a href="regression-model.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2.1</b> Multiple linear regression<span></span></a></li>
+<li><a href="regression-model.html#r-34">R<span></span></a></li>
+<li><a href="regression-model.html#stata-34">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="regression-model.html"><a href="regression-model.html#logistic-regression"><i class="fa fa-check"></i><b>7.3</b> logistic regression<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Little e-book for MPH1 computer labs</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-type-and-data-format" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Data type and data format<a href="data-type-and-data-format.html#data-type-and-data-format" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="data-type" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Data type<a href="data-type-and-data-format.html#data-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Often when importing data, statistical software can mistake a numeric variable for a string variable or a categorical variable for a string variable. It might not be visible at first but attempts to run commands will return error. <strong>Do verify you data type</strong> before type of data analysis.</p>
+<p>Using the sleep apnea dataset, you can pratice and verify the data type of each of the variables. As mentioned previously in <strong>R</strong> you can have a overview with the function <em>str()</em> and in <strong>Stata</strong> you can use <em>describe</em>. You can also check each variables with quick function call.</p>
+<div id="numeric" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Numeric<a href="data-type-and-data-format.html#numeric" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-7" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>R</strong> the <em>is.numeric()</em> function will return a logical which indicates you whether or not the variable is a numeric.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-type-and-data-format.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-type-and-data-format.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## if it is not the proper type</span></span>
+<span id="cb3-2"><a href="data-type-and-data-format.html#cb3-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+</div>
+<div id="stata-7" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>Stata</strong>, if age is encoded as a string and was therefore all numbers, you could use the destring command. If you want to replace the existing variable, the command is simply</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="data-type-and-data-format.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">destring</span> age</span></code></pre></div>
+<p>This will replace the existing specified variable with the same data but now in a nonstring format.</p>
+<p>If you prefer to retain the existing variable, you can generate a new variable that is a nonstring version of the existing variable.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="data-type-and-data-format.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_num=<span class="fu">real</span>(age)</span></code></pre></div>
+</div>
+</div>
+<div id="logical" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Logical<a href="data-type-and-data-format.html#logical" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-8" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>R</strong> the <em>is.logical()</em> function will return a logical which indicates you whether or not the variable is a logic. For example, have a look at the binary variable diabetes coded 0 and 1 for absence or presence.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-type-and-data-format.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(sleep<span class="sc">$</span>diabetes)</span></code></pre></div>
+<p>If needed, you can convert the variable to a logical using the <em>as.logical()</em> function.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-type-and-data-format.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sleep<span class="sc">$</span>diabetes)</span>
+<span id="cb7-2"><a href="data-type-and-data-format.html#cb7-2" aria-hidden="true" tabindex="-1"></a>db_logic <span class="ot">&lt;-</span><span class="fu">as.logical</span>(sleep<span class="sc">$</span>diabetes)</span>
+<span id="cb7-3"><a href="data-type-and-data-format.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(db_logic)</span></code></pre></div>
+<p>A logical vector can then be useful to select/replace values from other variables with the indexing method that we will see below.</p>
+</div>
+<div id="stata-8" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>Stata</strong> logical are boolean with 0 for FALSE and 1 for TRUE. As in R, they can be generate by conditional/logical expression (<a href="data-management.html#create-new-variables">see the Create new variables section</a>)</p>
+</div>
+</div>
+<div id="date" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Date<a href="data-type-and-data-format.html#date" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Statistical software are really powerful in manipulating dates which is often useful is epidemiology. However it is not always easy to handle dates as there is different format and referential.</p>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-9" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dates and time variables are best read as strings. The default formats in <strong>R</strong> follow the rules of the ISO 8601 international standard which expresses a day as “2001-02-03.”</p>
+<p>Below is a basic operation (subtraction) between 2 dates.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-type-and-data-format.html#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-06-21&quot;</span>, </span>
+<span id="cb8-2"><a href="data-type-and-data-format.html#cb8-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb8-3"><a href="data-type-and-data-format.html#cb8-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-06-30&quot;</span>, </span>
+<span id="cb8-4"><a href="data-type-and-data-format.html#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb8-5"><a href="data-type-and-data-format.html#cb8-5" aria-hidden="true" tabindex="-1"></a>y <span class="sc">-</span> x</span></code></pre></div>
+<pre><code>## Time difference of 9 days</code></pre>
+<p>In R, dates are represented as the number of days since 1970-01-01, with negative values for earlier dates. If you import dates in numeric values from an other software with a different origin you will have to specify that origin to convert the numeric values into the correct dates. Please see <em>as.Date()</em> help page for more details.</p>
+<p>The package <em>lubridate</em> can be particularly helpful for manipulating dates.</p>
+</div>
+<div id="stata-9" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dates and time variables are best read as strings. The numeric encoding that Stata uses is centered on the first millisecond of 01jan1960, that is, 01jan1960 00:00:00.000.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="data-type-and-data-format.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> birthday = <span class="fu">date</span>(<span class="st">&quot;21 Jan 1952&quot;</span>, <span class="st">&quot;DMY&quot;</span>)</span>
+<span id="cb10-2"><a href="data-type-and-data-format.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span></span>
+<span id="cb10-3"><a href="data-type-and-data-format.html#cb10-3" aria-hidden="true" tabindex="-1"></a># - 2902</span>
+<span id="cb10-4"><a href="data-type-and-data-format.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">format</span> birthday %td</span>
+<span id="cb10-5"><a href="data-type-and-data-format.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span></span>
+<span id="cb10-6"><a href="data-type-and-data-format.html#cb10-6" aria-hidden="true" tabindex="-1"></a># 21jan1952</span></code></pre></div>
+</div>
+</div>
+<div id="character" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Character<a href="data-type-and-data-format.html#character" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Character or string data often the imported data type for categorical variables.</p>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-10" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In our sleep data set for instance, the <em>gender</em> variable was imported as character.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-type-and-data-format.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(sleep<span class="sc">$</span>gender)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>However, gender is more of a categorical variable with levels and labels. You will see below how to convert a character string to a categorical variable or (<a href="data-type-and-data-format.html#Factor">factor</a>)</p>
+</div>
+<div id="stata-10" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As seen above, you can convert string to numeric using <em>destring</em> or <em>generate</em> and vice versa. For instance, if sex is imported as numeric you can convert it into string using:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="data-type-and-data-format.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> sex_cat=<span class="fu">string</span>(sex)</span></code></pre></div>
+<p>The above will only work if all of the data is numeric. However, sometimes it’s not. In a case where your string variables are in fact strings (e.g., “female” instead of “1”) you have to tell Stata to encode [varname] the string data.Running this command will cause Stata to make a new numeric categorical variable wherein the data has labels that correspond to the old string values.(see below for factor type)</p>
+<p>In <strong>Stata</strong>, the <em>format</em> function call is especially useful when rendering data in table of results for nice display.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="data-type-and-data-format.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">format</span> gender %6s</span></code></pre></div>
+</div>
+</div>
+<div id="factor" class="section level3 hasAnchor" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Factor<a href="data-type-and-data-format.html#factor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As written above, you often want to convert character or string data into categorical variables.</p>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-11" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>R</strong>, the categorical variables are <em>factor</em>. Below, are example to convert or create factor.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-type-and-data-format.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span></code></pre></div>
+<pre><code>##    
+##     female male
+##   0     17   98
+##   1      2    7</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-type-and-data-format.html#cb17-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sleep<span class="sc">$</span>gender)</span>
+<span id="cb17-2"><a href="data-type-and-data-format.html#cb17-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>diabetes <span class="ot">&lt;-</span> <span class="fu">factor</span>(sleep<span class="sc">$</span>diabetes, </span>
+<span id="cb17-3"><a href="data-type-and-data-format.html#cb17-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb17-4"><a href="data-type-and-data-format.html#cb17-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>))</span>
+<span id="cb17-5"><a href="data-type-and-data-format.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span></code></pre></div>
+<pre><code>##      
+##       female male
+##   No      17   98
+##   Yes      2    7</code></pre>
+</div>
+<div id="stata-11" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>Stata</strong>, if <em>gender</em> is a string variable, you could create a new numeric variable <em>gender2</em> to manipulate it as binary categorical. The <em>encode</em> function will assign numeric codes in the string variable’s alphabetic order.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="data-type-and-data-format.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> sexlbl 1 <span class="st">&quot;male&quot;</span> 2 <span class="st">&quot;female&quot;</span></span>
+<span id="cb19-2"><a href="data-type-and-data-format.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span>(gender), <span class="kw">generate</span>(gender2) <span class="kw">label</span>(sexlbl)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="data-type-and-data-format.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> diabetes</span>
+<span id="cb20-2"><a href="data-type-and-data-format.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> yesno_lbl 1 <span class="st">&quot;yes&quot;</span> 0 <span class="st">&quot;no&quot;</span></span>
+<span id="cb20-3"><a href="data-type-and-data-format.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*then to assign value label</span></span>
+<span id="cb20-4"><a href="data-type-and-data-format.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">to variables*/</span></span>
+<span id="cb20-5"><a href="data-type-and-data-format.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">values</span> diabetes yesno_lbl</span>
+<span id="cb20-6"><a href="data-type-and-data-format.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> diabetes</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="data-format" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Data format<a href="data-type-and-data-format.html#data-format" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="vector" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Vector<a href="data-type-and-data-format.html#vector" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-12" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>vector</strong> is the simplest R object.
+A vector combines values of the same type (all numeric or all character). In data science, it can correspond to a variable. The <code>&lt;-</code> symbolize the fact that you assign values to an object(variable).</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-type-and-data-format.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c for concatenate values</span></span>
+<span id="cb21-2"><a href="data-type-and-data-format.html#cb21-2" aria-hidden="true" tabindex="-1"></a>vector.a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">14</span>,<span class="dv">3</span>)</span>
+<span id="cb21-3"><a href="data-type-and-data-format.html#cb21-3" aria-hidden="true" tabindex="-1"></a>vector.a</span></code></pre></div>
+<pre><code>## [1]  1 14  3</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-type-and-data-format.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using sequence</span></span>
+<span id="cb23-2"><a href="data-type-and-data-format.html#cb23-2" aria-hidden="true" tabindex="-1"></a>vector.b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb23-3"><a href="data-type-and-data-format.html#cb23-3" aria-hidden="true" tabindex="-1"></a>vector.b</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-type-and-data-format.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># giving names(adress)</span></span>
+<span id="cb25-2"><a href="data-type-and-data-format.html#cb25-2" aria-hidden="true" tabindex="-1"></a>vector.c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span> <span class="ot">=</span> <span class="fl">11.0</span>, </span>
+<span id="cb25-3"><a href="data-type-and-data-format.html#cb25-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;y&quot;</span> <span class="ot">=</span> <span class="fl">23.4</span>, <span class="st">&quot;z&quot;</span> <span class="ot">=</span> <span class="fl">53.0</span>)</span>
+<span id="cb25-4"><a href="data-type-and-data-format.html#cb25-4" aria-hidden="true" tabindex="-1"></a>vector.c</span></code></pre></div>
+<pre><code>##    x    y    z 
+## 11.0 23.4 53.0</code></pre>
+<p>With the concept of vector we can introduce the concept of <strong>indexing</strong>: the position/address of the value in the vector.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-type-and-data-format.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at position 1</span></span>
+<span id="cb27-2"><a href="data-type-and-data-format.html#cb27-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##  x 
+## 11</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-type-and-data-format.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at position 1 and 3</span></span>
+<span id="cb29-2"><a href="data-type-and-data-format.html#cb29-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code></pre></div>
+<pre><code>##  x  z 
+## 11 53</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-type-and-data-format.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at address &quot;y&quot;</span></span>
+<span id="cb31-2"><a href="data-type-and-data-format.html#cb31-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="st">&quot;y&quot;</span>]</span></code></pre></div>
+<pre><code>##    y 
+## 23.4</code></pre>
+</div>
+<div id="stata-12" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb33-1"><a href="data-type-and-data-format.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="kw">vector</span>.a=(1.0, 2.0, 3.0)</span></code></pre></div>
+</div>
+</div>
+<div id="matrix" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Matrix<a href="data-type-and-data-format.html#matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-13" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-13" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>matrix</strong> is a 2 dimensional vector with rows and columns.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-type-and-data-format.html#cb34-1" aria-hidden="true" tabindex="-1"></a>matrix.b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb34-2"><a href="data-type-and-data-format.html#cb34-2" aria-hidden="true" tabindex="-1"></a>matrix.b</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+<p>Similar to vector, one can access the values by indexation. <strong>Think Battle ship game !</strong></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-type-and-data-format.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#value at the third row and second column</span></span>
+<span id="cb36-2"><a href="data-type-and-data-format.html#cb36-2" aria-hidden="true" tabindex="-1"></a>matrix.b[ <span class="dv">3</span>, <span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="stata-13" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-13" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>Stata</strong>, a matrice is created as follow:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb38-1"><a href="data-type-and-data-format.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="fu">matrix</span>.b=(1, 2, 3  \ <span class="co">/// </span></span>
+<span id="cb38-2"><a href="data-type-and-data-format.html#cb38-2" aria-hidden="true" tabindex="-1"></a>                   4, 5, 6) </span></code></pre></div>
+</div>
+</div>
+<div id="data-set" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Data (set)<a href="data-type-and-data-format.html#data-set" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-14" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-14" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>data.frame</strong> is a rectangular data set with rows and columns of possibly different types.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-type-and-data-format.html#cb39-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(vector.a, </span>
+<span id="cb39-2"><a href="data-type-and-data-format.html#cb39-2" aria-hidden="true" tabindex="-1"></a>                      matrix.b, </span>
+<span id="cb39-3"><a href="data-type-and-data-format.html#cb39-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;code&quot;</span><span class="ot">=</span>letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb39-4"><a href="data-type-and-data-format.html#cb39-4" aria-hidden="true" tabindex="-1"></a>dataset</span></code></pre></div>
+<pre><code>##   vector.a X1 X2 code
+## 1        1  1  4    a
+## 2       14  2  5    b
+## 3        3  3  6    c</code></pre>
+<p>The majority of the data set you will be manipulating will be of class data.frame or inherit from that class (e.g. tibble, data.table).</p>
+<p>For accessing the variables, you can use indexation as for matrix or the name of the variable:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-type-and-data-format.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Before the comma, you select individuals </span></span>
+<span id="cb41-2"><a href="data-type-and-data-format.html#cb41-2" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">1</span>, ]</span></code></pre></div>
+<pre><code>##   vector.a X1 X2 code
+## 1        1  1  4    a</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-type-and-data-format.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># After the comma, you select the variables</span></span>
+<span id="cb43-2"><a href="data-type-and-data-format.html#cb43-2" aria-hidden="true" tabindex="-1"></a>dataset[, <span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-type-and-data-format.html#cb45-1" aria-hidden="true" tabindex="-1"></a>dataset[, <span class="st">&quot;code&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-type-and-data-format.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine both, you select individuals and variables</span></span>
+<span id="cb47-2"><a href="data-type-and-data-format.html#cb47-2" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">&quot;code&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+</div>
+<div id="stata-14" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-14" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="list" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> List<a href="data-type-and-data-format.html#list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-15" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-type-and-data-format.html#r-15" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <strong>list</strong> is a primitive and complex element which can coerce different data type (format and length). It is the object return by many statistical function.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-type-and-data-format.html#cb49-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">50</span>),</span>
+<span id="cb49-2"><a href="data-type-and-data-format.html#cb49-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>,<span class="dv">50</span>))</span>
+<span id="cb49-3"><a href="data-type-and-data-format.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(t1)</span></code></pre></div>
+<pre><code>## List of 10
+##  $ statistic  : Named num -2.68
+##   ..- attr(*, &quot;names&quot;)= chr &quot;t&quot;
+##  $ parameter  : Named num 17
+##   ..- attr(*, &quot;names&quot;)= chr &quot;df&quot;
+##  $ p.value    : num 0.016
+##  $ conf.int   : num [1:2] -1.744 -0.206
+##   ..- attr(*, &quot;conf.level&quot;)= num 0.95
+##  $ estimate   : Named num [1:2] 49.7 50.7
+##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mean of x&quot; &quot;mean of y&quot;
+##  $ null.value : Named num 0
+##   ..- attr(*, &quot;names&quot;)= chr &quot;difference in means&quot;
+##  $ stderr     : num 0.364
+##  $ alternative: chr &quot;two.sided&quot;
+##  $ method     : chr &quot;Welch Two Sample t-test&quot;
+##  $ data.name  : chr &quot;rnorm(1:10, 50) and rnorm(2:11, 50)&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
+</div>
+<div id="stata-15" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-type-and-data-format.html#stata-15" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="programming-environment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-management.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02_r_stata_datatype.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
