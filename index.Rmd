@@ -31,7 +31,7 @@ These pages present both Stata and R approaches to data management, descriptive 
   
   Sleep Apnea is a sleep disorder characterizing by abnormal pauses in breathing during sleep. Each pause in breathing is called apnea. The population was defined as the population hospitalized in the Rennes University hospital (France) and aged more than 18 years old. A sampling procedure was performed to select a random sample. Several individual characteristics were collected as possible determinants of sleep apnea. Their sleep was monitored for a night (6 hours) and the number of pauses of breathing was measured.
   
-  **For more practice**, [Here](homework/) is a new data set a long with lab exercices. For the corrections please email me.
+  **For more practice**, [Here](https://github.com/nolwenn/software-M1-biostat/docs/homework) is a new data set a long with lab exercices. For the corrections please email me.
   
   
   -Note- these pages are works-in-progress: If you see mistakes or major omissions, make a comment on the [GitHub repository](https://github.com/nolwenn/software-M1-biostat) or email me.
