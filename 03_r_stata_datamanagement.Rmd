@@ -1,0 +1,159 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+# Data management
+
+## Renaming variables
+Variables names are not always explicit and you might want to rename some.
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+
+:::{}
+### R{-}
+In **R** *data.frame*, variables are in column and to retrieve their names you can use the *colnames()* function. It will return a vector which values can be accessed and modify using indexing.
+```{r, echo=FALSE}
+load("sleepApnea.Rdata")
+```
+
+```{r, eval = FALSE}
+colnames(sleep)
+colnames(sleep)[1] <- "identifier"
+```
+Note : *rownames()* does also exist if you need to access and manipulate the individuals
+:::
+  
+:::{}
+### Stata{-}
+In **Stata**, one way is to use the *rename* function.
+```{stata, eval=F}
+rename number identifier
+```
+:::
+::::
+
+## Missing values
+
+Missing values are always problematic. First, because it is often difficult to know why they are missing: not answered, not attributable, lost in follow-up, miss recording...They can be largely missing for an individuals as well as for a specific variable. 
+
+
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+
+:::{}
+### R{-}
+In **R**, you can assess the number missing values with the *summary()* function or the *is.na()* conditional testing function.
+```{r, eval = FALSE}
+is.na(sleep$age)
+```
+A basic and crude method is to replace missing value by a value such as the average value. For the variable age, let's replace the missing value by the mean age of sample using the indexing technique.
+```{r, eval = TRUE}
+# create a fake missing value
+# for individual #1
+sleep$age[1] <- NA
+sleep$age[1:5]
+na_id <- is.na(sleep$age)
+sleep$age[na_id] <- mean(sleep$age,
+                         na.rm=TRUE)
+round(sleep$age[1:5],0)
+```
+:::
+  
+:::{}
+### Stata{-}
+In **Stata** an overview of the missing data can be done as follow:
+```{stata, eval=FALSE}
+misstable summarize
+misstable patterns
+```
+To replace one missing value by the mean of the variable, do
+```{stata, eval=FALSE}
+replace age = mean(age) if missing(age)
+```
+
+:::
+::::
+
+Above a certain threshold that varies, from 4% to 20%, researchers try to do multiple imputation of missing values. Although there is no perfect solution, there are basically 3 scenario and associated imputation techniques. Data are missing completely at random (MCAR) or data are missing at random (MAR) or data are missing not at random (MNAR). For the  latest, it would be difficult to perform a legitimate analysis. This advanced topic is not covered in MPH1 class but see below for references if needed.
+
+For multiple imputation with **R** see the package [*Mice*](https://cran.r-project.org/web/packages/mice/index.html) for more sophisticated missing values imputation
+
+For multiple imputation with **Stata** see [Rose Meideiros ](https://www.stata.com/meeting/switzerland16/slides/medeiros-switzerland16.pdf) presentation.
+
+## Create new variables
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+```{r}
+sleep$age_group <- cut(sleep$age, 
+                       breaks = c(20,40,60,80),
+                       include.lowest=TRUE, 
+                       right = FALSE)
+# For verification
+table(sleep$age_group)
+```
+:::
+  
+:::{}
+### Stata{-}
+
+:::
+::::
+  
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+
+### R{-}
+
+*ifelse()* function of conditionnal testing that returns either yes or no (or specified values) depending on whether the element of test is TRUE or FALSE. As example, we create below 
+
+```{r}
+sleep$overweight <- ifelse(sleep$bmi > 25, "Yes", "No")
+sleep$overweight <- as.factor(sleep$overweight)
+# For verification
+table(sleep$overweight )
+```
+
+```{r, echo=FALSE}
+save(sleep, file="sleepApnea-clean.Rdata")
+```
+:::
+  
+:::{}
+### Stata{-}
+:::
+::::
+  
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+
+*dplyr*
+  
+```{r, eval=FALSE}
+library(dplyr)
+sleep <- sleep %>% mutate("")
+```
+:::
+
+:::{}
+### Stata{-}
+
+:::
+::::
+
+## Dummy variables
+
+### log transformation
+
+### conditional expression
+
+```{r, echo=FALSE}
+symb <- data.frame("Sign"=c("==", "!=", ">", "<", ">=", "<=", "&", "|"),
+                   "Definition"= c("equality", "not equality", "greater than", "less than", "greater than or equal to", "less than or equal to", "and (both statements are true)", "or (either statement is true)"),
+                   "TRUE"=c("3==3", "3!=4", "4 > 2", "3<4", "4>=3", "4<=5", "(4>2)&(3==3))", "(3==2)|(1<=2)"),
+                   "FALSE"=c( "3==4", "3!=3", "4>3", "4<2", "4>=5", "4<=3", "(4>2)&(1>2)", "(4<2)|(1>2)" ))
+
+knitr::kable(symb)
+```

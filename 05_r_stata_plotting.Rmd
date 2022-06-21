@@ -1,0 +1,49 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Plotting
+
+## Quantitative data
+
+**Histogram**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+**Boxplot**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+
+
+## Quanlitative data
+
+**Barplot**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::

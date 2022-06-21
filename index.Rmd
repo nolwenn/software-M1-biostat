@@ -1,0 +1,44 @@
+--- 
+title: "Little e-book for MPH1 computer labs"
+author: "Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+documentclass: book
+bibliography:
+- book.bib
+- packages.bib
+description: |
+  This is a little book of essential biostatistic concepts for Master 1 in Public Health.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+site: bookdown::bookdown_site
+---
+
+
+```{r include=TRUE, echo=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown','dplyr','tidyr', 'kableExtra','ggplot2','epiDisplay','reshape2'), 'packages.bib')
+```
+
+
+# Introduction {-}
+These pages present both Stata and R approaches to data management, descriptive statistics, plotting, and statistical modelling seen in our former MPH1 software labs. They are presented side-by-side to make it easier to draw the parallel between the syntax of the two tools. R often takes more code to do common tasks than Stata, but can do many things that are not possible in Stata. Both are excellent platforms for quantitative research, though Stata is still more common in epidemiology and R is more common in statistics and data science. 
+  
+  **The code examples and illustrations presented here used the** [sleep apnea data](SleepApnea.csv). 
+  
+  Sleep Apnea is a sleep disorder characterizing by abnormal pauses in breathing during sleep. Each pause in breathing is called apnea. The population was defined as the population hospitalized in the Rennes University hospital (France) and aged more than 18 years old. A sampling procedure was performed to select a random sample. Several individual characteristics were collected as possible determinants of sleep apnea. Their sleep was monitored for a night (6 hours) and the number of pauses of breathing was measured.
+  
+  **For more practice**, [Here](homework/) is a new data set a long with lab exercices. For the corrections please email me.
+  
+  
+  -Note- these pages are works-in-progress: If you see mistakes or major omissions, make a comment on the [GitHub repository](https://github.com/nolwenn/software-M1-biostat) or email me.
+  
+  
+# References {-}
+Hadley Wickham and Garrett Grolemund. (2017) R for Data Sciences 1st Edition. [Available here](https://r4ds.had.co.nz/index.html)
+
+Svend Juul (2006) An Introduction to Stata for Health Researchers. Stata Press [Available here](https://books.google.fr/books?id=JsAWQWfTUV0C&lpg=PA53&dq=stata%20complex%20strings&pg=PP1#v=twopage&q&f=false)
+

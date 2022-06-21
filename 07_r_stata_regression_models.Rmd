@@ -1,0 +1,46 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Regression model
+
+## Linear regression
+## Simple Linear regression
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+**post-hoc test**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+### Multiple linear regression
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+## logistic regression

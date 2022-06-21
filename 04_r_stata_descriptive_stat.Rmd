@@ -1,0 +1,91 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Descriptive statistics
+
+## Quick summary statistics
+The first step of descriptive statistics is to have a **quick (smart) overview** of the data. And always ask yourself **"is the output consistent with what you expected in terms of the variables’ types?"**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+```{r, echo=F, eval=T}
+load("sleepApnea-clean.Rdata")
+```
+
+To have a descriptive summary, the classical R function is *summary()*
+```{r, eval=F}
+summary(sleep[, 1:3])
+```
+
+Note that in the example above we asked for the summary of the first 3 columns of the dataset. The indexing of data set in a matrix-like format often become useful and is similar to playing battle ship. You need to use **dataset[row_index,column_index]** to filter on rows, before the comma,  or on columns, after the comma.
+
+Additionnal statistical summary functions can be find in the other R libraries, like in the package *pastecs* (function stat.desc()).
+:::
+
+:::{}
+### Stata{-}
+The *codebook* function returns the main characteristics of the data set, *i.e.* the number of observations, number of variables, and characteristics of variables.
+```{stata, eval=F}
+codebook
+```
+:::
+::::
+
+## Central and deviation parameters
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+```{r, eval=F}
+mean(sleep$age)
+sd(sleep$age)
+median(sleep$age)
+quantile(sleep$age, probs=c(0.25, 0.75))
+```
+:::
+
+:::{}
+### Stata{-}
+
+```{stata, eval=F}
+summarize age, detail
+````
+
+:::
+::::
+
+## Confidence interval
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+```{r, eval=F}
+library(epiDisplay)
+ci(sleep$age)
+```
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+## Cross table
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+```{r}
+crosstab <- table(sleep$gender,sleep$diabetes)
+round(prop.table(crosstab,1)*100,digits=2)
+round(prop.table(crosstab,2)*100,digits=2)
+```
+:::
+
+:::{}
+### Stata{-}
+```{stata, eval=FALSE}
+tabulate gender
+```
+:::
+::::

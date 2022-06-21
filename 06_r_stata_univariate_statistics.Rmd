@@ -1,0 +1,61 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Univariate statistical test
+
+## Quantitative data
+
+**Student t-test**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+**Wilcoxon test**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+
+
+## Quanlitative data
+
+**Fisher Exact test**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+**Chi-square test**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+:::
+
+:::{}
+### Stata{-}
+:::
+::::

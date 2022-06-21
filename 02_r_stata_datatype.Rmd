@@ -1,0 +1,295 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Data type and data format 
+
+## Data type
+
+Often when importing data, statistical software can mistake a numeric variable for a string variable or a categorical variable for a string variable. It might not be visible at first but attempts to run commands will return error. **Do verify you data type** before type of data analysis.
+
+Using the sleep apnea dataset, you can pratice and verify the data type of each of the variables. As mentioned previously in **R** you can have a overview with the function *str()* and in **Stata** you can use *describe*. You can also check each variables with quick function call.
+
+### Numeric
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R {-}
+In **R** the *is.numeric()* function will return a logical which indicates you whether or not the variable is a numeric.
+```{r, echo=FALSE}
+load("sleepApnea.Rdata")
+```
+
+```{r, echo=TRUE}
+is.numeric(sleep$age)
+## if it is not the proper type
+sleep$age <- as.numeric(sleep$age)
+``` 
+:::
+
+:::{}
+### Stata{-}
+In **Stata**, if age is encoded as a string and was therefore all numbers, you could use the destring command. If you want to replace the existing variable, the command is simply
+```{stata, eval=FALSE, echo=TRUE}
+destring age
+``` 
+This will replace the existing specified variable with the same data but now in a nonstring format. 
+
+If you prefer to retain the existing variable, you can generate a new variable that is a nonstring version of the existing variable. 
+```{stata, eval=FALSE, echo=TRUE}
+generate age_num=real(age)
+``` 
+:::
+::::
+
+### Logical
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+In **R** the *is.logical()* function will return a logical which indicates you whether or not the variable is a logic. For example, have a look at the binary variable diabetes coded 0 and 1 for absence or presence.
+
+```{r, eval=FALSE, echo=TRUE}
+is.logical(sleep$diabetes)
+``` 
+If needed, you can convert the variable to a logical using the *as.logical()* function.
+```{r, eval=FALSE}
+str(sleep$diabetes)
+db_logic <-as.logical(sleep$diabetes)
+str(db_logic)
+```
+A logical vector can then be useful to select/replace values from other variables with the indexing method that we will see below. 
+:::
+  
+:::{}
+### Stata{-}
+In **Stata** logical are boolean with 0 for FALSE and 1 for TRUE. As in R,  they can be generate by conditional/logical expression ([see the Create new variables section](data-management.html#create-new-variables))
+:::
+::::
+
+### Date 
+Statistical software are really powerful in manipulating dates which is often useful is epidemiology. However it is not always easy to handle dates as there is different format and referential. 
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R {-}
+Dates and time variables are best read as strings. The default formats in **R** follow the rules of the ISO 8601 international standard which expresses a day as "2001-02-03".
+
+Below is a basic operation (subtraction) between 2 dates. 
+
+```{r}
+x <- as.Date("2022-06-21", 
+             format="%Y-%m-%d")
+y <- as.Date("2022-06-30", 
+             format="%Y-%m-%d")
+y - x
+```
+In R, dates are represented as the number of days since 1970-01-01, with negative values for earlier dates. If you import dates in numeric values from an other software with a different origin you will have to specify that origin to convert the numeric values into the correct dates. Please see *as.Date()* help page for more details.
+
+The package *lubridate* can be particularly helpful for manipulating dates.
+:::
+
+:::{}
+### Stata{-}
+Dates and time variables are best read as strings. The numeric encoding that Stata uses is centered on the first millisecond of 01jan1960, that is, 01jan1960 00:00:00.000.
+
+```{stata, eval=FALSE}
+gen birthday = date("21 Jan 1952", "DMY")
+list
+# - 2902
+format birthday %td
+list
+# 21jan1952
+```
+:::
+::::
+
+### Character
+Character or string data often the imported data type for categorical variables.
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R {-}
+In our sleep data set for instance, the *gender* variable was imported as character. 
+```{r, echo=TRUE}
+is.character(sleep$gender)
+```
+However, gender is more of a categorical variable with levels and labels. You will see below how to convert a character string to a categorical variable or ([factor](data-type-and-data-format.html#Factor)) 
+:::
+
+:::{}
+### Stata{-}
+As seen above, you can convert string to numeric using *destring* or *generate* and vice versa. For instance, if sex is imported as numeric you can convert it into string using:
+
+```{stata, eval=FALSE, echo=TRUE}
+generate sex_cat=string(sex)
+``` 
+The above will only work if all of the data is numeric. However, sometimes it's not. In a case where your string variables are in fact strings (e.g., "female" instead of "1") you have to tell Stata to encode [varname] the string data.Running this command will cause Stata to make a new numeric categorical variable wherein the data has labels that correspond to the old string values.(see below for factor type)
+
+In **Stata**, the *format* function call is especially useful when rendering data in table of results for nice display. 
+```{stata, eval=FALSE}
+format gender %6s
+```
+:::
+::::
+
+### Factor
+As written above, you often want to convert character or string data into categorical variables.
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R {-}
+In **R**, the categorical variables are *factor*. Below, are example to convert or create factor.
+```{r, echo=FALSE}
+load("sleepApnea.Rdata")
+```
+
+```{r}
+table(sleep$diabetes, sleep$gender)
+sleep$gender <- as.factor(sleep$gender)
+sleep$diabetes <- factor(sleep$diabetes, 
+                         levels = c(0, 1), 
+                         labels = c("No","Yes"))
+table(sleep$diabetes, sleep$gender)
+```
+:::
+  
+:::{}
+### Stata{-}
+In **Stata**, if *gender* is a string variable, you could create a new numeric variable *gender2* to manipulate it as binary categorical. The *encode* function will assign numeric codes in the string variable's alphabetic order.
+```{stata, eval=FALSE}
+label define sexlbl 1 "male" 2 "female"
+encode(gender), generate(gender2) label(sexlbl)
+```
+
+```{stata, eval=FALSE}
+tab diabetes
+label define yesno_lbl 1 "yes" 0 "no"
+/*then to assign value label
+to variables*/
+label values diabetes yesno_lbl
+tab diabetes
+```
+:::
+::::   
+  
+
+## Data format 
+### Vector 
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+A **vector** is the simplest R object. 
+A vector combines values of the same type (all numeric or all character). In data science, it can correspond to a variable. The `<-` symbolize the fact that you assign values to an object(variable).
+
+```{r}
+# c for concatenate values
+vector.a <- c(1,14,3)
+vector.a
+# using sequence
+vector.b <- c(1:3)
+vector.b
+# giving names(adress)
+vector.c <- c("x" = 11.0, 
+              "y" = 23.4, "z" = 53.0)
+vector.c
+```
+
+With the concept of vector we can introduce the concept of **indexing**: the position/address of the value in the vector.
+```{r}
+# value if vector.b at position 1
+vector.c[1]
+# value if vector.b at position 1 and 3
+vector.c[c(1,3)]
+# value if vector.b at address "y"
+vector.c["y"]
+```
+:::
+
+:::{}
+### Stata{-}
+
+```{stata, eval=F}
+matrix vector.a=(1.0, 2.0, 3.0)
+```
+:::
+::::
+
+### Matrix 
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+A **matrix** is a 2 dimensional vector with rows and columns.
+
+```{r}
+matrix.b <- matrix(1:6, nrow=3)
+matrix.b
+```
+
+Similar to vector, one can access the values by indexation. **Think Battle ship game !**
+```{r}
+#value at the third row and second column
+matrix.b[ 3, 2]
+```
+:::
+
+:::{}
+### Stata{-}
+In **Stata**, a matrice is created as follow:
+```{stata, eval=F}
+matrix matrix.b=(1, 2, 3  \ /// 
+                   4, 5, 6) 
+```
+:::
+::::
+
+### Data (set) 
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+A **data.frame** is a rectangular data set with rows and columns of possibly different types.
+
+```{r}
+dataset <- data.frame(vector.a, 
+                      matrix.b, 
+                      "code"=letters[1:3])
+dataset
+```
+
+The majority of the data set you will be manipulating will be of class data.frame or inherit from that class (e.g. tibble,  data.table).
+
+For accessing the variables, you can use indexation as for matrix or the name of the variable:
+```{r}
+# Before the comma, you select individuals 
+dataset[1, ]
+# After the comma, you select the variables
+dataset[, 4]
+dataset[, "code"]
+# Combine both, you select individuals and variables
+dataset[1:2, "code"]
+```
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+
+### List 
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+A **list** is a primitive and complex element which can coerce different data type (format and length). It is the object return by many statistical function.
+
+```{r}
+t1 <- t.test(x=rnorm(1:10,50),
+             y=rnorm(2:11,50))
+str(t1)
+```
+:::
+
+:::{}
+### Stata{-}
+:::
+::::
+

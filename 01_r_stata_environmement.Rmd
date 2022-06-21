@@ -1,0 +1,261 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+# Programming environment
+
+## Installation R and Stata
+[R](https://cran.r-project.org) is the free original statistical software and the language, available on [CRAN](https://cran.r-project.org). [RStudio](https://www.rstudio.com/) is an enhanced graphical user interface (GUI) to R with some commercial options. To install the two software see [R-bloggers tuto](https://www.r-bloggers.com/2022/01/how-to-install-and-update-r-and-rstudio/).
+
+[Stata](https://www.stata.com/) is a commercial software for which you need a licence, installation instructions will be given upon purchase.
+
+## R packages
+R packages are a collection of R functions, complied code and sample data. By default, R installs a set of packages during installation. More packages are available and can be added later, when they are needed for some specific purpose. When we start the R console, only the default packages are available.  Other packages (which are already installed) have to be loaded explicitly to use them in your current session.
+
+There are two ways to add new R packages. One is installing directly from the CRAN directory and another is downloading the package to your local system and installing it manually.
+
+To install a R package from [CRAN](https://cran.r-project.org), such as `tydiverse` use:
+```{r, eval=F}
+install.packages(tidyverse)
+```
+
+To load a package that is already installed but not available by default in the current environment do:
+```{r, eval=F}
+library(tidyverse)
+```
+
+## Working directory
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R {-}
+**To specify your working directory** (location of the files to use and save) use the via following command:
+```{r attr.source="style='display:inline-block;'", collapse=TRUE, eval=F}
+setwd("C:/Rlab")
+```
+To verify where, in your computer folder architecture, R is or has opened, using the function call `getwd()`
+
+Next, use the drop-down menu (File > New File > R Script...) to create a new script and 
+save the script using the drop-down menu, creating a *.R file named *firstscript.R*
+
+In R you can also work with **RProject** that helps create and customized your working environment per project. See [RStudio website ](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects) for details.
+:::
+
+:::{}
+### Stata {-}
+**To specify your working directory** use the via following command:
+```{stata, eval=FALSE}
+cd "C:/statalab"
+```
+Note that path ("C:\/...") will vary based on the computer being used.
+To verify where, in your computer folder architecture, STATA is or has opened, using the `pwd`command.
+
+Next, use the drop-down menu (STATA > File > Do...) to create a “.do” file and save it using the drop-down menu as *firstscript.do*. 
+:::
+::::
+
+## Log files and history
+You can create a .log file to save your output results and history commands. 
+A log keeps all the results of your analyses saved to a file that can then be open in a text editor. It is classical functionality in STATA but not a default in R. 
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R {-}
+In R you have a history file that save all the commands run in the console but **to save the R outputs from the console** you need to `sink` them in a file as demonstrate below.
+
+```{r, eval=FALSE}
+# example with the iris dataset 
+# (available by default in R)
+fit <- lm(Petal.Length ~ Sepal.Length, data = iris)
+# opening log file
+sink(file = "lm_output.log") 
+fit    # print in log
+sink() # closing log file
+`````
+
+You also have the option of using specific packages such as *logger* [URL] or start thinking of generating reports as you do your analysis with the package *Rmarkdown*.
+:::
+
+:::{}
+### Stata {-}
+**To create or open a saved log file** in Stata run:
+```{stata, eval=FALSE}
+"analysis_firstscript.log", replace  
+```
+Option 'replace' specifies that filename that already exists will be overwritten.
+Otherwise, an error message is issued and logging does not start.
+
+Always close the log file when the lab is finished to stop logging
+Use the command `log close` to close the log file when the lab (always) so it stops logging.
+:::
+::::
+
+## Importing Data
+
+R and Stata can import data set in text format (txt, csv...). 
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R {-}
+R can read(load) an arbitrary number of data sets at once, so they must each be assigned a name. 
+R will load this file from your current working directory. If the file is stored elsewhere in your computer you need to specify the entire path (see `?read.csv` help page).
+
+```{r}
+#import data from csv file, 
+# with column names (header), 
+#columns separator as comma, and decimals as "."
+sleep<-read.csv("SleepApnea.csv", 
+                header=TRUE, sep=",", 
+                dec=".")
+```
+Note: 
+Provided a Stata data set (`.dta` file), we can read it into R. 
+The `read_dta()` in the `haven` package--part of [`tidyverse`](https://www.tidyverse.org/) data science packages-- is particularly useful for loading Stata files because it preserves Stata labels.
+```{r, eval=FALSE}
+sleep <- haven::read_dta("SleepApnea.dta")
+```
+And R can many other proprietaries' files (Excel, SAS, SPS,...).
+:::
+
+:::{}
+### Stata{-}
+Stata can only load one data set at a time, so it does not get assigned to an object. The CSV file import function is:
+```{}
+import delimited using SleepApnea
+```
+This will load from Stata's current working directory. 
+
+:::
+::::
+
+## Saving and loading R and Stata files  
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+You can save [R object](#data type) (data.frame, list, ...) in a file for future use.
+```{r, eval=FALSE}
+save(sleep, file="sleepApnea.Rdata")
+```
+
+When you want to import R object stored in R data file use the `load` function.
+```{r, eval=FALSE}
+load("sleepApnea.Rdata")
+```
+:::
+
+:::{}
+### Stata{-}
+To save an unnamed dataset (or an old dataset under a new name):  
+1. select **File > Save As...**; or  
+2. type **save** *filename* in the Command window.
+
+```{stata, eval=FALSE}
+save SleepApnea.dta
+```
+
+To save a dataset that has been changed (overwriting the original data file),  
+1. select **File > Save**;  
+2. click on the Save button; or  
+3. type **save**, replace in the Command window
+
+```{stata, eval=FALSE}
+save SleepApnea.dta, replace
+```
+
+To load a dataset from Stata's current working directory:  
+```{stata, eval=FALSE}
+use SleepApnea.dta
+```
+:::
+::::
+
+## Delete data from workspace  
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+You can save remove/delete [R object](#data type) from your current workspace using the *rm()* function (rm for remove). If you delete an object that was saved on your computer drive, it will be not deleted from your computer but just from your R session. If your object was create in your workspace but not saved it will be lost.
+```{r, eval=FALSE}
+rm(sleep)
+```
+:::
+
+:::{}
+### Stata{-}
+The *drop* command is used to remove variables or observations from the dataset in memory
+```{stata, eval=FALSE}
+drop sleep
+```
+If you want to clear out the data in memory, so that you start from fresk, use the *clear* function.
+```{stata, eval=FALSE}
+clear all
+```
+:::
+::::
+
+## Data quick overview
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+```{r, echo=F, eval=T}
+sleep<-read.csv("SleepApnea.csv", 
+                header=TRUE, sep=",", 
+                dec=".")
+```
+
+**For small and large datasets**, the *str()* is useful to see the variables and their types (str for structure)
+```{r, eval=F}
+str(sleep)
+```
+
+**If you do have not have high dimensional data.**
+
+To have a sense of the first and last rows of your dataset you can have a look at the *head()*, the *tail()* of the dataset.
+
+*View()* displays the data in a tabular spreadsheet (be careful with capital letter!) 
+
+```{r, eval=F}
+head(sleep)
+tail(sleep)
+View(sleep)
+```
+:::
+
+:::{}
+### Stata{-}
+The *describe* function returns the main characteristics of the data set, *i.e.* the number of observations, number of variables, and characteristics of variables.
+
+```{r, eval=F}
+describe(sleep)
+```
+:::
+::::
+
+## Help pages
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+
+R help pages are standardized with a description, how to use the function with its major argument and possible default values. The arguments are then explained with then details on the computation. The value section present the output of the function with possible extra notes and the authors of the function. Last but not least,  **examples** are often good ways to understand a function. You can compy and paste the examples into the console learn the use and ouput of a function. 
+```{r, eval=F}
+?head
+```
+:::
+
+:::{}
+#### Stata{-}
+To access Stata’s help, you will either
+
+1. select **Help** from the menus, or  
+2. use the help and search commands.  
+
+Regardless of the method you use, results will be shown in the Viewer or Results windows. Blue
+text indicates a hypertext link, so you can click to go to related entries.
+
+```{stata, eval=F}
+help describe
+```
+:::
+::::
