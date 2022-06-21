@@ -82,9 +82,17 @@ For multiple imputation with **R** see the package [*Mice*](https://cran.r-proje
 For multiple imputation with **Stata** see [Rose Meideiros ](https://www.stata.com/meeting/switzerland16/slides/medeiros-switzerland16.pdf) presentation.
 
 ## Create new variables
+
+In epidemiology and data sciences in general, you often come to convert numerical variable into to groups, i.e. a categorical variable. Here is an example with age as a continous variable that you split into age groups.
+
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 :::{}
 ### R{-}
+In **R**, you can use the function *cut()* to split into intervals (equal or not) a quantitative variable. The 3 main arguments of the function are:  
+
+- breaks : interval using number as boundaries
+- include.lowest: whether or not you include the lowest value if the data series
+- right : whether or not you include the upper-bound value of the interval in your group (inclusion is symbolized by `]` and exclusion by `)`.
 ```{r}
 sleep$age_group <- cut(sleep$age, 
                        breaks = c(20,40,60,80),

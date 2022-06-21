@@ -370,9 +370,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="create-new-variables" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Create new variables<a href="data-management.html#create-new-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In epidemiology and data sciences in general, you often come to convert numerical variable into to groups, i.e. a categorical variable. Here is an example with age as a continous variable that you split into age groups.</p>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div id="r-18" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-management.html#r-18" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>R</strong>, you can use the function <em>cut()</em> to split into intervals (equal or not) a quantitative variable. The 3 main arguments of the function are:</p>
+<ul>
+<li>breaks : interval using number as boundaries</li>
+<li>include.lowest: whether or not you include the lowest value if the data series</li>
+<li>right : whether or not you include the upper-bound value of the interval in your group (inclusion is symbolized by <code>]</code> and exclusion by <code>)</code>.</li>
+</ul>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-management.html#cb10-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(sleep<span class="sc">$</span>age, </span>
 <span id="cb10-2"><a href="data-management.html#cb10-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">80</span>),</span>
 <span id="cb10-3"><a href="data-management.html#cb10-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">include.lowest=</span><span class="cn">TRUE</span>, </span>
