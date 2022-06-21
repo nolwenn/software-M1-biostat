@@ -39,10 +39,26 @@ codebook
 :::{}
 ### R{-}
 ```{r, eval=F}
+# average
 mean(sleep$age)
+# variance
+var(sleep$age)
+# standard deviation
 sd(sleep$age)
+# median 
+# When sort in increasing order, 50% of values below and above
 median(sleep$age)
+# interquartile range
+IQR(sleep$age)
+```
+
+```{r, eval=T}
+# 25%-75%
 quantile(sleep$age, probs=c(0.25, 0.75))
+#quartile
+quantile(sleep$age, probs=seq(0, 1, 1/4))
+# tercile
+quantile(sleep$age, probs = seq(0,1,1/3))
 ```
 :::
 
