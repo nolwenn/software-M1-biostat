@@ -83,7 +83,15 @@ For multiple imputation with **Stata** see [Rose Meideiros ](https://www.stata.c
 
 ## Create new variables
 
-In epidemiology and data sciences in general, you often come to convert numerical variable into to groups, i.e. a categorical variable. Here is an example with age as a continous variable that you split into age groups.
+
+### Changing scale
+
+**log transformation**
+
+
+
+### From continuous to category
+In epidemiology and data sciences more globally, you often need to convert numerical variable into to groups, i.e. a categorical variable. Here is an example with age as a continuous variable that you split into age groups.
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 :::{}
@@ -109,16 +117,31 @@ table(sleep$age_group)
 :::
 ::::
   
+
+### Dummy variables
+
+A dummy variable is one that takes only the value 0 or 1 to indicate the absence or presence of some categorical effect that may be expected to shift the outcome.
+
+Dummy variable are often create as the result of a conditional expression. The table below presents the differents symbols avaible in **R** and **Stata** for conditional testing.
+```{r, echo=FALSE}
+symb <- data.frame("Sign"=c("==", "!=", ">", "<", ">=", "<=", "&", "|"),
+                   "Definition"= c("equality", "not equality", "greater than", "less than", "greater than or equal to", "less than or equal to", "and (both statements are true)", "or (either statement is true)"),
+                   "TRUE"=c("3==3", "3!=4", "4 > 2", "3<4", "4>=3", "4<=5", "(4>2)&(3==3))", "(3==2)|(1<=2)"),
+                   "FALSE"=c( "3==4", "3!=3", "4>3", "4<2", "4>=5", "4<=3", "(4>2)&(1>2)", "(4<2)|(1>2)" ))
+
+knitr::kable(symb)
+```
+
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 :::{}
-
+ 
 ### R{-}
 
-*ifelse()* function of conditionnal testing that returns either yes or no (or specified values) depending on whether the element of test is TRUE or FALSE. As example, we create below 
+The conbinaison of any of the above symbols with the *ifelse()* function useful for creating a dummay variable based on  conditionnal testing as you can assign 0/1 values (or any specified values) to your variable depending on whether the element of test is TRUE or FALSE. As example, we create below 
 
 ```{r}
-sleep$overweight <- ifelse(sleep$bmi > 25, "Yes", "No")
-sleep$overweight <- as.factor(sleep$overweight)
+sleep$overweight <- ifelse(sleep$bmi > 25,  1, 0)
+sleep$overweight <- factor(sleep$overweight, level=c(0, 1), labels=c("Yes", "No"))
 # For verification
 table(sleep$overweight )
 ```
@@ -151,17 +174,3 @@ sleep <- sleep %>% mutate("")
 :::
 ::::
 
-## Dummy variables
-
-### log transformation
-
-### conditional expression
-
-```{r, echo=FALSE}
-symb <- data.frame("Sign"=c("==", "!=", ">", "<", ">=", "<=", "&", "|"),
-                   "Definition"= c("equality", "not equality", "greater than", "less than", "greater than or equal to", "less than or equal to", "and (both statements are true)", "or (either statement is true)"),
-                   "TRUE"=c("3==3", "3!=4", "4 > 2", "3<4", "4>=3", "4<=5", "(4>2)&(3==3))", "(3==2)|(1<=2)"),
-                   "FALSE"=c( "3==4", "3!=3", "4>3", "4<2", "4>=5", "4<=3", "(4>2)&(1>2)", "(4<2)|(1>2)" ))
-
-knitr::kable(symb)
-```

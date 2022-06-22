@@ -24,7 +24,7 @@
 <meta name="author" content="Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic" />
 
 
-<meta name="date" content="2022-06-21" />
+<meta name="date" content="2022-06-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,11 +218,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="data-management.html"><a href="data-management.html#renaming-variables"><i class="fa fa-check"></i><b>3.1</b> Renaming variables<span></span></a></li>
 <li class="chapter" data-level="3.2" data-path="data-management.html"><a href="data-management.html#missing-values"><i class="fa fa-check"></i><b>3.2</b> Missing values<span></span></a></li>
-<li class="chapter" data-level="3.3" data-path="data-management.html"><a href="data-management.html#create-new-variables"><i class="fa fa-check"></i><b>3.3</b> Create new variables<span></span></a></li>
-<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html#dummy-variables"><i class="fa fa-check"></i><b>3.4</b> Dummy variables<span></span></a>
+<li class="chapter" data-level="3.3" data-path="data-management.html"><a href="data-management.html#create-new-variables"><i class="fa fa-check"></i><b>3.3</b> Create new variables<span></span></a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#log-transformation"><i class="fa fa-check"></i><b>3.4.1</b> log transformation<span></span></a></li>
-<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#conditional-expression"><i class="fa fa-check"></i><b>3.4.2</b> conditional expression<span></span></a></li>
+<li class="chapter" data-level="3.3.1" data-path="data-management.html"><a href="data-management.html#changing-scale"><i class="fa fa-check"></i><b>3.3.1</b> Changing scale<span></span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-management.html"><a href="data-management.html#from-continuous-to-category"><i class="fa fa-check"></i><b>3.3.2</b> From continuous to category<span></span></a></li>
+<li class="chapter" data-level="3.3.3" data-path="data-management.html"><a href="data-management.html#dummy-variables"><i class="fa fa-check"></i><b>3.3.3</b> Dummy variables<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics<span></span></a>
@@ -370,7 +370,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="create-new-variables" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Create new variables<a href="data-management.html#create-new-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In epidemiology and data sciences in general, you often come to convert numerical variable into to groups, i.e. a categorical variable. Here is an example with age as a continous variable that you split into age groups.</p>
+<div id="changing-scale" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Changing scale<a href="data-management.html#changing-scale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>log transformation</strong></p>
+</div>
+<div id="from-continuous-to-category" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> From continuous to category<a href="data-management.html#from-continuous-to-category" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In epidemiology and data sciences more globally, you often need to convert numerical variable into to groups, i.e. a categorical variable. Here is an example with age as a continuous variable that you split into age groups.</p>
+</div>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div id="r-18" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-management.html#r-18" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -394,41 +401,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Stata<a href="data-management.html#stata-18" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
-<div id="r-19" class="section level3 unnumbered hasAnchor">
-<h3>R<a href="data-management.html#r-19" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><em>ifelse()</em> function of conditionnal testing that returns either yes or no (or specified values) depending on whether the element of test is TRUE or FALSE. As example, we create below</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-management.html#cb12-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>overweight <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(sleep<span class="sc">$</span>bmi <span class="sc">&gt;</span> <span class="dv">25</span>, <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span>
-<span id="cb12-2"><a href="data-management.html#cb12-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>overweight <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sleep<span class="sc">$</span>overweight)</span>
-<span id="cb12-3"><a href="data-management.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For verification</span></span>
-<span id="cb12-4"><a href="data-management.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>overweight )</span></code></pre></div>
-<pre><code>## 
-##  No Yes 
-##  37  93</code></pre>
-</div>
-<div id="stata-19" class="section level3 unnumbered hasAnchor">
-<h3>Stata<a href="data-management.html#stata-19" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
-<div id="r-20" class="section level3 unnumbered hasAnchor">
-<h3>R<a href="data-management.html#r-20" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><em>dplyr</em></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-management.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb14-2"><a href="data-management.html#cb14-2" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
-</div>
-<div id="stata-20" class="section level3 unnumbered hasAnchor">
-<h3>Stata<a href="data-management.html#stata-20" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-</div>
-<div id="dummy-variables" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Dummy variables<a href="data-management.html#dummy-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="log-transformation" class="section level3 hasAnchor" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> log transformation<a href="data-management.html#log-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="conditional-expression" class="section level3 hasAnchor" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> conditional expression<a href="data-management.html#conditional-expression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="dummy-variables" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Dummy variables<a href="data-management.html#dummy-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A dummy variable is one that takes only the value 0 or 1 to indicate the absence or presence of some categorical effect that may be expected to shift the outcome.</p>
+<p>Dummy variable are often create as the result of a conditional expression. The table below presents the differents symbols avaible in <strong>R</strong> and <strong>Stata</strong> for conditional testing.</p>
 <table>
 <thead>
 <tr class="header">
@@ -489,8 +465,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-
 </div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-19" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-management.html#r-19" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The conbinaison of any of the above symbols with the <em>ifelse()</em> function useful for creating a dummay variable based on conditionnal testing as you can assign 0/1 values (or any specified values) to your variable depending on whether the element of test is TRUE or FALSE. As example, we create below</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-management.html#cb12-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>overweight <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(sleep<span class="sc">$</span>bmi <span class="sc">&gt;</span> <span class="dv">25</span>,  <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb12-2"><a href="data-management.html#cb12-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>overweight <span class="ot">&lt;-</span> <span class="fu">factor</span>(sleep<span class="sc">$</span>overweight, <span class="at">level=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>))</span>
+<span id="cb12-3"><a href="data-management.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For verification</span></span>
+<span id="cb12-4"><a href="data-management.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>overweight )</span></code></pre></div>
+<pre><code>## 
+## Yes  No 
+##  37  93</code></pre>
+</div>
+<div id="stata-19" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-management.html#stata-19" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div id="r-20" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="data-management.html#r-20" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>dplyr</em></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-management.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb14-2"><a href="data-management.html#cb14-2" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+</div>
+<div id="stata-20" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="data-management.html#stata-20" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+
 </div>
 </div>
             </section>
