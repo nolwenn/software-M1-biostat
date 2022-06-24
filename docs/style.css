@@ -8,9 +8,10 @@ p code {
 pre {
   word-break: normal;
   word-wrap: normal;
+  overflow-x: auto;
 }
 pre code {
-  white-space: inherit;
+  white-space: pre;
 }
 .practice {
     padding: 1em;

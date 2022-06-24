@@ -71,7 +71,6 @@ To replace one missing value by the mean of the variable, do
 ```{stata, eval=FALSE}
 replace age = mean(age) if missing(age)
 ```
-
 :::
 ::::
 
@@ -83,14 +82,53 @@ For multiple imputation with **Stata** see [Rose Meideiros ](https://www.stata.c
 
 ## Create new variables
 
-
 ### Changing scale
+In epidemiology, you may have to transform and change the scale of your variables. For instance, a logarithm transformation might help approximate a Normal distribution for some skewed continuous variable. You might also want to normalized or standardized (sometimes called z-score) your data. When you normalize, you   bring all the values between 0 and 1, while preserving the distances between the values. When you standardize, you bring all the values between 0 and 1 with a mean $\mu$ to 0 and a standard deviation $\sigma$ to 1.
 
-**log transformation**
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R {-}
+In **R** the transformation can only be some simple computation:
+
+```{r, eval=FALSE}
+sleep$age_log <- log(sleep$age)
+sleep$age_sqr <- sleep$age^2
+```
+
+To normalize or standardize, you can do: 
+```{r, eval=FALSE}
+# normalization
+minage <- sleep$age 
+maxage <- sleep$age
+sleep$age_norm<- 
+  (sleep$age-minage)/(maxage-minage)
+# standardization (z-score)
+sleep$age_std<- 
+  (sleep$age-mean(sleep$age))/sd(sleep$age)
+```
+
+_Note_: be careful if you have missing values you should add  *na.rm=TRUE* as argument in your function calls.
+:::
+
+:::{}
+### Stata {-}
+The syntax are really similar with **Stata**
+```{stata, eval=FALSE}
+generate age_log = ln(age)
+generate age_sqr = age^2
+```
+
+```{stata, eval=FALSE}
+// normalization
+generate age_norm = (age-23)/74-23
+// standardization
+generate age_std = (age-47.69)/10.69
+```
+:::
+::::
 
 
-
-### From continuous to category
+### From continuous to categorical
 In epidemiology and data sciences more globally, you often need to convert numerical variable into to groups, i.e. a categorical variable. Here is an example with age as a continuous variable that you split into age groups.
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
@@ -106,14 +144,15 @@ sleep$age_group <- cut(sleep$age,
                        breaks = c(20,40,60,80),
                        include.lowest=TRUE, 
                        right = FALSE)
-# For verification
-table(sleep$age_group)
 ```
 :::
   
 :::{}
 ### Stata{-}
-
+In **Stata** the syntax is quite similar
+```{stata, eval=FALSE}
+gen age_group = cut(age),at(20,40,60,80)
+```
 :::
 ::::
   
@@ -137,13 +176,20 @@ knitr::kable(symb)
  
 ### R{-}
 
-The conbinaison of any of the above symbols with the *ifelse()* function useful for creating a dummay variable based on  conditionnal testing as you can assign 0/1 values (or any specified values) to your variable depending on whether the element of test is TRUE or FALSE. As example, we create below 
+The combination of any of the above symbols with the *ifelse()* function useful for creating a dummy variable based on  conditional testing as you can assign 0/1 values (or any specified values) to your variable depending on whether the element of test is TRUE or FALSE. As example, we create below 
 
 ```{r}
-sleep$overweight <- ifelse(sleep$bmi > 25,  1, 0)
-sleep$overweight <- factor(sleep$overweight, level=c(0, 1), labels=c("Yes", "No"))
-# For verification
-table(sleep$overweight )
+sleep$obese <- ifelse(sleep$bmi > 30,  1, 0)
+```
+
+Note that with **R** there is more than one way of doing things and if you adopt the use of  *tidyverse* suite of packages or the *data.table* library you might use other functions. Here are examples:
+```{r,eval=FALSE}
+# with dplyr
+sleep <- sleep 
+%>% mutate("obese"= as.numeric(bmi>25))
+#with data.table
+sleep <- data.table(sleep) 
+sleep <- sleep[ , obese:=ifelse(bmi > 25,  1, 0)]
 ```
 
 ```{r, echo=FALSE}
@@ -153,6 +199,18 @@ save(sleep, file="sleepApnea-clean.Rdata")
   
 :::{}
 ### Stata{-}
+In **Stata** the commands are similar: 
+```{stata, eval=FALSE}
+generate obese = 0 
+replace obese = 1 if bmi>30
+//handling possible missing values
+replace obese = . if missing(bmi)
+```
+Or you can do
+```{stata, eval=FALSE}
+gen obese = bmi>30 if !missing(bmi)
+```
+
 :::
 ::::
   
@@ -160,17 +218,25 @@ save(sleep, file="sleepApnea-clean.Rdata")
 :::{}
 ### R{-}
 
-*dplyr*
-  
+In **R** and the library tidyverse, you can transform a long variable to wide. You can return boolean data to create dummy variable or even use other values from another variable.  
 ```{r, eval=FALSE}
-library(dplyr)
-sleep <- sleep %>% mutate("")
+sleep <- sleep %>% mutate(i=1) 
+      %>% spread(gender, i, fill=0)
 ```
 :::
 
 :::{}
 ### Stata{-}
+In **Stata** the function tabulate with the generate() option will generate a whole sets of dummy variables.
 
+If you type as below you will see a frequency table of how many times gender takes on each of those values. 
+```{stata, eval=FALSE}
+tabulate gender
+```
+If you type as below you will see the table, and tabulate will create variable names male, female that take on values 1 and 0, male being 1 when gender==male, female being 1 when gender==female.
+```{stata, eval=FALSE}
+tabulate group, generate(g)
+```
 :::
 ::::
 
