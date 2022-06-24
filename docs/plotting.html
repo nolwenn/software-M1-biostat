@@ -24,7 +24,7 @@
 <meta name="author" content="Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic" />
 
 
-<meta name="date" content="2022-06-21" />
+<meta name="date" content="2022-06-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,6 +56,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -164,62 +228,62 @@
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="data-management.html"><a href="data-management.html#create-new-variables"><i class="fa fa-check"></i><b>3.3</b> Create new variables<span></span></a>
 <ul>
+<li class="chapter" data-level="3.3.1" data-path="data-management.html"><a href="data-management.html#changing-scale"><i class="fa fa-check"></i><b>3.3.1</b> Changing scale<span></span></a></li>
 <li><a href="data-management.html#r-18">R<span></span></a></li>
 <li><a href="data-management.html#stata-18">Stata<span></span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-management.html"><a href="data-management.html#from-continuous-to-categorical"><i class="fa fa-check"></i><b>3.3.2</b> From continuous to categorical<span></span></a></li>
 <li><a href="data-management.html#r-19">R<span></span></a></li>
 <li><a href="data-management.html#stata-19">Stata<span></span></a></li>
+<li class="chapter" data-level="3.3.3" data-path="data-management.html"><a href="data-management.html#dummy-variables"><i class="fa fa-check"></i><b>3.3.3</b> Dummy variables<span></span></a></li>
 <li><a href="data-management.html#r-20">R<span></span></a></li>
 <li><a href="data-management.html#stata-20">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html#dummy-variables"><i class="fa fa-check"></i><b>3.4</b> Dummy variables<span></span></a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#log-transformation"><i class="fa fa-check"></i><b>3.4.1</b> log transformation<span></span></a></li>
-<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#conditional-expression"><i class="fa fa-check"></i><b>3.4.2</b> conditional expression<span></span></a></li>
+<li><a href="data-management.html#r-21">R<span></span></a></li>
+<li><a href="data-management.html#stata-21">Stata<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics<span></span></a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quick-summary-statistics"><i class="fa fa-check"></i><b>4.1</b> Quick summary statistics<span></span></a>
 <ul>
-<li><a href="descriptive-statistics.html#r-21">R<span></span></a></li>
-<li><a href="descriptive-statistics.html#stata-21">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-and-deviation-parameters"><i class="fa fa-check"></i><b>4.2</b> Central and deviation parameters<span></span></a>
-<ul>
 <li><a href="descriptive-statistics.html#r-22">R<span></span></a></li>
 <li><a href="descriptive-statistics.html#stata-22">Stata<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#confidence-interval"><i class="fa fa-check"></i><b>4.3</b> Confidence interval<span></span></a>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-and-deviation-parameters"><i class="fa fa-check"></i><b>4.2</b> Central and deviation parameters<span></span></a>
 <ul>
 <li><a href="descriptive-statistics.html#r-23">R<span></span></a></li>
 <li><a href="descriptive-statistics.html#stata-23">Stata<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#cross-table"><i class="fa fa-check"></i><b>4.4</b> Cross table<span></span></a>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#confidence-interval"><i class="fa fa-check"></i><b>4.3</b> Confidence interval<span></span></a>
 <ul>
 <li><a href="descriptive-statistics.html#r-24">R<span></span></a></li>
 <li><a href="descriptive-statistics.html#stata-24">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#cross-table"><i class="fa fa-check"></i><b>4.4</b> Cross table<span></span></a>
+<ul>
+<li><a href="descriptive-statistics.html#r-25">R<span></span></a></li>
+<li><a href="descriptive-statistics.html#stata-25">Stata<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>5</b> Plotting<span></span></a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="plotting.html"><a href="plotting.html#quantitative-data"><i class="fa fa-check"></i><b>5.1</b> Quantitative data<span></span></a></li>
-<li class="chapter" data-level="5.2" data-path="plotting.html"><a href="plotting.html#quanlitative-data"><i class="fa fa-check"></i><b>5.2</b> Quanlitative data<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="plotting.html"><a href="plotting.html#qualitative-data-categorical"><i class="fa fa-check"></i><b>5.2</b> Qualitative data (categorical)<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html"><i class="fa fa-check"></i><b>6</b> Univariate statistical test<span></span></a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#quantitative-data-1"><i class="fa fa-check"></i><b>6.1</b> Quantitative data<span></span></a>
 <ul>
-<li><a href="univariate-statistical-test.html#r-28">R<span></span></a></li>
-<li><a href="univariate-statistical-test.html#stata-28">Stata<span></span></a></li>
-<li><a href="univariate-statistical-test.html#r-29">R<span></span></a></li>
-<li><a href="univariate-statistical-test.html#stata-29">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#quanlitative-data-1"><i class="fa fa-check"></i><b>6.2</b> Quanlitative data<span></span></a>
-<ul>
 <li><a href="univariate-statistical-test.html#r-30">R<span></span></a></li>
 <li><a href="univariate-statistical-test.html#stata-30">Stata<span></span></a></li>
 <li><a href="univariate-statistical-test.html#r-31">R<span></span></a></li>
 <li><a href="univariate-statistical-test.html#stata-31">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#quanlitative-data"><i class="fa fa-check"></i><b>6.2</b> Quanlitative data<span></span></a>
+<ul>
+<li><a href="univariate-statistical-test.html#r-32">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-32">Stata<span></span></a></li>
+<li><a href="univariate-statistical-test.html#r-33">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-33">Stata<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="regression-model.html"><a href="regression-model.html"><i class="fa fa-check"></i><b>7</b> Regression model<span></span></a>
@@ -227,13 +291,13 @@
 <li class="chapter" data-level="7.1" data-path="regression-model.html"><a href="regression-model.html#linear-regression"><i class="fa fa-check"></i><b>7.1</b> Linear regression<span></span></a></li>
 <li class="chapter" data-level="7.2" data-path="regression-model.html"><a href="regression-model.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Simple Linear regression<span></span></a>
 <ul>
-<li><a href="regression-model.html#r-32">R<span></span></a></li>
-<li><a href="regression-model.html#stata-32">Stata<span></span></a></li>
-<li><a href="regression-model.html#r-33">R<span></span></a></li>
-<li><a href="regression-model.html#stata-33">Stata<span></span></a></li>
-<li class="chapter" data-level="7.2.1" data-path="regression-model.html"><a href="regression-model.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2.1</b> Multiple linear regression<span></span></a></li>
 <li><a href="regression-model.html#r-34">R<span></span></a></li>
 <li><a href="regression-model.html#stata-34">Stata<span></span></a></li>
+<li><a href="regression-model.html#r-35">R<span></span></a></li>
+<li><a href="regression-model.html#stata-35">Stata<span></span></a></li>
+<li class="chapter" data-level="7.2.1" data-path="regression-model.html"><a href="regression-model.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2.1</b> Multiple linear regression<span></span></a></li>
+<li><a href="regression-model.html#r-36">R<span></span></a></li>
+<li><a href="regression-model.html#stata-36">Stata<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="regression-model.html"><a href="regression-model.html#logistic-regression"><i class="fa fa-check"></i><b>7.3</b> logistic regression<span></span></a></li>
 </ul></li>
@@ -259,36 +323,108 @@
             <section class="normal" id="section-">
 <div id="plotting" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Plotting<a href="plotting.html#plotting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Visualization are often of great help to explore and summarize your data. <strong>The plots should be chosen wisely and according to your data type</strong> (<em>i.e.</em> continuous, categorical). <em>Stata</em> presents rather basic graphical functions but <em>R</em> possess extensive libraries for a wide range of visual displays going from the basic we will cover here to some geomatic representations (ex library <em>mapsf</em>). A quick introduction to the <em>ggplot2</em> library (or grammar for graphic) is done here too but for more ressources see <a href="https://ggplot2.tidyverse.org/">https://ggplot2.tidyverse.org/</a></p>
 <div id="quantitative-data" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Quantitative data<a href="plotting.html#quantitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Histogram</strong></p>
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
-<div id="r-25" class="section level3 unnumbered hasAnchor">
-<h3>R<a href="plotting.html#r-25" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="stata-25" class="section level3 unnumbered hasAnchor">
-<h3>Stata<a href="plotting.html#stata-25" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-<p><strong>Boxplot</strong></p>
+<p>For <strong>one quantitative continuous variable</strong>, the <strong>histogram</strong> is the plot to use to visualize the global trend of the data. However you need to be aware that most statistical software optimize the bin width to display the values per intervals but you may change it and you may seen that it change the visual and possibly your interpretation.</p>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
 <div id="r-26" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="plotting.html#r-26" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>R</strong>, you can specific the number of breaks</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="plotting.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="plotting.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sleep<span class="sc">$</span>age, <span class="at">breaks=</span><span class="dv">5</span>, </span>
+<span id="cb2-2"><a href="plotting.html#cb2-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Distribution of age&quot;</span>,</span>
+<span id="cb2-3"><a href="plotting.html#cb2-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;age&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>A more advanced graph with <em>ggplot2</em> library, where <em>aes()</em> is the aesthetics or the dimensions along with you plot the data and the <em>geom*_()</em>, the geometry you give to the plot. You may have noticed that the using ggplot is more like writing a sentence with <code>+</code> sign to delimit the instructions.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="plotting.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="plotting.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(age)) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="plotting.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="at">boundary=</span><span class="cn">TRUE</span>,</span>
+<span id="cb3-4"><a href="plotting.html#cb3-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">col=</span><span class="st">&quot;grey&quot;</span>, <span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="plotting.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="stata-26" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="plotting.html#stata-26" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>Stata</strong>, the width argument allows you to specify the interval range</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="plotting.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">//histogram of age with two year intervals</span></span>
+<span id="cb4-2"><a href="plotting.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">hist</span> age, <span class="kw">width</span>(2)</span>
+<span id="cb4-3"><a href="plotting.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">//histogram of age with five year intervals</span></span>
+<span id="cb4-4"><a href="plotting.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">hist</span> age, <span class="kw">width</span>(5)</span></code></pre></div>
 </div>
 </div>
-</div>
-<div id="quanlitative-data" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Quanlitative data<a href="plotting.html#quanlitative-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Barplot</strong></p>
+<p>For <strong>one quantitative continuous variable group by a categorical value</strong>, the <strong>Boxplot</strong> is especially useful for comparison.</p>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
 <div id="r-27" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="plotting.html#r-27" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With <strong>R</strong> the syntax is:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="plotting.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(age <span class="sc">~</span> gender , <span class="at">data=</span>sleep, </span>
+<span id="cb5-2"><a href="plotting.html#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Distribution of age \ by gender&quot;</span>,</span>
+<span id="cb5-3"><a href="plotting.html#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>,</span>
+<span id="cb5-4"><a href="plotting.html#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Note: the <code>~</code> sign that is the symbol for the formula type syntax of Y function of X. You will see again that notation when performing statistical test and regression modeling.</p>
+<p>With <em>ggplot2</em> you could do</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="plotting.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(<span class="at">y=</span>age, <span class="at">x=</span>gender)) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="plotting.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="plotting.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age by gender&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="stata-27" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="plotting.html#stata-27" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>Stata</strong>, the grouping variable is called by the over() option.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="plotting.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> box age, <span class="bn">over</span>(gender)</span></code></pre></div>
+</div>
+</div>
+<p>When looking for (linear) relationship between <strong>two quantitative continuous variable</strong>, you want to do a <strong>scatterplot</strong>.</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
+<div id="r-28" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="plotting.html#r-28" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With <strong>R</strong> the syntax is:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="plotting.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sleep<span class="sc">$</span>bmi , sleep<span class="sc">$</span>SleepApnea, </span>
+<span id="cb8-2"><a href="plotting.html#cb8-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;BMI function of age&quot;</span>,</span>
+<span id="cb8-3"><a href="plotting.html#cb8-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;age&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;bmi&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>With <em>ggplot2</em></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="plotting.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(bmi , SleepApnea)) <span class="sc">+</span> <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb9-2"><a href="plotting.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;BMI function of age&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="stata-28" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="plotting.html#stata-28" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>Stata</strong>, the grouping variable is called by the over() option.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="plotting.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> SleepApnea bmi</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="qualitative-data-categorical" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Qualitative data (categorical)<a href="plotting.html#qualitative-data-categorical" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For <strong>one categorical variable</strong> by group or not you should use a <strong>barplot</strong>.</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
+<div id="r-29" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="plotting.html#r-29" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="plotting.html#cb12-1" aria-hidden="true" tabindex="-1"></a>db2gender <span class="ot">&lt;-</span> <span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span>
+<span id="cb12-2"><a href="plotting.html#cb12-2" aria-hidden="true" tabindex="-1"></a>db2gender_prop <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">prop.table</span>(db2gender,<span class="at">margin=</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
+<span id="cb12-3"><a href="plotting.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(db2gender, </span>
+<span id="cb12-4"><a href="plotting.html#cb12-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Repartition of diabetes&quot;</span>,</span>
+<span id="cb12-5"><a href="plotting.html#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="plotting.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(db2gender_prop, </span>
+<span id="cb13-2"><a href="plotting.html#cb13-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Proportion of diabetes by gender&quot;</span>,</span>
+<span id="cb13-3"><a href="plotting.html#cb13-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>,</span>
+<span id="cb13-4"><a href="plotting.html#cb13-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Proportion&quot;</span>, </span>
+<span id="cb13-5"><a href="plotting.html#cb13-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">legend.text =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<p>With <em>ggplot2</em> you could do</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="plotting.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(diabetes, <span class="at">fill=</span>gender)) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="plotting.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="plotting.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age by gender&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="stata-29" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="plotting.html#stata-29" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="plotting.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="bn">bar</span> diabetes, <span class="bn">over</span>(gender)</span></code></pre></div>
 </div>
 </div>
 

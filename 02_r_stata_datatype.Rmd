@@ -152,6 +152,11 @@ sleep$diabetes <- factor(sleep$diabetes,
                          labels = c("No","Yes"))
 table(sleep$diabetes, sleep$gender)
 ```
+
+```{r, echo=FALSE}
+save(sleep, file="sleepApnea-clean.Rdata")
+```
+
 :::
   
 :::{}

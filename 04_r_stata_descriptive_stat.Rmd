@@ -76,14 +76,19 @@ summarize age, detail
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
-```{r, eval=F}
+```{r, eval=T, message=FALSE, warning=FALSE}
 library(epiDisplay)
 ci(sleep$age)
+ci(sleep$age, alpha = 0.01)
 ```
 :::
 
 :::{}
 ### Stata{-}
+```{stata, eval=F}
+ci means age
+ci means age, level(99)
+```
 :::
 ::::
 

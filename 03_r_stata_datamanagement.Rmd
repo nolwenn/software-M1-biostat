@@ -14,7 +14,7 @@ Variables names are not always explicit and you might want to rename some.
 ### R{-}
 In **R** *data.frame*, variables are in column and to retrieve their names you can use the *colnames()* function. It will return a vector which values can be accessed and modify using indexing.
 ```{r, echo=FALSE}
-load("sleepApnea.Rdata")
+load("sleepApnea-clean.Rdata")
 ```
 
 ```{r, eval = FALSE}
@@ -165,10 +165,10 @@ Dummy variable are often create as the result of a conditional expression. The t
 ```{r, echo=FALSE}
 symb <- data.frame("Sign"=c("==", "!=", ">", "<", ">=", "<=", "&", "|"),
                    "Definition"= c("equality", "not equality", "greater than", "less than", "greater than or equal to", "less than or equal to", "and (both statements are true)", "or (either statement is true)"),
-                   "TRUE"=c("3==3", "3!=4", "4 > 2", "3<4", "4>=3", "4<=5", "(4>2)&(3==3))", "(3==2)|(1<=2)"),
-                   "FALSE"=c( "3==4", "3!=3", "4>3", "4<2", "4>=5", "4<=3", "(4>2)&(1>2)", "(4<2)|(1>2)" ))
+                   "TRUE"=c("3 == 3", "3 != 4", "4 > 2", "3 < 4", "4 >= 3", "4 <= 5", "(4 > 2) & (3 == 3))", "(3 == 2) | (1 <= 2)"),
+                   "FALSE"=c( "3 == 4", "3 != 3", "3 > 4", "4 < 2", "4 >= 5", "4 <= 3", "(4 > 2) & (1 > 2)", "(4 < 2) | (1 > 2)" ))
 
-knitr::kable(symb)
+knitr::kable(symb, align = "c")
 ```
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}

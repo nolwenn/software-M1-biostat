@@ -4,10 +4,10 @@ output:
   pdf_document: default
 ---
 
-# Regression model
+# Regression model (coming soon)
 
 ## Linear regression
-## Simple Linear regression
+### Simple Linear regression
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
@@ -31,7 +31,7 @@ output:
 :::
 ::::
 
-### Multiple linear regression
+### multivariate linear regression
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
@@ -44,3 +44,6 @@ output:
 ::::
 
 ## logistic regression
+
+### simple logistic regression
+### multivariate logistic regression

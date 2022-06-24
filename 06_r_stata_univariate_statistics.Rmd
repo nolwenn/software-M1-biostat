@@ -4,7 +4,7 @@ output:
   pdf_document: default
 ---
 
-# Univariate statistical test
+# Univariate statistical test (coming soon)
 
 ## Quantitative data
 
@@ -34,7 +34,7 @@ output:
 
 
 
-## Quanlitative data
+## Qualitative data (categorical)
 
 **Fisher Exact test**
 
