@@ -24,7 +24,7 @@ In **R**, you can specific the number of breaks
 hist(sleep$age)
 ```
 
-```{r, eval=TRUE}
+```{r histogram, eval=TRUE, fig.cap='Distribution of age (in years)', out.width='70%', fig.asp=.75, echo=FALSE, message=FALSE, warning=FALSE}
 hist(sleep$age, breaks=5, 
      main="Distribution of age",
      xlab="age")
