@@ -43,3 +43,17 @@ linear-regression
 simple-linear-regression
 multiple-linear-regression
 logistic-regression
+changing-scale
+from-continuous-to-category
+from-continuous-to-categorical
+qualitative-data-categorical
+univariate-statistical-test-soon
+qualitative-data-categorical-1
+univariate-statistical-test-coming-soon
+regression-model-coming-soon
+multivariate-linear-regression
+simple-logistic-regression
+multivariate-logistic-regression
+fig:unnamed-chunk-3
+fig:histogram
+function-call

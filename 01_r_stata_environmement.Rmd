@@ -240,8 +240,8 @@ describe(sleep)
 ### R{-}
 
 R help pages are standardized with a description, how to use the function with its major argument and possible default values. The arguments are then explained with then details on the computation. The value section present the output of the function with possible extra notes and the authors of the function. Last but not least,  **examples** are often good ways to understand a function. You can compy and paste the examples into the console learn the use and ouput of a function. 
-```{r, eval=F}
-?head
+```{r, echo=TRUE, eval=F}
+?summary
 ```
 :::
 
@@ -257,6 +257,37 @@ text indicates a hypertext link, so you can click to go to related entries.
 
 ```{stata, eval=F}
 help describe
+```
+:::
+::::
+
+## Function call
+
+In **R** and **Stata** most functions have required argument and optional argument with default values. It is important to look at the help pages to understand how each function sholud be used.
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::{}
+### R{-}
+In **R** if the arguments are written in the order expected by the developer of the function (default order) no need to specify the name of the argument. If you want to change one optional argument listed at the end of the function you need to specify its name or you will generate an error.
+
+```{r, eval=F}
+# Here the expected arguments are
+# file, header, sep , quote
+sleep<-read.csv("SleepApnea.csv", 
+                TRUE, ",", 
+                ".")
+# what you really wanted was 
+# "." for decimal (dec) instead of quote
+sleep<-read.csv("SleepApnea.csv", 
+                TRUE, ",", 
+                dec=".")
+```
+:::
+
+:::{}
+#### Stata{-}
+```{stata, eval=F}
+//same true for stata???
 ```
 :::
 ::::

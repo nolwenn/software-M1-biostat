@@ -4,19 +4,90 @@ output:
   pdf_document: default
 ---
 
-# Univariate statistical test (coming soon)
+# Univariate statistical test
+
+In statistical analysis plan (SAP), univariate tests are recommended. In epidemiology it permits  a first assessment of possible relationships between the outcome and the covariates (or possible confunders). 
+
+The choice of the test depend on the type of the variable, the shape of the distribution, and the number of groups to compare.
 
 ## Quantitative data
+
+To compare the distribution of a **quantitative variable between 2 groups** you first need to describe the shape of the distribution to choose between a parametric or a non-parametric test for the comparison.
+
+**Parametric comparison tests** are based on the mean and variance of the data series therefore the mean should be a reliable and correct parameter to summarize the distribution of the values in the 2 groups. The distributions should be similar to the **Normal distribution** (Bell-shape like) and not skewed. To verify this assumption one can use the **Shapiro test**. The 2 groups sholud have similar variance or the test will have to be adjusted. To verify this assumption one can do a variance test.
+
+In the example below, we are interested to see the risk factor for sleep apnea.
+
+**Shapiro test**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+```{r}
+load("sleepApnea-clean.Rdata")
+```
+
+```{r}
+# globally
+shapiro.test(sleep$SleepApnea)
+# To compare the 2 groups
+by(sleep$SleepApnea, sleep$gender, shapiro.test)
+```
+
+```{r}
+sleep$SleepApnea_log <- log(sleep$SleepApnea)
+# To compare the 2 groups
+by(sleep$SleepApnea_log, sleep$gender,shapiro.test)
+```
+:::
+
+:::{}
+### Stata{-}
+```{stata, eval=FALSE}
+swilk SleepApnea, by(gender)
+```
+
+```{stata, eval=FALSE}
+gen SleepApnea_log = log(SleepApnea) 
+swilk SleepApnea_log, by(gender)
+```
+:::
+::::
+
+**Homoscedasticity or homogeneity of variances**
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+```{r, eval=TRUE}
+var.test(SleepApnea_log~gender, data=sleep)
+```
+:::
+
+:::{}
+### Stata{-}
+```{stata, eval=FALSE}
+sdtest SleepApnea_log, by(gender)
+```
+:::
+::::
 
 **Student t-test**
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+```{r attr.source="style='display:inline-block"}
+ttest_res <- t.test(SleepApnea_log~gender, data=sleep)
+ttest_res$p.value
+```
 :::
 
 :::{}
 ### Stata{-}
+```{stata, eval=FALSE}
+ttest SleepApnea_log, by(gender)
+```
 :::
 ::::
 
@@ -25,10 +96,16 @@ output:
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+```{r}
+wilcox.test(SleepApnea~gender, data=sleep)
+```
 :::
 
 :::{}
 ### Stata{-}
+```{stata, eval=FALSE}
+ranksum SleepApnea, by(gender)
+```
 :::
 ::::
 
@@ -41,10 +118,18 @@ output:
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+```{r, eval=TRUE}
+sleep$apnea_high <- ifelse(sleep$SleepApnea > 69, "Yes", "No")
+fisher.test(sleep$apnea_high, sleep$obese)
+```
 :::
 
 :::{}
 ### Stata{-}
+```{stata, eval=FALSE}
+gen apnea_high = SleepApnea > 69  
+tabulate apnea_high obese, exact
+```
 :::
 ::::
 
@@ -53,9 +138,15 @@ output:
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+```{r, eval=TRUE}
+chisq.test(table(sleep$apnea_high, sleep$obese))
+```
 :::
 
 :::{}
 ### Stata{-}
+```{stata, eval=FALSE}
+tabulate apnea_high obese, chi2
+```
 :::
 ::::

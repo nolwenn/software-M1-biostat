@@ -35,9 +35,14 @@ codebook
 ::::
 
 ## Central and deviation parameters
+
+Central and deviation parameters are essential parameters to summaryze and describe the distribution of your data. The most well not central parameter is the mean but you sholud know that it is not the only one and not always the best one to use, especially when you have skewed distribution. These parameters should be look at together and with the help of graphical representation for better description.
+
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+
+In **R**, you sholud think english what is the term for average it is "mean" and it is the name of the function;  same for median and quantile. If you do not know the mane of the function search in the help pages.
 ```{r, eval=F}
 # average
 mean(sleep$age)
@@ -52,6 +57,7 @@ median(sleep$age)
 IQR(sleep$age)
 ```
 
+For the *quantile()* the *probs=* argument allows you to specify which quantile of the distribution you want to look at. 
 ```{r, eval=T}
 # 25%-75%
 quantile(sleep$age, probs=c(0.25, 0.75))
@@ -60,6 +66,7 @@ quantile(sleep$age, probs=seq(0, 1, 1/4))
 # tercile
 quantile(sleep$age, probs = seq(0,1,1/3))
 ```
+**Interpretation:** For the age, the 1$^{st}$ quantile indicates that 25% of the patients in ou sample are 42 years old or younger, wile 75% (3$^{rd}$ quantile ) are 54 years old or older.
 :::
 
 :::{}
@@ -73,9 +80,13 @@ summarize age, detail
 ::::
 
 ## Confidence interval
+
+The confidence interval represents the interval in which the true value of the estimated parameter stands with a certain confidence (often 95% - allowing 5% of the estimation being wrong if 100 estimation were perfomed).
+
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+In **R** the *epiDisplay* libary is useful for many computations in epidemiology and notably the confidence interval of the mean. A simple call to the ci() function will compute the 95% confidence interval. The level of confidence is specify using the risk alpha conterpart , here the default is alpha=0.05 (so not need to specify it). 
 ```{r, eval=T, message=FALSE, warning=FALSE}
 library(epiDisplay)
 ci(sleep$age)
@@ -85,6 +96,7 @@ ci(sleep$age, alpha = 0.01)
 
 :::{}
 ### Stata{-}
+In **Stata**, the syntax is close but the parameter to estimate must be specified and the level of confidence is specified in term of confidence.
 ```{stata, eval=F}
 ci means age
 ci means age, level(99)
@@ -93,20 +105,35 @@ ci means age, level(99)
 ::::
 
 ## Cross table
+Contingency table or cross tabulated table are needed to compute absolute or relative frequency (proportion) of categorical variables.
+
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+In **R** the basic function are *table()* and *prop.table()*. 
 ```{r}
 crosstab <- table(sleep$gender,sleep$diabetes)
-round(prop.table(crosstab,1)*100,digits=2)
+```
+
+In *prop.table()* the  margin argument specify the dimension (row or column) along which the relative frequencies are computed.
+```{r}
+# The 100% are on the grand total
+round(prop.table(crosstab)*100,digits=2)
+# Percentage by row
+round(prop.table(crosstab,margin=1)*100,digits=2)
+# Percentage by column
 round(prop.table(crosstab,2)*100,digits=2)
 ```
 :::
 
 :::{}
 ### Stata{-}
+In **Stata** the *tabulate* function produces a two-way table of frequency counts.
 ```{stata, eval=FALSE}
-tabulate gender
+tabulate gender diabetes
+tabulate gender diabetes, row
+tabulate gender diabetes, column
 ```
+The *tabulate* function can be used along with various measures of association, including the common Pearson’s Chi-square and Fisher’s exact test (See [univariate test](Univariate statistical test) for examples).
 :::
 ::::

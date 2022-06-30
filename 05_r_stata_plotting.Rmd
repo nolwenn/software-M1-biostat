@@ -31,7 +31,7 @@ hist(sleep$age, breaks=5,
 ```
 
 A more advanced graph with *ggplot2* library, where *aes()* is the aesthetics or the dimensions along with you plot the data and the *geom\*\_()*, the geometry you give to the plot. You may have noticed that the using ggplot is more like writing a sentence with `+` sign to delimit the instructions.
-```{r, eval=TRUE}
+```{r histogram_ggplot, eval=TRUE}
 library(ggplot2)
 ggplot(sleep, aes(age)) + 
   geom_histogram(binwidth = 5,  boundary=TRUE,
@@ -60,7 +60,7 @@ For **one quantitative continuous variable group by a categorical value**, the *
 :::{}
 ### R{-}
 With **R** the syntax is:
-```{r, eval=TRUE}
+```{r boxplot_basic, eval=TRUE}
 boxplot(age ~ gender , data=sleep, 
      main="Distribution of age \ by gender",
      xlab="gender",
@@ -70,7 +70,7 @@ boxplot(age ~ gender , data=sleep,
 Note:  the `~` sign that is the symbol for the formula type syntax of Y function of X. You will see again that notation when performing statistical test and regression modeling. 
 
 With *ggplot2* you could do
-```{r, eval=TRUE}
+```{r boxplot_ggplot, eval=TRUE}
 ggplot(sleep, aes(y=age, x=gender)) + 
   geom_boxplot(fill="lightblue") +
   ggtitle("Distribution of age by gender")
@@ -92,14 +92,14 @@ When looking for (linear) relationship between **two quantitative continuous var
 :::{}
 ### R{-}
 With **R** the syntax is:
-```{r, eval=TRUE}
+```{r xyplot, eval=TRUE}
 plot(sleep$bmi , sleep$SleepApnea, 
      main="BMI function of age",
      xlab="age", ylab="bmi")
 ```
 
 With *ggplot2*
-```{r, eval=TRUE}
+```{r xyplot_ggplot, eval=TRUE}
 ggplot(sleep, aes(bmi , SleepApnea)) + geom_point()+
   ggtitle("BMI function of age")
 ```
@@ -121,13 +121,13 @@ For **one categorical variable** by group or not you should use a **barplot**.
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
-```{r, eval=TRUE}
+```{r barplot_basic, eval=TRUE}
 db2gender <- table(sleep$diabetes, sleep$gender)
-db2gender_prop <- round(prop.table(db2gender,margin=2)*100,2)
+db2gender_pr <- round(prop.table(db2gender,margin=2)*100,2)
 barplot(db2gender, 
      main="Repartition of diabetes",
      xlab="gender")
-barplot(db2gender_prop, 
+barplot(db2gender_pr, 
      main="Proportion of diabetes by gender",
      xlab="gender",
      ylab="Proportion", 
@@ -135,7 +135,7 @@ barplot(db2gender_prop,
 ```
 
 With *ggplot2* you could do
-```{r, eval=TRUE}
+```{r barplot_ggplot, eval=TRUE}
 ggplot(sleep, aes(diabetes, fill=gender)) + 
   geom_bar() +
   ggtitle("Distribution of age by gender")

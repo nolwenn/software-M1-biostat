@@ -1,17 +1,19 @@
+.book .book-body .page-wrapper .page-inner {
+  max-width: 90%;
+}
 p.caption {
   color: #777;
   margin-top: 10px;
 }
 p code {
-  white-space: inherit;
+  white-space: pre-wrap;
 }
 pre {
   word-break: normal;
   word-wrap: normal;
-  overflow-x: auto;
 }
 pre code {
-  white-space: pre;
+  white-space: pre-wrap;
 }
 .practice {
     padding: 1em;
