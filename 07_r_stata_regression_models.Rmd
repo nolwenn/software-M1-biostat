@@ -4,46 +4,201 @@ output:
   pdf_document: default
 ---
 
-# Regression model (coming soon)
+# Regression model
+
+A regression model provides a function that describes the relationship between one or more independent variables and a response, dependent, or target variable.
 
 ## Linear regression
+
 ### Simple Linear regression
+
+A simple linear regression model fits a linear relationship between one independent variable and a response or dependent variable.
+
+Let's look at sleep apnea (log transformed) and its covariate to assess any relationship.
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+In **R** the short for linear model is the *lm()* function. Here we try to fit a linear relationship between the sleep apnea (log transformed) and the body mass index (*bmi*) of the patients.
+```{r, echo=FALSE}
+load("sleepApnea-clean.Rdata")
+```
+
+
+```{r}
+m1 <- lm(SleepApnea_log ~ bmi, data=sleep)
+summary(m1)
+```
+When the bmi increases by 1 unit the log of the sleep apnea increases by 0.03. This coefficient is statistical different from 0 (p-value = 0.0002). Although the $R^2$ or coefficient of determination is rather small: only 9% of the variation observed in the log apnea data is explained by the bmi.
 :::
 
 :::{}
 ### Stata{-}
+```{stata, eval=FALSE}
+regress SleepApnea_log  bmi
+```
 :::
 ::::
 
-**post-hoc test**
+#### post-hoc test {#post-hoc-test}
+
+How to verify if a simple linear regression model was appropriate? 
+
+The method is descriptive and based on the distribution of the residuals that allows assessing:
+
+- Linear and additive of predictive relationships
+- Homoscedasticity (constant variance) of residuals (errors)
+- Normality of the residuals distribution
+- Independence (lack of correlation) residuals (in particular, no correlation between consecutive errors in the case of time series data)
+
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+In **R** we can use plots:
+```{r post-hoc, warnings=FALSE, message=FALSE}
+layout(matrix(c(1:4), nrow=2))
+plot(m1)
+dev.off()
+```
+
+From top to bottom and left to right the plots assess :
+
+(1) Linearity and additivity of predictive relationships. A good fitting should show a red horizontal line, the variance of the residuals is randomly spread above and below the horizontal line.
+(2) Homoscedasticity (*i.e.* constant variance) of residuals (errors). A good fitting should show a red horizontal line, the variance of the residuals is constant and do not depend on the fitted values.
+(3) Normality of the residuals distribution. A good fitting should show a alignment of the dots on the diagonal of the Q-Q plot.
+(4) Influential observations with Cook's distance: if dots appear outside the Cook's distance limits (red dashes) they are influential observations or even outliers (extreme). Their value need to be verified as they might negatively influence the fitting.
+
+Globally, the fitting is not great. This could have been easily foreseen by a quick look at a xyplot.
+```{r, warning=FALSE, message=FALSE}
+library(ggplot2)
+ggplot(sleep, aes(y=SleepApnea_log, x=bmi)) + 
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
 :::
 
 :::{}
 ### Stata{-}
+Similarly in Stata we can verify our assumptions:
+```{stata, eval=FALSE}
+// fitted values Vs residual 
+// for checking independence of residual
+rvfplot, yline(0) 
+```
+The residuals are distributed independantly
+
+```{stata, eval=FALSE}
+// testing for  Heteroskedasticity
+estat imtest
+```
+The p-value is not less than 0.05 so the variance of the residuals is homogenous. 
+
+However as shown below, no the association between log SleepApnea and BMI is not linear, as the dotted points do not show any linear trends or regression line in the graph is not surrounded by observations.
+```{stata, eval=FALSE} 
+scatter SleepApnea_Log bmi || lfit SleepApnea_Log bmi
+```
 :::
 ::::
 
 ### multivariate linear regression
 
+A multivariate linear regression model fits a linear relationship between one independent variable and several response or dependent variables.
+
+In our example let's look at several covariates and adjust each of their effects along the way for better measurements of covariate's effect.
+
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+In *R* a multivariate linear regression modelling is really similar to the simple linear regression
+```{r}
+m2 <- lm(SleepApnea_log ~ bmi + age + gender +
+           creatinine, data=sleep)
+summary(m2)
+```
+In the model, not all coefficients are statistically significant (ex gender). If your goal is to optimize the measure of each covariate's effect, you might want to do a step approach which consists of removing the least significant covariate, redoing the test, and assessing if the model has "improve" etc.
+```{r}
+m2.2 <- lm(SleepApnea_log ~ bmi + age +
+           creatinine, data=sleep)
+summary(m2.2)
+AIC(m2) ; AIC(m2.2)
+```
+The Akaike's index helps identifying any model fitting improvement. The rule is that between 2 nested models the best one is the one with the lower AIC. In our example, the $R^2$ is lower and the AIC did not improve. Thus you should go on...
+
+You can perform automatic stepwise modelling but **do not forget to be smart** and **interpret your output** to see **if it does make sense**. Try below to test:
+```{r, eval=FALSE}
+m_all<- lm(SleepApnea_log ~ ., data=sleep[, -c(1, 12, 19)])
+summary(m_all)
+best<- step(m_all)
+summary(best)
+```
 :::
 
 :::{}
 ### Stata{-}
+```{stata, eval=FALSE}
+regress SleepApnea_log  bmi age i.gender i.diabetes creatinine
+```
+Note: From the code above that continuous independent variables are simply entered "as is", whilst categorical independent variables have the prefix "i"
+
+Backward selection, removing terms with p ≥ 0.05
+```{stata, eval=FALSE}
+stepwise, pr(.05): regress SleepApnea_log  bmi age i.gender creatinine
+```
 :::
 ::::
 
 ## logistic regression
 
+Logistic regression models are a generalization of the linear models. 
+
 ### simple logistic regression
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+In *R* the *gml()* family function, which stands for generalized linear model, can be used to fit different family of data distributions such as continuous outcome (gaussian), binary outcome (binomial) or counts (Poisson) with different link between the ouctome and the covariates (logit, probit ...). See help page for more details.
+```{r, echo=FALSE}
+l1 <- glm(apnea_high ~ bmi, 
+          family=binomial(), data=sleep)
+summary(l1)
+```
+
+As seen for the [confidence interval](#confidence-interval), the *epiDisplay* library has a convenient function call for a nice display of classical logistic regression.
+```{r, echo=FALSE, message=FALSE, quiet=TRUE}
+library(epiDisplay)
+logistic.display(l1)
+```
+:::
+
+:::{}
+### Stata{-}
+```{stata, eval=FALSE}
+logit apnea_high bmi
+```
+:::
+::::
+
 ### multivariate logistic regression
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+```{r}
+l2 <- glm(apnea_high ~ bmi + gender + 
+            age + creatinine, 
+          family=binomial(), data=sleep)
+summary(l2)
+```
+
+```{r}
+logistic.display(l2, simplified = TRUE)
+```
+:::
+
+:::{}
+### Stata{-}
+```{stata, eval=FALSE}
+logit apnea_high bmi age creatinine i.gender
+```
+:::
+::::

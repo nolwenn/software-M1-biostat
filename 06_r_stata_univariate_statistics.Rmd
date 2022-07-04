@@ -6,19 +6,25 @@ output:
 
 # Univariate statistical test
 
-In statistical analysis plan (SAP), univariate tests are recommended. In epidemiology it permits  a first assessment of possible relationships between the outcome and the covariates (or possible confunders). 
+In statistical analysis plan (SAP), univariate tests are recommended. In epidemiology it permits  a first assessment of possible relationships between the outcome and the covariates (or possible confounders). 
 
-The choice of the test depend on the type of the variable, the shape of the distribution, and the number of groups to compare.
+The choice of the test depends on the type of the variable, the shape of its distribution, and the number of groups to compare.
 
 ## Quantitative data
 
-To compare the distribution of a **quantitative variable between 2 groups** you first need to describe the shape of the distribution to choose between a parametric or a non-parametric test for the comparison.
+### Two groups comparison {#two-groups-comparison}
+To compare the distribution of a **quantitative variable between 2 groups** you first need to describe the distribution of the data (shape) to choose between a parametric or a non-parametric test.
 
-**Parametric comparison tests** are based on the mean and variance of the data series therefore the mean should be a reliable and correct parameter to summarize the distribution of the values in the 2 groups. The distributions should be similar to the **Normal distribution** (Bell-shape like) and not skewed. To verify this assumption one can use the **Shapiro test**. The 2 groups sholud have similar variance or the test will have to be adjusted. To verify this assumption one can do a variance test.
+**Parametric tests** are based on the parameters of the distribution *i.e.* the mean and the variance of the data series therefore the mean should be a reliable and correct parameter to summarize the distribution of the values in the 2 groups. The distributions should be similar to a **Normal distribution** (Bell-shape like) and not skewed. To verify this assumption one can use the [Shapiro test](#shapiro-test). In addition, the 2 groups should have similar variance or the test will have to be adjusted for uneven variances. To verify this assumption one can do a variance test.
 
-In the example below, we are interested to see the risk factor for sleep apnea.
+In all examples below, we are interested to see the risk factors for sleep apnea.
 
-**Shapiro test**
+#### Shapiro test{-}
+The hypothesis of the Shapiro test are:
+
+- H0: sleep apnea is normally distributed (equal to a Normal distribution)
+- H1: sleep apnea is different/not normally distributed (different from)
+- with alpha= 5%
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
@@ -29,99 +35,240 @@ load("sleepApnea-clean.Rdata")
 
 ```{r}
 # globally
-shapiro.test(sleep$SleepApnea)
-# To compare the 2 groups
+# shapiro.test(sleep$SleepApnea)
+# But we want to compare 2 groups
 by(sleep$SleepApnea, sleep$gender, shapiro.test)
 ```
+In both group, the p-value is below 5%. We reject H0. The sleep apnea data do not follow a Normal distribution. We should use [Wilcoxon test](#Wilcoxon),  a non-parametric test to compare 2 groups  not normally distributed.
 
+We can try a log transformation on the data, a mathematical trick that (sometimes) helps reshaping the distribution into a Normal distribution
 ```{r}
 sleep$SleepApnea_log <- log(sleep$SleepApnea)
 # To compare the 2 groups
 by(sleep$SleepApnea_log, sleep$gender,shapiro.test)
 ```
+Indeed, this time we fail to reject H0 for the 2 groups. We can state now that we cannot prove that the 2 data series are different from Normal distribution and a parametric test can be used for comparison. We will be able to apply a [Student t-test](#student-t-test) on the log-transformed sleep apnea data.
 :::
 
 :::{}
 ### Stata{-}
+The analysis steps are the same in STATA and the syntax is similar.
 ```{stata, eval=FALSE}
 swilk SleepApnea, by(gender)
 ```
+In both groups, the p-value is below 5%. We reject H0. The sleep apnea data do not follow a Normal distribution. We should use [**Wilcoxon test**](#Wilcoxon),  a non-parametric test to compare 2 groups  not normally distributed.
+
 
 ```{stata, eval=FALSE}
 gen SleepApnea_log = log(SleepApnea) 
 swilk SleepApnea_log, by(gender)
 ```
+After log-transformation, we cannot show that the data distributions are different from a Normal distribution. We will be able to use a [Student T-test](#student-t-test) (parametric test) on the log-transformed data series.
 :::
 ::::
 
-**Homoscedasticity or homogeneity of variances**
+#### Homoscedasticity or homogeneity of variances{-}
+
+In the configuration of a parametric test, the variances have to be equal in order to perform a classical [Student t-test](#student-t-test).
+
+ The hypothesis are:
+ 
+- H0: the variance of sleep apnea values among female is equal to the variance of sleep apnea values among male
+- H1: the variance of sleep apnea values among female is not equal to the variance of sleep apnea values among male
+- with alpha= 5%
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+The Bartlett's test assess that the variances in each of the groups (samples) are the same.
 ```{r, eval=TRUE}
-var.test(SleepApnea_log~gender, data=sleep)
+bartlett.test(SleepApnea_log~gender, data=sleep)
 ```
+The p-value is 0.21, we fail to reject H0. The variance are homogeneous and the adjustement will be required for the t-test.
+
+Note: The *var.test()* is a special case of comparing variances in two samples from normal distributions.
 :::
 
 :::{}
 ### Stata{-}
+A similar syntax is available in STATA.
 ```{stata, eval=FALSE}
 sdtest SleepApnea_log, by(gender)
 ```
 :::
 ::::
 
-**Student t-test**
+#### Student t-test{-}
+
+Since the log-transformed data are not different from a Normal distribution and the variances are homogeneous in both gender group, we can applied a Student T-test to the sleep apnea values to answer the following hypothesis:
+
+- H0: On average,in log scale, the sleep apnea values among female is equal to the sleep apnea values among male
+- H1: On average, in log scale, the sleep apnea values among female is not equal to the sleep apnea values among male
+- with alpha= 5%
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+The output of *t.test()* function call takes too much room on the web page so for display purpose we stored the results in a variable that we named *ttest_res*. We can then retrieve elements of results by their names in the list (see help page for details). For instance, the p-value can be access as follow: 
 ```{r attr.source="style='display:inline-block"}
-ttest_res <- t.test(SleepApnea_log~gender, data=sleep)
+ttest_res <- t.test(SleepApnea_log~gender, var.qual=TRUE, data=sleep)
 ttest_res$p.value
 ```
+The test shows that we fail to reject H0. We cannot show any differences between gender as sleep apnea is concerned.
+
+Note: (1) storing the results of a test in an object can become handy when one want iterate the test over several covariates. (2) By default the *t.test()* function is set for unequal variance.
 :::
 
 :::{}
 ### Stata{-}
+Again, the syntax is similar in STATA.
 ```{stata, eval=FALSE}
 ttest SleepApnea_log, by(gender)
 ```
 :::
 ::::
 
-**Wilcoxon test**
+#### Wilcoxon test{-}
+
+Non parametric tests can always be used but they tend to be less powerful, meaning that they are less likely to identify small differences in small sample.
+
+The Wilcoxon test is based solely on the order in which the observations
+from the two samples fall. It is also know as the Wilcoxon rank sum test. The null hypothesis tested is:
+
+- H0: The distribution of the sleep apnea values among female and male are equal 
+- H1: The distribution of the sleep apnea values among female and male are not equal
+- with alpha= 5%
+
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+In **R**  to perform a one- and two-sample non-parametric rank sum test you should use the *wilcoxon.test()* function on vectors of data. The two-sample test is also known as *Mann-Whitney* test but used the same the function call.
+
+If we use it on the original sleep apnea data
 ```{r}
-wilcox.test(SleepApnea~gender, data=sleep)
+by(sleep$SleepApnea, sleep$gender,shapiro.test)
 ```
+The conclusion is the same as with the log-transformed scale and parametric test. Here, we fail to reject H0. No difference can be shown between gender which adds evidence against gender related outcome.
 :::
 
 :::{}
 ### Stata{-}
+In **Stata** the name of the function is more in link with the actual computation:
 ```{stata, eval=FALSE}
 ranksum SleepApnea, by(gender)
 ```
 :::
 ::::
 
+### ANOVA or Kruskal-Wallis tests {#anova}
+
+To compare more than 2 groups you should use a generalization of the T-test or Wilcoxon test.
 
 
-## Qualitative data (categorical)
+#### ANOVA{-}
 
-**Fisher Exact test**
+To perform an ANOVA (ANalyse Of VAriance) you do the same assumption as for the T-test: normality of the values in the different group and homogeneity of the variances. Although the ANOVA test is less sensitive to Normality and homoscedasticity deviation than the T-test.
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
+In **R**, let's look at the cholesterol in groups along with the sleep apnea response variable? 
+```{r}
+sleep$chlgr <- ifelse(sleep$cholesterol <= 2, 
+                      "normal", 
+                      ifelse(sleep$cholesterol > 2 & 
+                               sleep$cholesterol<= 2.39,
+                             "bordeline high", "high"))
+by(sleep$SleepApnea, sleep$chl_group,shapiro.test)
+```
+
+```{r}
+by(sleep$SleepApnea_log, sleep$chlgr,shapiro.test)
+```
+The sleep apnea variable in its original scale is not normally distributed in 2 of the 3 groups of cholesterol, with quite an important deviation for latest (High cholesterol). In the log transformed data, all distribution are similar to a normal distribution. 
+
+Next, we look at the homoscedasticity:
+```{r}
+bartlett.test(sleep$SleepApnea_log ~ sleep$chlgr)
+```
+
+Finally, we can perform an ANOVA than will assess whether the variance within groups is similar than between group (H0) or not (H1).
+
+- H0: On average,in log scale, the sleep apnea values among the different groups of cholesterol are equal
+- H1: At least one cholesterol group differs from the other in term of sleep apnea values
+- with alpha= 5%
+
+```{r}
+res_anova <- aov(sleep$SleepApnea_log ~ sleep$chlgr)
+summary(res_anova)
+```
+In conclusion, we fail to reject H0. We cannot demonstrate any statistically significant associated between log sleep apnea and cholesterol group levels. 
+
+If any statistically significant association was observed we could have used the *TukeyHSD()* to decipher which group. This **post-hoc pairwise comparison** is commonly performed after significant effects when there are three or more levels of a factor.
+:::
+
+:::{}
+### Stata{-}
+In **Stata** the name of the function is more in link with the actual computation:
+```{stata, eval=FALSE}
+// generate cholesterol groups
+generate byte chlgr=1 if cholesterol <= 2
+replace chlgr=2 if cholesterol>2 
+                & cholesterol<=2.39
+replace chlgr= 3 if cholesterol>2.39 
+// test normality and homoscedasticity
+swilk SleepApnea_log, by(chlgr)
+sdtest SleepApnea_log, by(chlgr)
+// ANOVA
+oneway SleepApnea_log chlgr
+```
+
+Stata has three built-in pairwise methods (sidak, bonferroni and scheffe) in the oneway command. Although these options are easy to use, many researchers consider the methods to be too conservative for pairwise comparisons, especially when the are many levels. The Sidak method is the least conservative of the three followed, in order, by Bonferroni and Scheffe.
+```{stata, eval=FALSE}
+oneway SleepApnea_log chlgr, sidak bonferroni scheffe
+```
+Stata does not have a simple Tukey test command built-in, a few easy steps will download a user-created one that works just as well. Assuming you have not already installed the command, type *findit tukeyhsd* into the Command window and click on the appropriate link for download (see [Reed College](https://www.reed.edu/psychology/stata/analyses/parametric/ANOVA/tukey.html) help page for details). 
+
+Next, you only need to call the function
+```{stata, eval=FALSE}
+tukeyhsd  chlgr
+```
+:::
+::::
+
+
+## Qualitative data (categorical)
+
+Outcome and covariate can be both categorical and univariate statistical tests are then based on counts (although hypothesis are expressed in proportion). 
+
+#### Fisher Exact Test{-}
+
+The Fisher Exact test is the most accurate and powerful test for qualitative data. The only limit is the greedy permutation algorithm that your personal computer may not be in capacity to handle.
+
+Let's look at the high apneic patients (sleep apnea level above 69) and its possible relationship with obesity. The null hypothesis is:
+
+- H0: Among the highly apneic patients, the proportion obese persona is equal to the proportion of normal weight persona
+- H1: The proportion obese persona is not equal in the group of highly apneic patients and the low (or no) apneic patients
+- with alpha= 5%
+
+::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
+:::{}
+### R{-}
+In **R** we first create the *apnea_high* variable as a categorical variable (factor). Next, we use the *fisher.test()* function call
 ```{r, eval=TRUE}
 sleep$apnea_high <- ifelse(sleep$SleepApnea > 69, "Yes", "No")
-fisher.test(sleep$apnea_high, sleep$obese)
+sleep$apnea_high <- factor(sleep$apnea_high)
+xtabs(~ sleep$obese + sleep$apnea_high )
+fisher.test(sleep$obese, sleep$apnea_high)
 ```
+We gather from the test we cannot reject H0 and there do not seem have a relationship between high sleep apnea level and obesity (p-value 0.054). Although the p-value is borderline and that observation might be due to a lack of power (by construction) as only 15 patients are in the High apnea group.
+
+
+```{r, echo=FALSE}
+save(sleep, file="sleepApnea-clean.Rdata")
+```
+
 :::
 
 :::{}
@@ -133,20 +280,31 @@ tabulate apnea_high obese, exact
 :::
 ::::
 
-**Chi-square test**
+#### Pearson Chi-Square Test{-}
+
+An alternative to the [Fisher Exact test](#fisher-exact-test) is the Chi-Square test. The hypothesis are the same but there is one assumption for the Chi-Square: all expected counts should be greater than 5 otherwise the p-value will be poorly estimated.
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
-```{r, eval=TRUE}
-chisq.test(table(sleep$apnea_high, sleep$obese))
+```{r, eval=TRUE, warning=FALSE}
+# create contingency table
+aHigh2ob <- table(sleep$apnea_high, sleep$obese)
+# Perform the test and store the result 
+# in a object aHigh2ob_chisq
+aHigh2ob_chisq <- chisq.test(aHigh2ob)
+# After the R warning
+# verify the expected counts
+aHigh2ob_chisq$expected
 ```
+Here one expected count is 3.72 $<$ 5 so you should not use the result of that test which are too much approximated.
 :::
 
 :::{}
 ### Stata{-}
+In **Stata** the test is computed and the Yates correction is proposed but I would advise to add the *expected* keyword to you function call to also have the expected counts displayed along the results of the test.
 ```{stata, eval=FALSE}
-tabulate apnea_high obese, chi2
+tabulate apnea_high obese, chi2 expected
 ```
 :::
 ::::

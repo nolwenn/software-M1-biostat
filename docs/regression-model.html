@@ -24,7 +24,7 @@
 <meta name="author" content="Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic" />
 
 
-<meta name="date" content="2022-06-21" />
+<meta name="date" content="2022-07-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,6 +56,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -113,133 +177,151 @@
 <ul>
 <li><a href="programming-environment.html#r-6">R<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="1.10" data-path="programming-environment.html"><a href="programming-environment.html#function-call"><i class="fa fa-check"></i><b>1.10</b> Function call<span></span></a>
+<ul>
+<li><a href="programming-environment.html#r-7">R<span></span></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html"><i class="fa fa-check"></i><b>2</b> Data type and data format<span></span></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#data-type"><i class="fa fa-check"></i><b>2.1</b> Data type<span></span></a>
 <ul>
 <li class="chapter" data-level="2.1.1" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#numeric"><i class="fa fa-check"></i><b>2.1.1</b> Numeric<span></span></a></li>
-<li><a href="data-type-and-data-format.html#r-7">R<span></span></a></li>
-<li><a href="data-type-and-data-format.html#stata-7">Stata<span></span></a></li>
-<li class="chapter" data-level="2.1.2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#logical"><i class="fa fa-check"></i><b>2.1.2</b> Logical<span></span></a></li>
 <li><a href="data-type-and-data-format.html#r-8">R<span></span></a></li>
 <li><a href="data-type-and-data-format.html#stata-8">Stata<span></span></a></li>
-<li class="chapter" data-level="2.1.3" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#date"><i class="fa fa-check"></i><b>2.1.3</b> Date<span></span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#logical"><i class="fa fa-check"></i><b>2.1.2</b> Logical<span></span></a></li>
 <li><a href="data-type-and-data-format.html#r-9">R<span></span></a></li>
 <li><a href="data-type-and-data-format.html#stata-9">Stata<span></span></a></li>
-<li class="chapter" data-level="2.1.4" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#character"><i class="fa fa-check"></i><b>2.1.4</b> Character<span></span></a></li>
+<li class="chapter" data-level="2.1.3" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#date"><i class="fa fa-check"></i><b>2.1.3</b> Date<span></span></a></li>
 <li><a href="data-type-and-data-format.html#r-10">R<span></span></a></li>
 <li><a href="data-type-and-data-format.html#stata-10">Stata<span></span></a></li>
-<li class="chapter" data-level="2.1.5" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#factor"><i class="fa fa-check"></i><b>2.1.5</b> Factor<span></span></a></li>
+<li class="chapter" data-level="2.1.4" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#character"><i class="fa fa-check"></i><b>2.1.4</b> Character<span></span></a></li>
 <li><a href="data-type-and-data-format.html#r-11">R<span></span></a></li>
 <li><a href="data-type-and-data-format.html#stata-11">Stata<span></span></a></li>
+<li class="chapter" data-level="2.1.5" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#factor"><i class="fa fa-check"></i><b>2.1.5</b> Factor<span></span></a></li>
+<li><a href="data-type-and-data-format.html#r-12">R<span></span></a></li>
+<li><a href="data-type-and-data-format.html#stata-12">Stata<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#data-format"><i class="fa fa-check"></i><b>2.2</b> Data format<span></span></a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector<span></span></a></li>
-<li><a href="data-type-and-data-format.html#r-12">R<span></span></a></li>
-<li><a href="data-type-and-data-format.html#stata-12">Stata<span></span></a></li>
-<li class="chapter" data-level="2.2.2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix<span></span></a></li>
 <li><a href="data-type-and-data-format.html#r-13">R<span></span></a></li>
 <li><a href="data-type-and-data-format.html#stata-13">Stata<span></span></a></li>
-<li class="chapter" data-level="2.2.3" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#data-set"><i class="fa fa-check"></i><b>2.2.3</b> Data (set)<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#matrix"><i class="fa fa-check"></i><b>2.2.2</b> Matrix<span></span></a></li>
 <li><a href="data-type-and-data-format.html#r-14">R<span></span></a></li>
 <li><a href="data-type-and-data-format.html#stata-14">Stata<span></span></a></li>
-<li class="chapter" data-level="2.2.4" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#list"><i class="fa fa-check"></i><b>2.2.4</b> List<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#data-set"><i class="fa fa-check"></i><b>2.2.3</b> Data (set)<span></span></a></li>
 <li><a href="data-type-and-data-format.html#r-15">R<span></span></a></li>
 <li><a href="data-type-and-data-format.html#stata-15">Stata<span></span></a></li>
+<li class="chapter" data-level="2.2.4" data-path="data-type-and-data-format.html"><a href="data-type-and-data-format.html#list"><i class="fa fa-check"></i><b>2.2.4</b> List<span></span></a></li>
+<li><a href="data-type-and-data-format.html#r-16">R<span></span></a></li>
+<li><a href="data-type-and-data-format.html#stata-16">Stata<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3</b> Data management<span></span></a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="data-management.html"><a href="data-management.html#renaming-variables"><i class="fa fa-check"></i><b>3.1</b> Renaming variables<span></span></a>
 <ul>
-<li><a href="data-management.html#r-16">R<span></span></a></li>
-<li><a href="data-management.html#stata-16">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="data-management.html"><a href="data-management.html#missing-values"><i class="fa fa-check"></i><b>3.2</b> Missing values<span></span></a>
-<ul>
 <li><a href="data-management.html#r-17">R<span></span></a></li>
 <li><a href="data-management.html#stata-17">Stata<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="data-management.html"><a href="data-management.html#create-new-variables"><i class="fa fa-check"></i><b>3.3</b> Create new variables<span></span></a>
+<li class="chapter" data-level="3.2" data-path="data-management.html"><a href="data-management.html#missing-values"><i class="fa fa-check"></i><b>3.2</b> Missing values<span></span></a>
 <ul>
 <li><a href="data-management.html#r-18">R<span></span></a></li>
 <li><a href="data-management.html#stata-18">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-management.html"><a href="data-management.html#create-new-variables"><i class="fa fa-check"></i><b>3.3</b> Create new variables<span></span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-management.html"><a href="data-management.html#changing-scale"><i class="fa fa-check"></i><b>3.3.1</b> Changing scale<span></span></a></li>
 <li><a href="data-management.html#r-19">R<span></span></a></li>
 <li><a href="data-management.html#stata-19">Stata<span></span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-management.html"><a href="data-management.html#from-continuous-to-categorical"><i class="fa fa-check"></i><b>3.3.2</b> From continuous to categorical<span></span></a></li>
 <li><a href="data-management.html#r-20">R<span></span></a></li>
 <li><a href="data-management.html#stata-20">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="data-management.html"><a href="data-management.html#dummy-variables"><i class="fa fa-check"></i><b>3.4</b> Dummy variables<span></span></a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="data-management.html"><a href="data-management.html#log-transformation"><i class="fa fa-check"></i><b>3.4.1</b> log transformation<span></span></a></li>
-<li class="chapter" data-level="3.4.2" data-path="data-management.html"><a href="data-management.html#conditional-expression"><i class="fa fa-check"></i><b>3.4.2</b> conditional expression<span></span></a></li>
+<li class="chapter" data-level="3.3.3" data-path="data-management.html"><a href="data-management.html#dummy-variables"><i class="fa fa-check"></i><b>3.3.3</b> Dummy variables<span></span></a></li>
+<li><a href="data-management.html#r-21">R<span></span></a></li>
+<li><a href="data-management.html#stata-21">Stata<span></span></a></li>
+<li><a href="data-management.html#r-22">R<span></span></a></li>
+<li><a href="data-management.html#stata-22">Stata<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive statistics<span></span></a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quick-summary-statistics"><i class="fa fa-check"></i><b>4.1</b> Quick summary statistics<span></span></a>
 <ul>
-<li><a href="descriptive-statistics.html#r-21">R<span></span></a></li>
-<li><a href="descriptive-statistics.html#stata-21">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-and-deviation-parameters"><i class="fa fa-check"></i><b>4.2</b> Central and deviation parameters<span></span></a>
-<ul>
-<li><a href="descriptive-statistics.html#r-22">R<span></span></a></li>
-<li><a href="descriptive-statistics.html#stata-22">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#confidence-interval"><i class="fa fa-check"></i><b>4.3</b> Confidence interval<span></span></a>
-<ul>
 <li><a href="descriptive-statistics.html#r-23">R<span></span></a></li>
 <li><a href="descriptive-statistics.html#stata-23">Stata<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#cross-table"><i class="fa fa-check"></i><b>4.4</b> Cross table<span></span></a>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-and-deviation-parameters"><i class="fa fa-check"></i><b>4.2</b> Central and deviation parameters<span></span></a>
 <ul>
 <li><a href="descriptive-statistics.html#r-24">R<span></span></a></li>
 <li><a href="descriptive-statistics.html#stata-24">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#confidence-interval"><i class="fa fa-check"></i><b>4.3</b> Confidence interval<span></span></a>
+<ul>
+<li><a href="descriptive-statistics.html#r-25">R<span></span></a></li>
+<li><a href="descriptive-statistics.html#stata-25">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#cross-table"><i class="fa fa-check"></i><b>4.4</b> Cross table<span></span></a>
+<ul>
+<li><a href="descriptive-statistics.html#r-26">R<span></span></a></li>
+<li><a href="descriptive-statistics.html#stata-26">Stata<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>5</b> Plotting<span></span></a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="plotting.html"><a href="plotting.html#quantitative-data"><i class="fa fa-check"></i><b>5.1</b> Quantitative data<span></span></a>
 <ul>
-<li><a href="plotting.html#r-25">R<span></span></a></li>
-<li><a href="plotting.html#stata-25">Stata<span></span></a></li>
-<li><a href="plotting.html#r-26">R<span></span></a></li>
-<li><a href="plotting.html#stata-26">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="plotting.html"><a href="plotting.html#quanlitative-data"><i class="fa fa-check"></i><b>5.2</b> Quanlitative data<span></span></a>
-<ul>
 <li><a href="plotting.html#r-27">R<span></span></a></li>
 <li><a href="plotting.html#stata-27">Stata<span></span></a></li>
+<li><a href="plotting.html#r-28">R<span></span></a></li>
+<li><a href="plotting.html#stata-28">Stata<span></span></a></li>
+<li><a href="plotting.html#r-29">R<span></span></a></li>
+<li><a href="plotting.html#stata-29">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="plotting.html"><a href="plotting.html#qualitative-data-categorical"><i class="fa fa-check"></i><b>5.2</b> Qualitative data (categorical)<span></span></a>
+<ul>
+<li><a href="plotting.html#r-30">R<span></span></a></li>
+<li><a href="plotting.html#stata-30">Stata<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html"><i class="fa fa-check"></i><b>6</b> Univariate statistical test<span></span></a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#quantitative-data-1"><i class="fa fa-check"></i><b>6.1</b> Quantitative data<span></span></a>
 <ul>
-<li><a href="univariate-statistical-test.html#r-28">R<span></span></a></li>
-<li><a href="univariate-statistical-test.html#stata-28">Stata<span></span></a></li>
-<li><a href="univariate-statistical-test.html#r-29">R<span></span></a></li>
-<li><a href="univariate-statistical-test.html#stata-29">Stata<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#quanlitative-data-1"><i class="fa fa-check"></i><b>6.2</b> Quanlitative data<span></span></a>
-<ul>
-<li><a href="univariate-statistical-test.html#r-30">R<span></span></a></li>
-<li><a href="univariate-statistical-test.html#stata-30">Stata<span></span></a></li>
+<li class="chapter" data-level="6.1.1" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#two-groups-comparison"><i class="fa fa-check"></i><b>6.1.1</b> Two groups comparison<span></span></a></li>
 <li><a href="univariate-statistical-test.html#r-31">R<span></span></a></li>
 <li><a href="univariate-statistical-test.html#stata-31">Stata<span></span></a></li>
+<li><a href="univariate-statistical-test.html#r-32">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-32">Stata<span></span></a></li>
+<li><a href="univariate-statistical-test.html#r-33">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-33">Stata<span></span></a></li>
+<li><a href="univariate-statistical-test.html#r-34">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-34">Stata<span></span></a></li>
+<li class="chapter" data-level="6.1.2" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#anova"><i class="fa fa-check"></i><b>6.1.2</b> ANOVA or Kruskal-Wallis tests<span></span></a></li>
+<li><a href="univariate-statistical-test.html#r-35">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-35">Stata<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="univariate-statistical-test.html"><a href="univariate-statistical-test.html#qualitative-data-categorical-1"><i class="fa fa-check"></i><b>6.2</b> Qualitative data (categorical)<span></span></a>
+<ul>
+<li><a href="univariate-statistical-test.html#r-36">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-36">Stata<span></span></a></li>
+<li><a href="univariate-statistical-test.html#r-37">R<span></span></a></li>
+<li><a href="univariate-statistical-test.html#stata-37">Stata<span></span></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="regression-model.html"><a href="regression-model.html"><i class="fa fa-check"></i><b>7</b> Regression model<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="regression-model.html"><a href="regression-model.html#linear-regression"><i class="fa fa-check"></i><b>7.1</b> Linear regression<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="regression-model.html"><a href="regression-model.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.2</b> Simple Linear regression<span></span></a>
+<li class="chapter" data-level="7.1" data-path="regression-model.html"><a href="regression-model.html#linear-regression"><i class="fa fa-check"></i><b>7.1</b> Linear regression<span></span></a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="regression-model.html"><a href="regression-model.html#multiple-linear-regression"><i class="fa fa-check"></i><b>7.2.1</b> Multiple linear regression<span></span></a></li>
+<li class="chapter" data-level="7.1.1" data-path="regression-model.html"><a href="regression-model.html#simple-linear-regression"><i class="fa fa-check"></i><b>7.1.1</b> Simple Linear regression<span></span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="regression-model.html"><a href="regression-model.html#multivariate-linear-regression"><i class="fa fa-check"></i><b>7.1.2</b> multivariate linear regression<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="regression-model.html"><a href="regression-model.html#logistic-regression"><i class="fa fa-check"></i><b>7.3</b> logistic regression<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="regression-model.html"><a href="regression-model.html#logistic-regression"><i class="fa fa-check"></i><b>7.2</b> logistic regression<span></span></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="regression-model.html"><a href="regression-model.html#simple-logistic-regression"><i class="fa fa-check"></i><b>7.2.1</b> simple logistic regression<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="regression-model.html"><a href="regression-model.html#multivariate-logistic-regression"><i class="fa fa-check"></i><b>7.2.2</b> multivariate logistic regression<span></span></a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -263,42 +345,273 @@
             <section class="normal" id="section-">
 <div id="regression-model" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Regression model<a href="regression-model.html#regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A regression model provides a function that describes the relationship between one or more independent variables and a response, dependent, or target variable.</p>
 <div id="linear-regression" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Linear regression<a href="regression-model.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="simple-linear-regression" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Simple Linear regression<a href="regression-model.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
-<div id="r-32" class="section level3 unnumbered hasAnchor">
-<h3>R<a href="regression-model.html#r-32" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="stata-32" class="section level3 unnumbered hasAnchor">
-<h3>Stata<a href="regression-model.html#stata-32" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-<p><strong>post-hoc test</strong></p>
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
-<div id="r-33" class="section level3 unnumbered hasAnchor">
-<h3>R<a href="regression-model.html#r-33" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="stata-33" class="section level3 unnumbered hasAnchor">
-<h3>Stata<a href="regression-model.html#stata-33" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-<div id="multiple-linear-regression" class="section level3 hasAnchor" number="7.2.1">
-<h3><span class="header-section-number">7.2.1</span> Multiple linear regression<a href="regression-model.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="simple-linear-regression" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Simple Linear regression<a href="regression-model.html#simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A simple linear regression model fits a linear relationship between one independent variable and a response or dependent variable.</p>
+<p>Let’s look at sleep apnea (log transformed) and its covariate to assess any relationship.</p>
 </div>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
-<div id="r-34" class="section level3 unnumbered hasAnchor">
-<h3>R<a href="regression-model.html#r-34" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="r-38" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="regression-model.html#r-38" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>R</strong> the short for linear model is the <em>lm()</em> function. Here we try to fit a linear relationship between the sleep apnea (log transformed) and the body mass index (<em>bmi</em>) of the patients.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="regression-model.html#cb1-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SleepApnea_log <span class="sc">~</span> bmi, <span class="at">data=</span>sleep)</span>
+<span id="cb1-2"><a href="regression-model.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = SleepApnea_log ~ bmi, data = sleep)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.07324 -0.30206  0.00409  0.34115  0.90036 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 2.812163   0.227609  12.355  &lt; 2e-16 ***
+## bmi         0.029905   0.008012   3.733 0.000285 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4384 on 127 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.09886,    Adjusted R-squared:  0.09176 
+## F-statistic: 13.93 on 1 and 127 DF,  p-value: 0.0002848</code></pre>
+<p>When the bmi increases by 1 unit the log of the sleep apnea increases by 0.03. This coefficient is statistical different from 0 (p-value = 0.0002). Although the <span class="math inline">\(R^2\)</span> or coefficient of determination is rather small: only 9% of the variation observed in the log apnea data is explained by the bmi.</p>
 </div>
-<div id="stata-34" class="section level3 unnumbered hasAnchor">
-<h3>Stata<a href="regression-model.html#stata-34" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="stata-38" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="regression-model.html#stata-38" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="regression-model.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> SleepApnea_log  bmi</span></code></pre></div>
+</div>
+</div>
+<div id="post-hoc-test" class="section level4 hasAnchor" number="7.1.1.1">
+<h4><span class="header-section-number">7.1.1.1</span> post-hoc test<a href="regression-model.html#post-hoc-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>How to verify if a simple linear regression model was appropriate?</p>
+<p>The method is descriptive and based on the distribution of the residuals that allows assessing:</p>
+<ul>
+<li>Linear and additive of predictive relationships</li>
+<li>Homoscedasticity (constant variance) of residuals (errors)</li>
+<li>Normality of the residuals distribution</li>
+<li>Independence (lack of correlation) residuals (in particular, no correlation between consecutive errors in the case of time series data)</li>
+</ul>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
+<div id="r-39" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="regression-model.html#r-39" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <strong>R</strong> we can use plots:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="regression-model.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="at">nrow=</span><span class="dv">2</span>))</span>
+<span id="cb4-2"><a href="regression-model.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m1)</span></code></pre></div>
+<p><img src="_main_files/figure-html/post-hoc-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="regression-model.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## null device 
+##           1</code></pre>
+<p>From top to bottom and left to right the plots assess :</p>
+<ol style="list-style-type: decimal">
+<li>Linearity and additivity of predictive relationships. A good fitting should show a red horizontal line, the variance of the residuals is randomly spread above and below the horizontal line.</li>
+<li>Homoscedasticity (<em>i.e.</em> constant variance) of residuals (errors). A good fitting should show a red horizontal line, the variance of the residuals is constant and do not depend on the fitted values.</li>
+<li>Normality of the residuals distribution. A good fitting should show a alignment of the dots on the diagonal of the Q-Q plot.</li>
+<li>Influential observations with Cook’s distance: if dots appear outside the Cook’s distance limits (red dashes) they are influential observations or even outliers (extreme). Their value need to be verified as they might negatively influence the fitting.</li>
+</ol>
+<p>Globally, the fitting is not great. This could have been easily foreseen by a quick look at a xyplot.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="regression-model.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="regression-model.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(<span class="at">y=</span>SleepApnea_log, <span class="at">x=</span>bmi)) <span class="sc">+</span> </span>
+<span id="cb7-3"><a href="regression-model.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="regression-model.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="stata-39" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="regression-model.html#stata-39" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Similarly in Stata we can verify our assumptions:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="regression-model.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// fitted values Vs residual </span></span>
+<span id="cb8-2"><a href="regression-model.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">// for checking independence of residual</span></span>
+<span id="cb8-3"><a href="regression-model.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">rvfplot</span>, <span class="kw">yline</span>(0) </span></code></pre></div>
+<p>The residuals are distributed independantly</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="regression-model.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// testing for  Heteroskedasticity</span></span>
+<span id="cb9-2"><a href="regression-model.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> <span class="kw">imtest</span></span></code></pre></div>
+<p>The p-value is not less than 0.05 so the variance of the residuals is homogenous.</p>
+<p>However as shown below, no the association between log SleepApnea and BMI is not linear, as the dotted points do not show any linear trends or regression line in the graph is not surrounded by observations.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="regression-model.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> SleepApnea_Log bmi || <span class="kw">lfit</span> SleepApnea_Log bmi</span></code></pre></div>
+</div>
+</div>
+<div id="multivariate-linear-regression" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> multivariate linear regression<a href="regression-model.html#multivariate-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A multivariate linear regression model fits a linear relationship between one independent variable and several response or dependent variables.</p>
+<p>In our example let’s look at several covariates and adjust each of their effects along the way for better measurements of covariate’s effect.</p>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
+<div id="r-40" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="regression-model.html#r-40" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <em>R</em> a multivariate linear regression modelling is really similar to the simple linear regression</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="regression-model.html#cb11-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SleepApnea_log <span class="sc">~</span> bmi <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span></span>
+<span id="cb11-2"><a href="regression-model.html#cb11-2" aria-hidden="true" tabindex="-1"></a>           creatinine, <span class="at">data=</span>sleep)</span>
+<span id="cb11-3"><a href="regression-model.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = SleepApnea_log ~ bmi + age + gender + creatinine, 
+##     data = sleep)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.11154 -0.28626  0.00599  0.27501  0.86245 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.647637   0.424317   6.240 6.58e-09 ***
+## bmi          0.032089   0.008246   3.891 0.000163 ***
+## age          0.009445   0.003759   2.512 0.013302 *  
+## gendermale   0.219084   0.128036   1.711 0.089603 .  
+## creatinine  -0.005881   0.003235  -1.818 0.071562 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4321 on 122 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.157,  Adjusted R-squared:  0.1294 
+## F-statistic: 5.681 on 4 and 122 DF,  p-value: 0.0003157</code></pre>
+<p>In the model, not all coefficients are statistically significant (ex gender). If your goal is to optimize the measure of each covariate’s effect, you might want to do a step approach which consists of removing the least significant covariate, redoing the test, and assessing if the model has “improve” etc.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="regression-model.html#cb13-1" aria-hidden="true" tabindex="-1"></a>m2<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(SleepApnea_log <span class="sc">~</span> bmi <span class="sc">+</span> age <span class="sc">+</span></span>
+<span id="cb13-2"><a href="regression-model.html#cb13-2" aria-hidden="true" tabindex="-1"></a>           creatinine, <span class="at">data=</span>sleep)</span>
+<span id="cb13-3"><a href="regression-model.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2<span class="fl">.2</span>)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = SleepApnea_log ~ bmi + age + creatinine, data = sleep)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.06150 -0.27082 -0.00797  0.29607  0.86161 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.706391   0.426227   6.350 3.78e-09 ***
+## bmi          0.030537   0.008260   3.697 0.000327 ***
+## age          0.007797   0.003662   2.129 0.035260 *  
+## creatinine  -0.003135   0.002831  -1.107 0.270300    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4355 on 123 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.1368, Adjusted R-squared:  0.1157 
+## F-statistic: 6.497 on 3 and 123 DF,  p-value: 0.0004067</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="regression-model.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m2) ; <span class="fu">AIC</span>(m2<span class="fl">.2</span>)</span></code></pre></div>
+<pre><code>## [1] 154.1741</code></pre>
+<pre><code>## [1] 155.186</code></pre>
+<p>The Akaike’s index helps identifying any model fitting improvement. The rule is that between 2 nested models the best one is the one with the lower AIC. In our example, the <span class="math inline">\(R^2\)</span> is lower and the AIC did not improve. Thus you should go on…</p>
+<p>You can perform automatic stepwise modelling but <strong>do not forget to be smart</strong> and <strong>interpret your output</strong> to see <strong>if it does make sense</strong>. Try below to test:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="regression-model.html#cb18-1" aria-hidden="true" tabindex="-1"></a>m_all<span class="ot">&lt;-</span> <span class="fu">lm</span>(SleepApnea_log <span class="sc">~</span> ., <span class="at">data=</span>sleep[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">19</span>)])</span>
+<span id="cb18-2"><a href="regression-model.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_all)</span>
+<span id="cb18-3"><a href="regression-model.html#cb18-3" aria-hidden="true" tabindex="-1"></a>best<span class="ot">&lt;-</span> <span class="fu">step</span>(m_all)</span>
+<span id="cb18-4"><a href="regression-model.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(best)</span></code></pre></div>
+</div>
+<div id="stata-40" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="regression-model.html#stata-40" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="regression-model.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> SleepApnea_log  bmi age i.gender i.diabetes creatinine</span></code></pre></div>
+<p>Note: From the code above that continuous independent variables are simply entered “as is,” whilst categorical independent variables have the prefix “i”</p>
+<p>Backward selection, removing terms with p ≥ 0.05</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="regression-model.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">stepwise</span>, pr(.05): <span class="kw">regress</span> SleepApnea_log  bmi age i.gender creatinine</span></code></pre></div>
 </div>
 </div>
 </div>
-<div id="logistic-regression" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> logistic regression<a href="regression-model.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="logistic-regression" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> logistic regression<a href="regression-model.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Logistic regression models are a generalization of the linear models.</p>
+<div id="simple-logistic-regression" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> simple logistic regression<a href="regression-model.html#simple-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
+<div id="r-41" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="regression-model.html#r-41" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <em>R</em> the <em>gml()</em> family function, which stands for generalized linear model, can be used to fit different family of data distributions such as continuous outcome (gaussian), binary outcome (binomial) or counts (Poisson) with different link between the ouctome and the covariates (logit, probit …). See help page for more details.</p>
+<pre><code>## 
+## Call:
+## glm(formula = apnea_high ~ bmi, family = binomial(), data = sleep)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.8897  -0.5000  -0.3917  -0.3173   2.2321  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -6.58190    1.60238  -4.108    4e-05 ***
+## bmi          0.15529    0.05202   2.985  0.00283 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 92.737  on 128  degrees of freedom
+## Residual deviance: 82.779  on 127  degrees of freedom
+##   (1 observation deleted due to missingness)
+## AIC: 86.779
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>As seen for the <a href="descriptive-statistics.html#confidence-interval">confidence interval</a>, the <em>epiDisplay</em> library has a convenient function call for a nice display of classical logistic regression.</p>
+<pre><code>## 
+## Logistic regression predicting apnea_high : Yes vs No 
+##  
+##                  OR(95%CI)         P(Wald&#39;s test) P(LR-test)
+## bmi (cont. var.) 1.17 (1.05,1.29)  0.003          0.002     
+##                                                             
+## Log-likelihood = -41.3894
+## No. of observations = 129
+## AIC value = 86.7788</code></pre>
+</div>
+<div id="stata-41" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="regression-model.html#stata-41" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="regression-model.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> apnea_high bmi</span></code></pre></div>
+</div>
+</div>
+<div id="multivariate-logistic-regression" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> multivariate logistic regression<a href="regression-model.html#multivariate-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
+<div id="r-42" class="section level3 unnumbered hasAnchor">
+<h3>R<a href="regression-model.html#r-42" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="regression-model.html#cb24-1" aria-hidden="true" tabindex="-1"></a>l2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(apnea_high <span class="sc">~</span> bmi <span class="sc">+</span> gender <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="regression-model.html#cb24-2" aria-hidden="true" tabindex="-1"></a>            age <span class="sc">+</span> creatinine, </span>
+<span id="cb24-3"><a href="regression-model.html#cb24-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">family=</span><span class="fu">binomial</span>(), <span class="at">data=</span>sleep)</span>
+<span id="cb24-4"><a href="regression-model.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(l2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = apnea_high ~ bmi + gender + age + creatinine, family = binomial(), 
+##     data = sleep)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5124  -0.4581  -0.3189  -0.1866   2.4059  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)   
+## (Intercept) -6.15266    3.80577  -1.617  0.10595   
+## bmi          0.18248    0.06176   2.955  0.00313 **
+## gendermale   3.42145    1.53141   2.234  0.02547 * 
+## age          0.01830    0.03092   0.592  0.55393   
+## creatinine  -0.05870    0.02714  -2.163  0.03056 * 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 92.238  on 126  degrees of freedom
+## Residual deviance: 72.691  on 122  degrees of freedom
+##   (3 observations deleted due to missingness)
+## AIC: 82.691
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="regression-model.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logistic.display</span>(l2, <span class="at">simplified =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##  
+##                    OR lower95ci   upper95ci    Pr(&gt;|Z|)
+## bmi         1.2001919 1.0633531   1.3546400 0.003131567
+## gendermale 30.6137669 1.5218759 615.8207130 0.025470934
+## age         1.0184724 0.9585750   1.0821125 0.553928065
+## creatinine  0.9429895 0.8941372   0.9945109 0.030559330</code></pre>
+</div>
+<div id="stata-42" class="section level3 unnumbered hasAnchor">
+<h3>Stata<a href="regression-model.html#stata-42" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="regression-model.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> apnea_high bmi age creatinine i.gender</span></code></pre></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -362,6 +675,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

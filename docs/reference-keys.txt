@@ -57,3 +57,6 @@ multivariate-logistic-regression
 fig:unnamed-chunk-3
 fig:histogram
 function-call
+post-hoc-test
+anova
+two-groups-comparison

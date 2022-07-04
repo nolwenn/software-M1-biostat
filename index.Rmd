@@ -26,16 +26,15 @@ options(width = 60)
 
 
 # Introduction {-}
-These pages present both Stata and R approaches to data management, descriptive statistics, plotting, and statistical modelling seen in our former MPH1 software labs. They are presented side-by-side to make it easier to draw the parallel between the syntax of the two tools. R often takes more code to do common tasks than Stata, but can do many things that are not possible in Stata. Both are excellent platforms for quantitative research, though Stata is still more common in epidemiology and R is more common in statistics and data science. 
+These pages present both Stata and R use for data management, descriptive statistics, plotting, statistical tests, and statistical modelling seen in our former MPH1 software labs. They are presented side-by-side to make it easier to draw the parallel between the syntax of the two tools. R often takes more code to do common tasks than Stata, but can do many things that are not possible in Stata. Both are excellent platforms for quantitative research, though Stata is still more common in epidemiology and R is more common in statistics and data science. 
   
-  **The code examples and illustrations presented here used the** [sleep apnea data](SleepApnea.csv). 
+  **The code examples and illustrations presented here used the** [sleep apnea data](SleepApnea.csv). Sleep Apnea is a sleep disorder characterizing by abnormal pauses in breathing during sleep. Each pause in breathing is called apnea. The population was defined as the population hospitalized in the Rennes University hospital (France) and aged more than 18 years old. A sampling procedure was performed to select a random sample. Several individual characteristics were collected as possible determinants of sleep apnea. Their sleep was monitored for a night (6 hours) and the number of pauses of breathing was measured.
   
-  Sleep Apnea is a sleep disorder characterizing by abnormal pauses in breathing during sleep. Each pause in breathing is called apnea. The population was defined as the population hospitalized in the Rennes University hospital (France) and aged more than 18 years old. A sampling procedure was performed to select a random sample. Several individual characteristics were collected as possible determinants of sleep apnea. Their sleep was monitored for a night (6 hours) and the number of pauses of breathing was measured.
+  **To practice**, [Here](https://github.com/nolwenn/software-M1-biostat/docs/homework/) is a new dataset, a long with lab exercices. For the corrections please email me.
   
-  **For more practice**, [Here](https://github.com/nolwenn/software-M1-biostat/docs/homework/) is a new data set a long with lab exercices. For the corrections please email me.
+  You can also visit my [little e-book for MPH1 biostatistics ](https://nolwenn.github.io/ebook-M1-biostat/index.html)  **for class material**.
   
-  
-  -Note- these pages are works-in-progress: If you see mistakes or major omissions, make a comment on the [GitHub repository](https://github.com/nolwenn/software-M1-biostat) or email me.
+  -Note- these pages are works-in-progress: If you see mistakes or major omissions, make a comment on my [GitHub repository](https://github.com/nolwenn/software-M1-biostat) or email me.
   
   
 # References {-}

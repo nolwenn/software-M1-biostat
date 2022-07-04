@@ -79,7 +79,7 @@ summarize age, detail
 :::
 ::::
 
-## Confidence interval
+## Confidence interval {#confidence-interval}
 
 The confidence interval represents the interval in which the true value of the estimated parameter stands with a certain confidence (often 95% - allowing 5% of the estimation being wrong if 100 estimation were perfomed).
 
