@@ -244,7 +244,7 @@ tabulate group, generate(g)
 
 Merging or joining data set can be particularly useful when enriching your data from multiple sources.
 
-In the example below, we merge with the sleep apnea data the results of a questionnaire on daily concentration level for each patient ([here](DayConcentration.txt) to download).
+In the example below, we merge the results of a questionnaire on daily concentration level for each patient ([here](DayConcentration.csv) to download) with the sleep apnea data .
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 :::{}
@@ -252,7 +252,7 @@ In the example below, we merge with the sleep apnea data the results of a questi
 
 In **R** there is more than way way of doing things. The base function is *merge()*.
 ```{r}
-dayconcentration <- read.table("DayConcentration.txt", header=TRUE, sep="\t")
+dayconcentration <- read.table("DayConcentration.csv", header=TRUE, sep="\t")
 # the commun key do not have the same label so it need to be specified
 sleep <- merge(sleep, dayconcentration, by.x="number", by.y="id")
 sleep[1:5, c("number","age", "concentration_mark")]  
