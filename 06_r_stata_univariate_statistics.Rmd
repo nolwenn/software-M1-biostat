@@ -180,7 +180,7 @@ sleep$chlgr <- ifelse(sleep$cholesterol <= 2,
                       ifelse(sleep$cholesterol > 2 & 
                                sleep$cholesterol<= 2.39,
                              "bordeline high", "high"))
-by(sleep$SleepApnea, sleep$chl_group,shapiro.test)
+by(sleep$SleepApnea, sleep$chlgr,shapiro.test)
 ```
 
 ```{r}

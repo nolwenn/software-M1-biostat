@@ -132,6 +132,7 @@ summary(m_all)
 best<- step(m_all)
 summary(best)
 ```
+The dot "." indicates that the regression is on all covariates, except the one I filtered out (column 1, 12 and 19 of the dataset using indexing syntax sleep[, -c(1, 12, 19)]).
 :::
 
 :::{}
@@ -150,7 +151,7 @@ stepwise, pr(.05): regress SleepApnea_log  bmi age i.gender creatinine
 
 ## logistic regression
 
-Logistic regression models are a generalization of the linear models. 
+Logistic regression models are a generalization of the linear models. The most common logistic regression is the binary logistic regression that models a binary outcome (ex: Dead/Alive, yes/no). Multinomial logistic regression can model scenarios where there are more than two possible discrete outcomes (ex: low, medium, high). For more details see the [logistic regression section of my little e-book for MPH1 biostatistic]( https://nolwenn.github.io/ebook-M1-biostat/introduction-to-regression-modelling.html#logistic-regression-model)
 
 ### simple logistic regression
 
@@ -173,13 +174,19 @@ logistic.display(l1)
 
 :::{}
 ### Stata{-}
+In **Stata** the logit function will perform a binary logistic regression.
 ```{stata, eval=FALSE}
 logit apnea_high bmi
 ```
 :::
 ::::
+The odd (risk) of having the high apnea is 1.17(17%) times higher when the bmi increases by 1 unit (95%CI[1.05,1.29]). The P(Wald's test) tells us that the estimated coefficient is different from 0 (or the OR is different from 1). The  P(LR-test) log-likelihood ratio test tells us that the model is better than the NULL model (without any covariate).
+
 
 ### multivariate logistic regression
+
+As for the multiple linear regression there exists logistic regression generalization.
+
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
@@ -202,3 +209,4 @@ logit apnea_high bmi age creatinine i.gender
 ```
 :::
 ::::
+As noted earlier, bmi is still associated with high apnea but age presents abnormal OR and 95%CI, probably because of unbalanced sample size. This variable should be removed from the model. A stepwise approach could also be performed. Overall the split applied to the Sleep apnea variable to create high_apnea is also questionable.  

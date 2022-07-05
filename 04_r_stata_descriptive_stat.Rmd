@@ -86,7 +86,7 @@ The confidence interval represents the interval in which the true value of the e
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;"}
 :::{}
 ### R{-}
-In **R** the *epiDisplay* libary is useful for many computations in epidemiology and notably the confidence interval of the mean. A simple call to the ci() function will compute the 95% confidence interval. The level of confidence is specify using the risk alpha conterpart , here the default is alpha=0.05 (so not need to specify it). 
+In **R** the *epiDisplay* libary is useful for many computations in epidemiology and notably the confidence interval of the mean. A simple call to the ci() function will compute the 95% confidence interval. The level of confidence is specify using the risk alpha counterpart , here the default is alpha=0.05 (so not need to specify it). 
 ```{r, eval=T, message=FALSE, warning=FALSE}
 library(epiDisplay)
 ci(sleep$age)
