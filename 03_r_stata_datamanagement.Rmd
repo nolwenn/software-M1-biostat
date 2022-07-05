@@ -244,7 +244,7 @@ tabulate group, generate(g)
 
 Merging or joining data set can be particularly useful when enriching your data from multiple sources.
 
-In the example below, we merge with the sleep apnea data the results of a questionnaire on daily concentration level for each patient ([here](https://github.com/nolwenn/software-M1-biostat/DayConcentration.txt) to download).
+In the example below, we merge with the sleep apnea data the results of a questionnaire on daily concentration level for each patient ([here](DayConcentration.txt) to download).
 
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 :::{}
