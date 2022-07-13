@@ -24,7 +24,7 @@
 <meta name="author" content="Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic" />
 
 
-<meta name="date" content="2022-07-05" />
+<meta name="date" content="2022-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -347,14 +347,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-17" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-management.html#r-17" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong> <em>data.frame</em>, variables are in column and to retrieve their names you can use the <em>colnames()</em> function. It will return a vector which values can be accessed and modify using indexing.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-management.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sleep)</span>
-<span id="cb1-2"><a href="data-management.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sleep)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;identifier&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-management.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sleep)</span>
+<span id="cb3-2"><a href="data-management.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sleep)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;identifier&quot;</span></span></code></pre></div>
 <p>Note : <em>rownames()</em> does also exist if you need to access and manipulate the individuals</p>
 </div>
 <div id="stata-17" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-management.html#stata-17" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong>, one way is to use the <em>rename</em> function.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="data-management.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> number identifier</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="data-management.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> number identifier</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -365,26 +365,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-18" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-management.html#r-18" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong>, you can assess the number missing values with the <em>summary()</em> function or the <em>is.na()</em> conditional testing function.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-management.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-management.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
 <p>A basic and crude method is to replace missing value by a value such as the average value. For the variable age, let’s replace the missing value by the mean age of sample using the indexing technique.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-management.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a fake missing value</span></span>
-<span id="cb4-2"><a href="data-management.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for individual #1</span></span>
-<span id="cb4-3"><a href="data-management.html#cb4-3" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb4-4"><a href="data-management.html#cb4-4" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1] NA 59 54 53 51</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-management.html#cb6-1" aria-hidden="true" tabindex="-1"></a>na_id <span class="ot">&lt;-</span> <span class="fu">is.na</span>(sleep<span class="sc">$</span>age)</span>
-<span id="cb6-2"><a href="data-management.html#cb6-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age[na_id] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sleep<span class="sc">$</span>age,</span>
-<span id="cb6-3"><a href="data-management.html#cb6-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb6-4"><a href="data-management.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(sleep<span class="sc">$</span>age[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],<span class="dv">0</span>)</span></code></pre></div>
-<pre><code>## [1] 48 59 54 53 51</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-management.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a fake missing value</span></span>
+<span id="cb6-2"><a href="data-management.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for individual #1</span></span>
+<span id="cb6-3"><a href="data-management.html#cb6-3" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb6-4"><a href="data-management.html#cb6-4" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>[1] NA 59 54 53 51</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-management.html#cb8-1" aria-hidden="true" tabindex="-1"></a>na_id <span class="ot">&lt;-</span> <span class="fu">is.na</span>(sleep<span class="sc">$</span>age)</span>
+<span id="cb8-2"><a href="data-management.html#cb8-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age[na_id] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sleep<span class="sc">$</span>age,</span>
+<span id="cb8-3"><a href="data-management.html#cb8-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-4"><a href="data-management.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(sleep<span class="sc">$</span>age[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>[1] 48 59 54 53 51</code></pre>
 </div>
 <div id="stata-18" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-management.html#stata-18" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong> an overview of the missing data can be done as follow:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="data-management.html#cb8-1" aria-hidden="true" tabindex="-1"></a>misstable <span class="kw">summarize</span></span>
-<span id="cb8-2"><a href="data-management.html#cb8-2" aria-hidden="true" tabindex="-1"></a>misstable <span class="kw">patterns</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="data-management.html#cb10-1" aria-hidden="true" tabindex="-1"></a>misstable <span class="kw">summarize</span></span>
+<span id="cb10-2"><a href="data-management.html#cb10-2" aria-hidden="true" tabindex="-1"></a>misstable <span class="kw">patterns</span></span></code></pre></div>
+<pre><code>(variables nonmissing or string)
+
+(no missing values)</code></pre>
 <p>To replace one missing value by the mean of the variable, do</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="data-management.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> age = <span class="kw">mean</span>(age) <span class="kw">if</span> <span class="fu">missing</span>(age)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="data-management.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> meanage = <span class="kw">mean</span>(age)</span>
+<span id="cb12-2"><a href="data-management.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> age = meanage <span class="kw">if</span> <span class="fu">missing</span>(age)</span></code></pre></div>
+<pre><code>(0 real changes made)</code></pre>
 </div>
 </div>
 <p>Above a certain threshold that varies, from 4% to 20%, researchers try to do multiple imputation of missing values. Although there is no perfect solution, there are basically 3 scenario and associated imputation techniques. Data are missing completely at random (MCAR) or data are missing at random (MAR) or data are missing not at random (MNAR). For the latest, it would be difficult to perform a legitimate analysis. This advanced topic is not covered in MPH1 class but see below for references if needed.</p>
@@ -401,28 +406,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-19" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-management.html#r-19" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong> the transformation can only be some simple computation:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-management.html#cb10-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_log <span class="ot">&lt;-</span> <span class="fu">log</span>(sleep<span class="sc">$</span>age)</span>
-<span id="cb10-2"><a href="data-management.html#cb10-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_sqr <span class="ot">&lt;-</span> sleep<span class="sc">$</span>age<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-management.html#cb14-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_log <span class="ot">&lt;-</span> <span class="fu">log</span>(sleep<span class="sc">$</span>age)</span>
+<span id="cb14-2"><a href="data-management.html#cb14-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_sqr <span class="ot">&lt;-</span> sleep<span class="sc">$</span>age<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <p>To normalize or standardize, you can do:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-management.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normalization</span></span>
-<span id="cb11-2"><a href="data-management.html#cb11-2" aria-hidden="true" tabindex="-1"></a>minage <span class="ot">&lt;-</span> sleep<span class="sc">$</span>age </span>
-<span id="cb11-3"><a href="data-management.html#cb11-3" aria-hidden="true" tabindex="-1"></a>maxage <span class="ot">&lt;-</span> sleep<span class="sc">$</span>age</span>
-<span id="cb11-4"><a href="data-management.html#cb11-4" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_norm<span class="ot">&lt;-</span> </span>
-<span id="cb11-5"><a href="data-management.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  (sleep<span class="sc">$</span>age<span class="sc">-</span>minage)<span class="sc">/</span>(maxage<span class="sc">-</span>minage)</span>
-<span id="cb11-6"><a href="data-management.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># standardization (z-score)</span></span>
-<span id="cb11-7"><a href="data-management.html#cb11-7" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_std<span class="ot">&lt;-</span> </span>
-<span id="cb11-8"><a href="data-management.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  (sleep<span class="sc">$</span>age<span class="sc">-</span><span class="fu">mean</span>(sleep<span class="sc">$</span>age))<span class="sc">/</span><span class="fu">sd</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-management.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normalization</span></span>
+<span id="cb15-2"><a href="data-management.html#cb15-2" aria-hidden="true" tabindex="-1"></a>minage <span class="ot">&lt;-</span> sleep<span class="sc">$</span>age </span>
+<span id="cb15-3"><a href="data-management.html#cb15-3" aria-hidden="true" tabindex="-1"></a>maxage <span class="ot">&lt;-</span> sleep<span class="sc">$</span>age</span>
+<span id="cb15-4"><a href="data-management.html#cb15-4" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_norm<span class="ot">&lt;-</span> </span>
+<span id="cb15-5"><a href="data-management.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  (sleep<span class="sc">$</span>age<span class="sc">-</span>minage)<span class="sc">/</span>(maxage<span class="sc">-</span>minage)</span>
+<span id="cb15-6"><a href="data-management.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># standardization (z-score)</span></span>
+<span id="cb15-7"><a href="data-management.html#cb15-7" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_std<span class="ot">&lt;-</span> </span>
+<span id="cb15-8"><a href="data-management.html#cb15-8" aria-hidden="true" tabindex="-1"></a>  (sleep<span class="sc">$</span>age<span class="sc">-</span><span class="fu">mean</span>(sleep<span class="sc">$</span>age))<span class="sc">/</span><span class="fu">sd</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
 <p><em>Note</em>: be careful if you have missing values you should add <em>na.rm=TRUE</em> as argument in your function calls.</p>
 </div>
 <div id="stata-19" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-management.html#stata-19" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The syntax are really similar with <strong>Stata</strong></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="data-management.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_log = <span class="fu">ln</span>(age)</span>
-<span id="cb12-2"><a href="data-management.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_sqr = age^2</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="data-management.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// normalization</span></span>
-<span id="cb13-2"><a href="data-management.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_norm = (age-23)/74-23</span>
-<span id="cb13-3"><a href="data-management.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">// standardization</span></span>
-<span id="cb13-4"><a href="data-management.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_std = (age-47.69)/10.69</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="data-management.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_log = <span class="fu">ln</span>(age)</span>
+<span id="cb16-2"><a href="data-management.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_sqr = age^2</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="data-management.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// normalization</span></span>
+<span id="cb17-2"><a href="data-management.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_norm = (age-23)/74-23</span>
+<span id="cb17-3"><a href="data-management.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">// standardization</span></span>
+<span id="cb17-4"><a href="data-management.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_std = (age-47.69)/10.69</span></code></pre></div>
 </div>
 </div>
 <div id="from-continuous-to-categorical" class="section level3 hasAnchor" number="3.3.2">
@@ -438,15 +443,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>include.lowest: whether or not you include the lowest value if the data series</li>
 <li>right : whether or not you include the upper-bound value of the interval in your group (inclusion is symbolized by <code>]</code> and exclusion by <code>)</code>.</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-management.html#cb14-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(sleep<span class="sc">$</span>age, </span>
-<span id="cb14-2"><a href="data-management.html#cb14-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">80</span>),</span>
-<span id="cb14-3"><a href="data-management.html#cb14-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">include.lowest=</span><span class="cn">TRUE</span>, </span>
-<span id="cb14-4"><a href="data-management.html#cb14-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">right =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-management.html#cb18-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(sleep<span class="sc">$</span>age, </span>
+<span id="cb18-2"><a href="data-management.html#cb18-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">80</span>),</span>
+<span id="cb18-3"><a href="data-management.html#cb18-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">include.lowest=</span><span class="cn">TRUE</span>, </span>
+<span id="cb18-4"><a href="data-management.html#cb18-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">right =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-5"><a href="data-management.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>age_group)</span></code></pre></div>
+<pre><code>
+[20,40) [40,60) [60,80] 
+     29      85      16 </code></pre>
 </div>
 <div id="stata-20" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-management.html#stata-20" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong> the syntax is quite similar</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="data-management.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> age_group = <span class="fu">cut</span>(age),<span class="fu">at</span>(20,40,60,80)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="data-management.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> age_group = <span class="fu">cut</span>(age),<span class="fu">at</span>(20,40,60,80)</span>
+<span id="cb20-2"><a href="data-management.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> age_group</span></code></pre></div>
+<pre><code>  age_group |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         20 |         29       22.31       22.31
+         40 |         85       65.38       87.69
+         60 |         16       12.31      100.00
+------------+-----------------------------------
+      Total |        130      100.00</code></pre>
 </div>
 </div>
 <div id="dummy-variables" class="section level3 hasAnchor" number="3.3.3">
@@ -518,40 +535,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-21" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-management.html#r-21" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The combination of any of the above symbols with the <em>ifelse()</em> function useful for creating a dummy variable based on conditional testing as you can assign 0/1 values (or any specified values) to your variable depending on whether the element of test is TRUE or FALSE. As example, we create below</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-management.html#cb16-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>obese <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(sleep<span class="sc">$</span>bmi <span class="sc">&gt;</span> <span class="dv">30</span>,  <span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="data-management.html#cb22-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>obese <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(sleep<span class="sc">$</span>bmi <span class="sc">&gt;</span> <span class="dv">30</span>,  <span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
 <p>Note that with <strong>R</strong> there is more than one way of doing things and if you adopt the use of <em>tidyverse</em> suite of packages or the <em>data.table</em> library you might use other functions. Here are examples:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-management.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with dplyr</span></span>
-<span id="cb17-2"><a href="data-management.html#cb17-2" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> sleep </span>
-<span id="cb17-3"><a href="data-management.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">&quot;obese&quot;</span><span class="ot">=</span> <span class="fu">as.numeric</span>(bmi<span class="sc">&gt;</span><span class="dv">25</span>))</span>
-<span id="cb17-4"><a href="data-management.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#with data.table</span></span>
-<span id="cb17-5"><a href="data-management.html#cb17-5" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">data.table</span>(sleep) </span>
-<span id="cb17-6"><a href="data-management.html#cb17-6" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> sleep[ , obese<span class="sc">:</span><span class="er">=</span><span class="fu">ifelse</span>(bmi <span class="sc">&gt;</span> <span class="dv">25</span>,  <span class="dv">1</span>, <span class="dv">0</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-management.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with dplyr</span></span>
+<span id="cb23-2"><a href="data-management.html#cb23-2" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> sleep </span>
+<span id="cb23-3"><a href="data-management.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">&quot;obese&quot;</span><span class="ot">=</span> <span class="fu">as.numeric</span>(bmi<span class="sc">&gt;</span><span class="dv">25</span>))</span>
+<span id="cb23-4"><a href="data-management.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#with data.table</span></span>
+<span id="cb23-5"><a href="data-management.html#cb23-5" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">data.table</span>(sleep) </span>
+<span id="cb23-6"><a href="data-management.html#cb23-6" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> sleep[ , obese<span class="sc">:</span><span class="er">=</span><span class="fu">ifelse</span>(bmi <span class="sc">&gt;</span> <span class="dv">25</span>,  <span class="dv">1</span>, <span class="dv">0</span>)]</span></code></pre></div>
 </div>
 <div id="stata-21" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-management.html#stata-21" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong> the commands are similar:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="data-management.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> obese = 0 </span>
-<span id="cb18-2"><a href="data-management.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> obese = 1 <span class="kw">if</span> bmi&gt;30</span>
-<span id="cb18-3"><a href="data-management.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">//handling possible missing values</span></span>
-<span id="cb18-4"><a href="data-management.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> obese = . <span class="kw">if</span> <span class="fu">missing</span>(bmi)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="data-management.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> obese = 0 </span>
+<span id="cb24-2"><a href="data-management.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> obese = 1 <span class="kw">if</span> bmi&gt;30</span>
+<span id="cb24-3"><a href="data-management.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">//handling possible missing values</span></span>
+<span id="cb24-4"><a href="data-management.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> obese = . <span class="kw">if</span> <span class="fu">missing</span>(bmi)</span></code></pre></div>
 <p>Or you can do</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="data-management.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> obese = bmi&gt;30 <span class="kw">if</span> !<span class="fu">missing</span>(bmi)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="data-management.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> obese = bmi&gt;30 <span class="kw">if</span> !<span class="fu">missing</span>(bmi)</span></code></pre></div>
 </div>
 </div>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div id="r-22" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-management.html#r-22" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong> and the library tidyverse, you can transform a long variable to wide. You can return boolean data to create dummy variable or even use other values from another variable.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-management.html#cb20-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">i=</span><span class="dv">1</span>) </span>
-<span id="cb20-2"><a href="data-management.html#cb20-2" aria-hidden="true" tabindex="-1"></a>      <span class="sc">%&gt;%</span> <span class="fu">spread</span>(gender, i, <span class="at">fill=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-management.html#cb26-1" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> sleep <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">i=</span><span class="dv">1</span>) </span>
+<span id="cb26-2"><a href="data-management.html#cb26-2" aria-hidden="true" tabindex="-1"></a>      <span class="sc">%&gt;%</span> <span class="fu">spread</span>(gender, i, <span class="at">fill=</span><span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="stata-22" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-management.html#stata-22" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong> the function tabulate with the generate() option will generate a whole sets of dummy variables.</p>
 <p>If you type as below you will see a frequency table of how many times gender takes on each of those values.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="data-management.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> gender</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="data-management.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> gender</span></code></pre></div>
 <p>If you type as below you will see the table, and tabulate will create variable names male, female that take on values 1 and 0, male being 1 when gender==male, female being 1 when gender==female.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="data-management.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> <span class="fu">group</span>, <span class="kw">generate</span>(g)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="data-management.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> <span class="fu">group</span>, <span class="kw">generate</span>(g)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -563,24 +580,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-23" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-management.html#r-23" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong> there is more than way way of doing things. The base function is <em>merge()</em>.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-management.html#cb23-1" aria-hidden="true" tabindex="-1"></a>dayconcentration <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;DayConcentration.csv&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb23-2"><a href="data-management.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the commun key do not have the same label so it need to be specified</span></span>
-<span id="cb23-3"><a href="data-management.html#cb23-3" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">merge</span>(sleep, dayconcentration, <span class="at">by.x=</span><span class="st">&quot;number&quot;</span>, <span class="at">by.y=</span><span class="st">&quot;id&quot;</span>)</span>
-<span id="cb23-4"><a href="data-management.html#cb23-4" aria-hidden="true" tabindex="-1"></a>sleep[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="st">&quot;number&quot;</span>,<span class="st">&quot;age&quot;</span>, <span class="st">&quot;concentration_mark&quot;</span>)]  </span></code></pre></div>
-<pre><code>##   number age concentration_mark
-## 1      1  48                5.0
-## 2      2  58                1.5
-## 3      3  48                4.0
-## 4      4  68                1.5
-## 5      5  55                3.5</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-management.html#cb29-1" aria-hidden="true" tabindex="-1"></a>dayconcentration <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;DayConcentration.csv&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb29-2"><a href="data-management.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the commun key do not have the same label so it need to be specified</span></span>
+<span id="cb29-3"><a href="data-management.html#cb29-3" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">merge</span>(sleep, dayconcentration, <span class="at">by.x=</span><span class="st">&quot;number&quot;</span>, <span class="at">by.y=</span><span class="st">&quot;id&quot;</span>)</span>
+<span id="cb29-4"><a href="data-management.html#cb29-4" aria-hidden="true" tabindex="-1"></a>sleep[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="st">&quot;number&quot;</span>,<span class="st">&quot;age&quot;</span>, <span class="st">&quot;concentration_mark&quot;</span>)]  </span></code></pre></div>
+<pre><code>  number age concentration_mark
+1      1  48                5.0
+2      2  58                1.5
+3      3  48                4.0
+4      4  68                1.5
+5      5  55                3.5</code></pre>
 <p>You can use the all.x=TRUE or all.y=TRUE arguments to specify the merging mode. With tidyverse, you can also use different convenient functions <em>left_join()</em>, <em>right_join()</em>, and <em>full_join()</em></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-management.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all values of the sleep data set are kept </span></span>
-<span id="cb25-2"><a href="data-management.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># non match in dayconcentration are ignored</span></span>
-<span id="cb25-3"><a href="data-management.html#cb25-3" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">left_join</span>(sleep, dayconcentration, <span class="at">by=</span><span class="fu">c</span> (<span class="st">&quot;number&quot;</span><span class="ot">=</span><span class="st">&quot;id&quot;</span>))</span>
-<span id="cb25-4"><a href="data-management.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># all values of dayconcentration are kept </span></span>
-<span id="cb25-5"><a href="data-management.html#cb25-5" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span><span class="fu">right_join</span>(sleep, dayconcentration, <span class="at">by=</span><span class="fu">c</span> (<span class="st">&quot;number&quot;</span><span class="ot">=</span><span class="st">&quot;id&quot;</span>))</span>
-<span id="cb25-6"><a href="data-management.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># all values are kept </span></span>
-<span id="cb25-7"><a href="data-management.html#cb25-7" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span><span class="fu">full_join</span>(sleep, dayconcentration, <span class="at">by=</span><span class="fu">c</span> (<span class="st">&quot;number&quot;</span><span class="ot">=</span><span class="st">&quot;id&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-management.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all values of the sleep data set are kept </span></span>
+<span id="cb31-2"><a href="data-management.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># non match in dayconcentration are ignored</span></span>
+<span id="cb31-3"><a href="data-management.html#cb31-3" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">left_join</span>(sleep, dayconcentration, <span class="at">by=</span><span class="fu">c</span> (<span class="st">&quot;number&quot;</span><span class="ot">=</span><span class="st">&quot;id&quot;</span>))</span>
+<span id="cb31-4"><a href="data-management.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># all values of dayconcentration are kept </span></span>
+<span id="cb31-5"><a href="data-management.html#cb31-5" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span><span class="fu">right_join</span>(sleep, dayconcentration, <span class="at">by=</span><span class="fu">c</span> (<span class="st">&quot;number&quot;</span><span class="ot">=</span><span class="st">&quot;id&quot;</span>))</span>
+<span id="cb31-6"><a href="data-management.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># all values are kept </span></span>
+<span id="cb31-7"><a href="data-management.html#cb31-7" aria-hidden="true" tabindex="-1"></a>sleep <span class="ot">&lt;-</span><span class="fu">full_join</span>(sleep, dayconcentration, <span class="at">by=</span><span class="fu">c</span> (<span class="st">&quot;number&quot;</span><span class="ot">=</span><span class="st">&quot;id&quot;</span>))</span></code></pre></div>
 <p>Note that the common key can be composed of more than one variable. See help pages for details.</p>
 </div>
 <div id="stata-23" class="section level3 unnumbered hasAnchor">
@@ -594,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>use the merge function but make sure to map where the using data is located (in this case for example “c:.dta”)</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="data-management.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span>  number <span class="kw">using</span> dayconcentration</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb32-1"><a href="data-management.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span>  number <span class="kw">using</span> dayconcentration</span></code></pre></div>
 </div>
 </div>
 

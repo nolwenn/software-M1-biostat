@@ -3,6 +3,15 @@ output:
   pdf_document: default
   html_document: default
 ---
+
+
+```{r include=TRUE, echo=FALSE}
+knitr::opts_chunk$set(engine.path = list(
+  stata = '/Applications/Stata/StataBE.app/Contents/MacOS/StataBE'
+))
+library(Statamarkdown)
+```
+
 # Descriptive statistics
 
 ## Quick summary statistics
@@ -16,21 +25,31 @@ load("sleepApnea-clean.Rdata")
 ```
 
 To have a descriptive summary, the classical R function is *summary()*
-```{r, eval=F}
+```{r, eval=TRUE}
 summary(sleep[, 1:3])
 ```
 
 Note that in the example above we asked for the summary of the first 3 columns of the dataset. The indexing of data set in a matrix-like format often become useful and is similar to playing battle ship. You need to use **dataset[row_index,column_index]** to filter on rows, before the comma,  or on columns, after the comma.
 
-Additionnal statistical summary functions can be find in the other R libraries, like in the package *pastecs* (function stat.desc()).
+Additionnal statistical summary functions can be find in the other R libraries, like in the package *pastecs* and the function *stat.desc()*.
 :::
 
 :::{}
 ### Stata{-}
 The *codebook* function returns the main characteristics of the data set, *i.e.* the number of observations, number of variables, and characteristics of variables.
-```{stata, eval=F}
+```{stata first-Stata, echo=FALSE, include=FALSE, collectcode=TRUE}
+import delimited using sleepApnea-clean
+```
+
+```{stata, eval=FALSE}
 codebook
 ```
+**Warning:** The output can be long as every variable is summarized.
+
+A better approach could be to look variable by variable.
+```{stata}
+summarize age, detail
+````
 :::
 ::::
 
@@ -71,11 +90,15 @@ quantile(sleep$age, probs = seq(0,1,1/3))
 
 :::{}
 ### Stata{-}
+In **Stata** you have similar function calls
 
-```{stata, eval=F}
-summarize age, detail
+```{stata}
+mean age
 ````
 
+```{stata}
+tabstat age, stats(n mean median min max)
+````
 :::
 ::::
 
@@ -97,7 +120,7 @@ ci(sleep$age, alpha = 0.01)
 :::{}
 ### Stata{-}
 In **Stata**, the syntax is close but the parameter to estimate must be specified and the level of confidence is specified in term of confidence.
-```{stata, eval=F}
+```{stata}
 ci means age
 ci means age, level(99)
 ```
@@ -112,13 +135,15 @@ Contingency table or cross tabulated table are needed to compute absolute or rel
 ### R{-}
 In **R** the basic function are *table()* and *prop.table()*. 
 ```{r}
-crosstab <- table(sleep$gender,sleep$diabetes)
+crosstab <- table("Gender"=sleep$gender, "Diabetes"=sleep$diabetes, 
+                  useNA = "always")
+addmargins(crosstab)
 ```
 
 In *prop.table()* the  margin argument specify the dimension (row or column) along which the relative frequencies are computed.
 ```{r}
 # The 100% are on the grand total
-round(prop.table(crosstab)*100,digits=2)
+addmargins(round(prop.table(crosstab)*100,digits=2))
 # Percentage by row
 round(prop.table(crosstab,margin=1)*100,digits=2)
 # Percentage by column
@@ -129,7 +154,7 @@ round(prop.table(crosstab,2)*100,digits=2)
 :::{}
 ### Stata{-}
 In **Stata** the *tabulate* function produces a two-way table of frequency counts.
-```{stata, eval=FALSE}
+```{stata}
 tabulate gender diabetes
 tabulate gender diabetes, row
 tabulate gender diabetes, column

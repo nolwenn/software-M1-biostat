@@ -24,7 +24,7 @@
 <meta name="author" content="Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic" />
 
 
-<meta name="date" content="2022-07-05" />
+<meta name="date" content="2022-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -356,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-28" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="plotting.html#r-28" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong>, you can specific the number of breaks</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="plotting.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="plotting.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:histogram"></span>
 <img src="_main_files/figure-html/histogram-1.png" alt="Distribution of age (in years)" width="70%" />
 <p class="caption">
@@ -364,20 +364,26 @@ Figure 5.1: Distribution of age (in years)
 </p>
 </div>
 <p>A more advanced graph with <em>ggplot2</em> library, where <em>aes()</em> is the aesthetics or the dimensions along with you plot the data and the <em>geom*_()</em>, the geometry you give to the plot. You may have noticed that the using ggplot is more like writing a sentence with <code>+</code> sign to delimit the instructions.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="plotting.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-2"><a href="plotting.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(age)) <span class="sc">+</span> </span>
-<span id="cb2-3"><a href="plotting.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="at">boundary=</span><span class="cn">TRUE</span>,</span>
-<span id="cb2-4"><a href="plotting.html#cb2-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">col=</span><span class="st">&quot;grey&quot;</span>, <span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="plotting.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="plotting.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-2"><a href="plotting.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(age)) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="plotting.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>,  <span class="at">boundary=</span><span class="cn">TRUE</span>,</span>
+<span id="cb4-4"><a href="plotting.html#cb4-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">col=</span><span class="st">&quot;grey&quot;</span>, <span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="plotting.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/histogram_ggplot-1.png" width="672" /></p>
 </div>
 <div id="stata-28" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="plotting.html#stata-28" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In <strong>Stata</strong>, the width argument allows you to specify the interval range</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="plotting.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">//histogram of age with two year intervals</span></span>
-<span id="cb3-2"><a href="plotting.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">hist</span> age, <span class="kw">width</span>(2)</span>
-<span id="cb3-3"><a href="plotting.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">//histogram of age with five year intervals</span></span>
-<span id="cb3-4"><a href="plotting.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">hist</span> age, <span class="kw">width</span>(5)</span></code></pre></div>
+<p>In <strong>Stata</strong>, the width argument allows you to specify the interval range.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="plotting.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">hist</span> age, <span class="kw">width</span>(2)</span></code></pre></div>
+<div class="figure">
+<img src="hist1.svg" alt="" />
+<p class="caption">Histogram of age with two year intervals</p>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="plotting.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">hist</span> age, <span class="kw">width</span>(5)</span></code></pre></div>
+<div class="figure">
+<img src="hist2.svg" alt="" />
+<p class="caption">Histogram of age with five year intervals</p>
+</div>
 </div>
 </div>
 <p>For <strong>one quantitative continuous variable group by a categorical value</strong>, the <strong>Boxplot</strong> is especially useful for comparison.</p>
@@ -385,22 +391,26 @@ Figure 5.1: Distribution of age (in years)
 <div id="r-29" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="plotting.html#r-29" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With <strong>R</strong> the syntax is:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="plotting.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(age <span class="sc">~</span> gender , <span class="at">data=</span>sleep, </span>
-<span id="cb4-2"><a href="plotting.html#cb4-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Distribution of age \ by gender&quot;</span>,</span>
-<span id="cb4-3"><a href="plotting.html#cb4-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>,</span>
-<span id="cb4-4"><a href="plotting.html#cb4-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="plotting.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(age <span class="sc">~</span> gender , <span class="at">data=</span>sleep, </span>
+<span id="cb7-2"><a href="plotting.html#cb7-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Distribution of age \ by gender&quot;</span>,</span>
+<span id="cb7-3"><a href="plotting.html#cb7-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>,</span>
+<span id="cb7-4"><a href="plotting.html#cb7-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;lightblue&quot;</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">80</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/boxplot_basic-1.png" width="672" /></p>
 <p>Note: the <code>~</code> sign that is the symbol for the formula type syntax of Y function of X. You will see again that notation when performing statistical test and regression modeling.</p>
 <p>With <em>ggplot2</em> you could do</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="plotting.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(<span class="at">y=</span>age, <span class="at">x=</span>gender)) <span class="sc">+</span> </span>
-<span id="cb5-2"><a href="plotting.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="plotting.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age by gender&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="plotting.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(<span class="at">y=</span>age, <span class="at">x=</span>gender)) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="plotting.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="plotting.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age by gender&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/boxplot_ggplot-1.png" width="672" /></p>
 </div>
 <div id="stata-29" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="plotting.html#stata-29" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong>, the grouping variable is called by the over() option.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="plotting.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> box age, <span class="bn">over</span>(gender)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="plotting.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> box age, <span class="bn">over</span>(gender)</span></code></pre></div>
+<div class="figure">
+<img src="boxplot.svg" alt="" />
+<p class="caption">Distribution of age by gender</p>
+</div>
 </div>
 </div>
 <p>When looking for (linear) relationship between <strong>two quantitative continuous variable</strong>, you want to do a <strong>scatterplot</strong>.</p>
@@ -408,20 +418,20 @@ Figure 5.1: Distribution of age (in years)
 <div id="r-30" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="plotting.html#r-30" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With <strong>R</strong> the syntax is:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="plotting.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sleep<span class="sc">$</span>bmi , sleep<span class="sc">$</span>SleepApnea, </span>
-<span id="cb7-2"><a href="plotting.html#cb7-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;BMI function of age&quot;</span>,</span>
-<span id="cb7-3"><a href="plotting.html#cb7-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;age&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;bmi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="plotting.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sleep<span class="sc">$</span>bmi , sleep<span class="sc">$</span>SleepApnea, </span>
+<span id="cb10-2"><a href="plotting.html#cb10-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;BMI function of age&quot;</span>,</span>
+<span id="cb10-3"><a href="plotting.html#cb10-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;age&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;bmi&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/xyplot-1.png" width="672" /></p>
 <p>With <em>ggplot2</em></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="plotting.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(bmi , SleepApnea)) <span class="sc">+</span> <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb8-2"><a href="plotting.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;BMI function of age&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="plotting.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(bmi , SleepApnea)) <span class="sc">+</span> <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb11-2"><a href="plotting.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;BMI function of age&quot;</span>)</span></code></pre></div>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/xyplot_ggplot-1.png" width="672" /></p>
 </div>
 <div id="stata-30" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="plotting.html#stata-30" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong>, the grouping variable is called by the over() option.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="plotting.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> SleepApnea bmi</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="plotting.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> SleepApnea bmi</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -431,27 +441,27 @@ Figure 5.1: Distribution of age (in years)
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 30px;">
 <div id="r-31" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="plotting.html#r-31" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="plotting.html#cb11-1" aria-hidden="true" tabindex="-1"></a>db2gender <span class="ot">&lt;-</span> <span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span>
-<span id="cb11-2"><a href="plotting.html#cb11-2" aria-hidden="true" tabindex="-1"></a>db2gender_pr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">prop.table</span>(db2gender,<span class="at">margin=</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
-<span id="cb11-3"><a href="plotting.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(db2gender, </span>
-<span id="cb11-4"><a href="plotting.html#cb11-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Repartition of diabetes&quot;</span>,</span>
-<span id="cb11-5"><a href="plotting.html#cb11-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="plotting.html#cb14-1" aria-hidden="true" tabindex="-1"></a>db2gender <span class="ot">&lt;-</span> <span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span>
+<span id="cb14-2"><a href="plotting.html#cb14-2" aria-hidden="true" tabindex="-1"></a>db2gender_pr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">prop.table</span>(db2gender,<span class="at">margin=</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
+<span id="cb14-3"><a href="plotting.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(db2gender, </span>
+<span id="cb14-4"><a href="plotting.html#cb14-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Repartition of diabetes&quot;</span>,</span>
+<span id="cb14-5"><a href="plotting.html#cb14-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/barplot_basic-1.png" width="672" /></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="plotting.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(db2gender_pr, </span>
-<span id="cb12-2"><a href="plotting.html#cb12-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Proportion of diabetes by gender&quot;</span>,</span>
-<span id="cb12-3"><a href="plotting.html#cb12-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>,</span>
-<span id="cb12-4"><a href="plotting.html#cb12-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Proportion&quot;</span>, </span>
-<span id="cb12-5"><a href="plotting.html#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">legend.text =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="plotting.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(db2gender_pr, </span>
+<span id="cb15-2"><a href="plotting.html#cb15-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Proportion of diabetes by gender&quot;</span>,</span>
+<span id="cb15-3"><a href="plotting.html#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;gender&quot;</span>,</span>
+<span id="cb15-4"><a href="plotting.html#cb15-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Proportion&quot;</span>, </span>
+<span id="cb15-5"><a href="plotting.html#cb15-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">legend.text =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/barplot_basic-2.png" width="672" /></p>
 <p>With <em>ggplot2</em> you could do</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="plotting.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(diabetes, <span class="at">fill=</span>gender)) <span class="sc">+</span> </span>
-<span id="cb13-2"><a href="plotting.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb13-3"><a href="plotting.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age by gender&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plotting.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(diabetes, <span class="at">fill=</span>gender)) <span class="sc">+</span> </span>
+<span id="cb16-2"><a href="plotting.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="plotting.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of age by gender&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/barplot_ggplot-1.png" width="672" /></p>
 </div>
 <div id="stata-31" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="plotting.html#stata-31" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="plotting.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="bn">bar</span> diabetes, <span class="bn">over</span>(gender)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="plotting.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="bn">bar</span> diabetes, <span class="bn">over</span>(gender)</span></code></pre></div>
 </div>
 </div>
 

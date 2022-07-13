@@ -24,7 +24,7 @@
 <meta name="author" content="Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic" />
 
 
-<meta name="date" content="2022-07-05" />
+<meta name="date" content="2022-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -351,14 +351,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-24" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="descriptive-statistics.html#r-24" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To have a descriptive summary, the classical R function is <em>summary()</em></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="descriptive-statistics.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sleep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sleep[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
+<pre><code>     number            age           gender   
+ Min.   :  1.00   Min.   :23.00   female: 19  
+ 1st Qu.: 36.25   1st Qu.:42.00   male  :111  
+ Median : 71.50   Median :48.00               
+ Mean   : 70.30   Mean   :47.66               
+ 3rd Qu.:103.75   3rd Qu.:54.00               
+ Max.   :138.00   Max.   :74.00               </code></pre>
 <p>Note that in the example above we asked for the summary of the first 3 columns of the dataset. The indexing of data set in a matrix-like format often become useful and is similar to playing battle ship. You need to use <strong>dataset[row_index,column_index]</strong> to filter on rows, before the comma, or on columns, after the comma.</p>
-<p>Additionnal statistical summary functions can be find in the other R libraries, like in the package <em>pastecs</em> (function stat.desc()).</p>
+<p>Additionnal statistical summary functions can be find in the other R libraries, like in the package <em>pastecs</em> and the function <em>stat.desc()</em>.</p>
 </div>
 <div id="stata-24" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="descriptive-statistics.html#stata-24" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <em>codebook</em> function returns the main characteristics of the data set, <em>i.e.</em> the number of observations, number of variables, and characteristics of variables.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="descriptive-statistics.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="descriptive-statistics.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span></span></code></pre></div>
+<p><strong>Warning:</strong> The output can be long as every variable is summarized.</p>
+<p>A better approach could be to look variable by variable.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="descriptive-statistics.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> age, <span class="kw">detail</span></span></code></pre></div>
+<pre><code>                             age
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           23             23
+ 5%           29             23
+10%           32             23       Obs                 130
+25%           42             27       Sum of wgt.         130
+
+50%           48                      Mean           47.65891
+                        Largest       Std. dev.       10.6905
+75%           54             71
+90%           61             71       Variance       114.2868
+95%           62             72       Skewness      -.1218772
+99%           72             74       Kurtosis        2.80462</code></pre>
 </div>
 </div>
 </div>
@@ -369,35 +393,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-25" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="descriptive-statistics.html#r-25" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong>, you sholud think english what is the term for average it is “mean” and it is the name of the function; same for median and quantile. If you do not know the mane of the function search in the help pages.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="descriptive-statistics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average</span></span>
-<span id="cb3-2"><a href="descriptive-statistics.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sleep<span class="sc">$</span>age)</span>
-<span id="cb3-3"><a href="descriptive-statistics.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># variance</span></span>
-<span id="cb3-4"><a href="descriptive-statistics.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(sleep<span class="sc">$</span>age)</span>
-<span id="cb3-5"><a href="descriptive-statistics.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># standard deviation</span></span>
-<span id="cb3-6"><a href="descriptive-statistics.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sleep<span class="sc">$</span>age)</span>
-<span id="cb3-7"><a href="descriptive-statistics.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># median </span></span>
-<span id="cb3-8"><a href="descriptive-statistics.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># When sort in increasing order, 50% of values below and above</span></span>
-<span id="cb3-9"><a href="descriptive-statistics.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(sleep<span class="sc">$</span>age)</span>
-<span id="cb3-10"><a href="descriptive-statistics.html#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># interquartile range</span></span>
-<span id="cb3-11"><a href="descriptive-statistics.html#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="descriptive-statistics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># average</span></span>
+<span id="cb8-2"><a href="descriptive-statistics.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sleep<span class="sc">$</span>age)</span>
+<span id="cb8-3"><a href="descriptive-statistics.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># variance</span></span>
+<span id="cb8-4"><a href="descriptive-statistics.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(sleep<span class="sc">$</span>age)</span>
+<span id="cb8-5"><a href="descriptive-statistics.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># standard deviation</span></span>
+<span id="cb8-6"><a href="descriptive-statistics.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sleep<span class="sc">$</span>age)</span>
+<span id="cb8-7"><a href="descriptive-statistics.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># median </span></span>
+<span id="cb8-8"><a href="descriptive-statistics.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># When sort in increasing order, 50% of values below and above</span></span>
+<span id="cb8-9"><a href="descriptive-statistics.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(sleep<span class="sc">$</span>age)</span>
+<span id="cb8-10"><a href="descriptive-statistics.html#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># interquartile range</span></span>
+<span id="cb8-11"><a href="descriptive-statistics.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
 <p>For the <em>quantile()</em> the <em>probs=</em> argument allows you to specify which quantile of the distribution you want to look at.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="descriptive-statistics.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 25%-75%</span></span>
-<span id="cb4-2"><a href="descriptive-statistics.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sleep<span class="sc">$</span>age, <span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span></code></pre></div>
-<pre><code>## 25% 75% 
-##  42  54</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="descriptive-statistics.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#quartile</span></span>
-<span id="cb6-2"><a href="descriptive-statistics.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sleep<span class="sc">$</span>age, <span class="at">probs=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>))</span></code></pre></div>
-<pre><code>##   0%  25%  50%  75% 100% 
-##   23   42   48   54   74</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="descriptive-statistics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tercile</span></span>
-<span id="cb8-2"><a href="descriptive-statistics.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sleep<span class="sc">$</span>age, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))</span></code></pre></div>
-<pre><code>##        0% 33.33333% 66.66667%      100% 
-##        23        44        53        74</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="descriptive-statistics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 25%-75%</span></span>
+<span id="cb9-2"><a href="descriptive-statistics.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sleep<span class="sc">$</span>age, <span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span></code></pre></div>
+<pre><code>25% 75% 
+ 42  54 </code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descriptive-statistics.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#quartile</span></span>
+<span id="cb11-2"><a href="descriptive-statistics.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sleep<span class="sc">$</span>age, <span class="at">probs=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>))</span></code></pre></div>
+<pre><code>  0%  25%  50%  75% 100% 
+  23   42   48   54   74 </code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="descriptive-statistics.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tercile</span></span>
+<span id="cb13-2"><a href="descriptive-statistics.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(sleep<span class="sc">$</span>age, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))</span></code></pre></div>
+<pre><code>       0% 33.33333% 66.66667%      100% 
+       23        44        53        74 </code></pre>
 <p><strong>Interpretation:</strong> For the age, the 1<span class="math inline">\(^{st}\)</span> quantile indicates that 25% of the patients in ou sample are 42 years old or younger, wile 75% (3<span class="math inline">\(^{rd}\)</span> quantile ) are 54 years old or older.</p>
 </div>
 <div id="stata-25" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="descriptive-statistics.html#stata-25" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="descriptive-statistics.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> age, <span class="kw">detail</span></span></code></pre></div>
+<p>In <strong>Stata</strong> you have similar function calls</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="descriptive-statistics.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">mean</span> age</span></code></pre></div>
+<pre><code>Mean estimation                            Number of obs = 130
+
+--------------------------------------------------------------
+             |       Mean   Std. err.     [95% conf. interval]
+-------------+------------------------------------------------
+         age |   47.65891   .9376188      45.80381    49.51402
+--------------------------------------------------------------</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="descriptive-statistics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabstat</span> age, <span class="kw">stats</span>(n <span class="kw">mean</span> <span class="kw">median</span> <span class="fu">min</span> <span class="fu">max</span>)</span></code></pre></div>
+<pre><code>    Variable |         N      Mean       p50       Min       Max
+-------------+--------------------------------------------------
+         age |       130  47.65891        48        23        74
+----------------------------------------------------------------</code></pre>
 </div>
 </div>
 </div>
@@ -408,19 +445,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-26" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="descriptive-statistics.html#r-26" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong> the <em>epiDisplay</em> libary is useful for many computations in epidemiology and notably the confidence interval of the mean. A simple call to the ci() function will compute the 95% confidence interval. The level of confidence is specify using the risk alpha counterpart , here the default is alpha=0.05 (so not need to specify it).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="descriptive-statistics.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiDisplay)</span>
-<span id="cb11-2"><a href="descriptive-statistics.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ci</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
-<pre><code>##    n     mean      sd        se lower95ci upper95ci
-##  130 47.65891 10.6905 0.9376188  45.80381  49.51402</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="descriptive-statistics.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci</span>(sleep<span class="sc">$</span>age, <span class="at">alpha =</span> <span class="fl">0.01</span>)</span></code></pre></div>
-<pre><code>##    n     mean      sd        se lower99ci upper99ci
-##  130 47.65891 10.6905 0.9376188  45.20753   50.1103</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="descriptive-statistics.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiDisplay)</span>
+<span id="cb19-2"><a href="descriptive-statistics.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ci</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<pre><code>   n     mean      sd        se lower95ci upper95ci
+ 130 47.65891 10.6905 0.9376188  45.80381  49.51402</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="descriptive-statistics.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ci</span>(sleep<span class="sc">$</span>age, <span class="at">alpha =</span> <span class="fl">0.01</span>)</span></code></pre></div>
+<pre><code>   n     mean      sd        se lower99ci upper99ci
+ 130 47.65891 10.6905 0.9376188  45.20753   50.1103</code></pre>
 </div>
 <div id="stata-26" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="descriptive-statistics.html#stata-26" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong>, the syntax is close but the parameter to estimate must be specified and the level of confidence is specified in term of confidence.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="descriptive-statistics.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ci</span> <span class="kw">means</span> age</span>
-<span id="cb15-2"><a href="descriptive-statistics.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ci</span> <span class="kw">means</span> age, <span class="dv">level</span>(99)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="descriptive-statistics.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ci</span> <span class="kw">means</span> age</span>
+<span id="cb23-2"><a href="descriptive-statistics.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ci</span> <span class="kw">means</span> age, <span class="dv">level</span>(99)</span></code></pre></div>
+<pre><code>    Variable |        Obs        Mean    Std. err.       [95% conf. interval]
+-------------+---------------------------------------------------------------
+         age |        130    47.65891    .9376188        45.80381    49.51402
+
+    Variable |        Obs        Mean    Std. err.       [99% conf. interval]
+-------------+---------------------------------------------------------------
+         age |        130    47.65891    .9376188        45.20753     50.1103</code></pre>
 </div>
 </div>
 </div>
@@ -431,33 +475,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-27" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="descriptive-statistics.html#r-27" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong> the basic function are <em>table()</em> and <em>prop.table()</em>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="descriptive-statistics.html#cb16-1" aria-hidden="true" tabindex="-1"></a>crosstab <span class="ot">&lt;-</span> <span class="fu">table</span>(sleep<span class="sc">$</span>gender,sleep<span class="sc">$</span>diabetes)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="descriptive-statistics.html#cb25-1" aria-hidden="true" tabindex="-1"></a>crosstab <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="st">&quot;Gender&quot;</span><span class="ot">=</span>sleep<span class="sc">$</span>gender, <span class="st">&quot;Diabetes&quot;</span><span class="ot">=</span>sleep<span class="sc">$</span>diabetes, </span>
+<span id="cb25-2"><a href="descriptive-statistics.html#cb25-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span>
+<span id="cb25-3"><a href="descriptive-statistics.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(crosstab)</span></code></pre></div>
+<pre><code>        Diabetes
+Gender    No Yes &lt;NA&gt; Sum
+  female  17   2    0  19
+  male    98   7    6 111
+  &lt;NA&gt;     0   0    0   0
+  Sum    115   9    6 130</code></pre>
 <p>In <em>prop.table()</em> the margin argument specify the dimension (row or column) along which the relative frequencies are computed.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="descriptive-statistics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The 100% are on the grand total</span></span>
-<span id="cb17-2"><a href="descriptive-statistics.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(crosstab)<span class="sc">*</span><span class="dv">100</span>,<span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##         
-##             No   Yes
-##   female 13.71  1.61
-##   male   79.03  5.65</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="descriptive-statistics.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentage by row</span></span>
-<span id="cb19-2"><a href="descriptive-statistics.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(crosstab,<span class="at">margin=</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>,<span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##         
-##             No   Yes
-##   female 89.47 10.53
-##   male   93.33  6.67</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="descriptive-statistics.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentage by column</span></span>
-<span id="cb21-2"><a href="descriptive-statistics.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(crosstab,<span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span>,<span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##         
-##             No   Yes
-##   female 14.78 22.22
-##   male   85.22 77.78</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="descriptive-statistics.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The 100% are on the grand total</span></span>
+<span id="cb27-2"><a href="descriptive-statistics.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">round</span>(<span class="fu">prop.table</span>(crosstab)<span class="sc">*</span><span class="dv">100</span>,<span class="at">digits=</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>        Diabetes
+Gender       No    Yes   &lt;NA&gt;    Sum
+  female  13.08   1.54   0.00  14.62
+  male    75.38   5.38   4.62  85.38
+  &lt;NA&gt;     0.00   0.00   0.00   0.00
+  Sum     88.46   6.92   4.62 100.00</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="descriptive-statistics.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentage by row</span></span>
+<span id="cb29-2"><a href="descriptive-statistics.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(crosstab,<span class="at">margin=</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>,<span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>        Diabetes
+Gender      No   Yes  &lt;NA&gt;
+  female 89.47 10.53  0.00
+  male   88.29  6.31  5.41
+  &lt;NA&gt;                    </code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="descriptive-statistics.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentage by column</span></span>
+<span id="cb31-2"><a href="descriptive-statistics.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(crosstab,<span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span>,<span class="at">digits=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>        Diabetes
+Gender       No    Yes   &lt;NA&gt;
+  female  14.78  22.22   0.00
+  male    85.22  77.78 100.00
+  &lt;NA&gt;     0.00   0.00   0.00</code></pre>
 </div>
 <div id="stata-27" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="descriptive-statistics.html#stata-27" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong> the <em>tabulate</em> function produces a two-way table of frequency counts.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="descriptive-statistics.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> gender diabetes</span>
-<span id="cb23-2"><a href="descriptive-statistics.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> gender diabetes, <span class="ot">row</span></span>
-<span id="cb23-3"><a href="descriptive-statistics.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> gender diabetes, column</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb33-1"><a href="descriptive-statistics.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> gender diabetes</span>
+<span id="cb33-2"><a href="descriptive-statistics.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> gender diabetes, <span class="ot">row</span></span>
+<span id="cb33-3"><a href="descriptive-statistics.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> gender diabetes, column</span></code></pre></div>
+<pre><code>           |             diabetes
+    gender |        NA         No        Yes |     Total
+-----------+---------------------------------+----------
+    female |         0         17          2 |        19 
+      male |         6         98          7 |       111 
+-----------+---------------------------------+----------
+     Total |         6        115          9 |       130 
+
+
++----------------+
+| Key            |
+|----------------|
+|   frequency    |
+| row percentage |
++----------------+
+
+           |             diabetes
+    gender |        NA         No        Yes |     Total
+-----------+---------------------------------+----------
+    female |         0         17          2 |        19 
+           |      0.00      89.47      10.53 |    100.00 
+-----------+---------------------------------+----------
+      male |         6         98          7 |       111 
+           |      5.41      88.29       6.31 |    100.00 
+-----------+---------------------------------+----------
+     Total |         6        115          9 |       130 
+           |      4.62      88.46       6.92 |    100.00 
+
+
++-------------------+
+| Key               |
+|-------------------|
+|     frequency     |
+| column percentage |
++-------------------+
+
+           |             diabetes
+    gender |        NA         No        Yes |     Total
+-----------+---------------------------------+----------
+    female |         0         17          2 |        19 
+           |      0.00      14.78      22.22 |     14.62 
+-----------+---------------------------------+----------
+      male |         6         98          7 |       111 
+           |    100.00      85.22      77.78 |     85.38 
+-----------+---------------------------------+----------
+     Total |         6        115          9 |       130 
+           |    100.00     100.00     100.00 |    100.00 </code></pre>
 <p>The <em>tabulate</em> function can be used along with various measures of association, including the common Pearson’s Chi-square and Fisher’s exact test (See <a href="Univariate%20statistical%20test">univariate test</a> for examples).</p>
 </div>
 </div>

@@ -22,6 +22,9 @@ site: bookdown::bookdown_site
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown','dplyr','tidyr', 'kableExtra','ggplot2','epiDisplay','reshape2'), 'packages.bib')
 options(width = 60)
+knitr::opts_chunk$set(engine.path = list(
+  stata = '/Applications/Stata/StataBE.app/Contents/MacOS/StataBE'
+))
 ```
 
 

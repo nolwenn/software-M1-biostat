@@ -3,6 +3,14 @@ output:
   html_document: default
   pdf_document: default
 ---
+
+```{r include=TRUE, echo=FALSE}
+knitr::opts_chunk$set(engine.path = list(
+  stata = '/Applications/Stata/StataBE.app/Contents/MacOS/StataBE'
+))
+library(Statamarkdown)
+```
+
 # Data management
 
 ## Renaming variables
@@ -62,14 +70,19 @@ round(sleep$age[1:5],0)
   
 :::{}
 ### Stata{-}
+```{stata first-Stata, echo=FALSE, include=FALSE, collectcode=TRUE}
+import delimited using sleepApnea-clean
+```
+
 In **Stata** an overview of the missing data can be done as follow:
-```{stata, eval=FALSE}
+```{stata}
 misstable summarize
 misstable patterns
 ```
 To replace one missing value by the mean of the variable, do
-```{stata, eval=FALSE}
-replace age = mean(age) if missing(age)
+```{stata}
+egen meanage = mean(age)
+replace age = meanage if missing(age)
 ```
 :::
 ::::
@@ -144,14 +157,16 @@ sleep$age_group <- cut(sleep$age,
                        breaks = c(20,40,60,80),
                        include.lowest=TRUE, 
                        right = FALSE)
+table(sleep$age_group)
 ```
 :::
   
 :::{}
 ### Stata{-}
 In **Stata** the syntax is quite similar
-```{stata, eval=FALSE}
-gen age_group = cut(age),at(20,40,60,80)
+```{stata}
+egen age_group = cut(age),at(20,40,60,80)
+tabulate age_group
 ```
 :::
 ::::
@@ -194,6 +209,7 @@ sleep <- sleep[ , obese:=ifelse(bmi > 25,  1, 0)]
 
 ```{r, echo=FALSE}
 save(sleep, file="sleepApnea-clean.Rdata")
+write.table(sleep, file="sleepApnea-clean.csv", sep=";", row.names = FALSE)
 ```
 :::
   
@@ -210,7 +226,6 @@ Or you can do
 ```{stata, eval=FALSE}
 gen obese = bmi>30 if !missing(bmi)
 ```
-
 :::
 ::::
   

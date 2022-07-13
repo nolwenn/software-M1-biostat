@@ -24,7 +24,7 @@
 <meta name="author" content="Nolwenn Le Meur, PhD - EHESP associate professor in Biostatistics and Bioinformatic" />
 
 
-<meta name="date" content="2022-07-05" />
+<meta name="date" content="2022-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -353,18 +353,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-8" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-type-and-data-format.html#r-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong> the <em>is.numeric()</em> function will return a logical which indicates you whether or not the variable is a numeric.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-type-and-data-format.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-type-and-data-format.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## if it is not the proper type</span></span>
-<span id="cb3-2"><a href="data-type-and-data-format.html#cb3-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-type-and-data-format.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-type-and-data-format.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## if it is not the proper type</span></span>
+<span id="cb5-2"><a href="data-type-and-data-format.html#cb5-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(sleep<span class="sc">$</span>age)</span></code></pre></div>
 </div>
 <div id="stata-8" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-type-and-data-format.html#stata-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong>, if age is encoded as a string and was therefore all numbers, you could use the destring command. If you want to replace the existing variable, the command is simply</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="data-type-and-data-format.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">destring</span> age</span></code></pre></div>
+<pre><code>(15 vars, 130 obs)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="data-type-and-data-format.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">destring</span> age</span></code></pre></div>
 <p>This will replace the existing specified variable with the same data but now in a nonstring format.</p>
 <p>If you prefer to retain the existing variable, you can generate a new variable that is a nonstring version of the existing variable.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="data-type-and-data-format.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_num=<span class="fu">real</span>(age)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="data-type-and-data-format.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> age_num = <span class="fu">real</span>(age)</span></code></pre></div>
 </div>
 </div>
 <div id="logical" class="section level3 hasAnchor" number="2.1.2">
@@ -374,11 +375,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-9" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-type-and-data-format.html#r-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>R</strong> the <em>is.logical()</em> function will return a logical which indicates you whether or not the variable is a logic. For example, have a look at the binary variable diabetes coded 0 and 1 for absence or presence.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-type-and-data-format.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(sleep<span class="sc">$</span>diabetes)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data-type-and-data-format.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(sleep<span class="sc">$</span>diabetes)</span></code></pre></div>
 <p>If needed, you can convert the variable to a logical using the <em>as.logical()</em> function.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-type-and-data-format.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sleep<span class="sc">$</span>diabetes)</span>
-<span id="cb7-2"><a href="data-type-and-data-format.html#cb7-2" aria-hidden="true" tabindex="-1"></a>db_logic <span class="ot">&lt;-</span><span class="fu">as.logical</span>(sleep<span class="sc">$</span>diabetes)</span>
-<span id="cb7-3"><a href="data-type-and-data-format.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(db_logic)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-type-and-data-format.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sleep<span class="sc">$</span>diabetes)</span>
+<span id="cb10-2"><a href="data-type-and-data-format.html#cb10-2" aria-hidden="true" tabindex="-1"></a>db_logic <span class="ot">&lt;-</span><span class="fu">as.logical</span>(sleep<span class="sc">$</span>diabetes)</span>
+<span id="cb10-3"><a href="data-type-and-data-format.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(db_logic)</span></code></pre></div>
 <p>A logical vector can then be useful to select/replace values from other variables with the indexing method that we will see below.</p>
 </div>
 <div id="stata-9" class="section level3 unnumbered hasAnchor">
@@ -395,24 +396,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>R<a href="data-type-and-data-format.html#r-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Dates and time variables are best read as strings. The default formats in <strong>R</strong> follow the rules of the ISO 8601 international standard which expresses a day as “2001-02-03.”</p>
 <p>Below is a basic operation (subtraction) between 2 dates.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-type-and-data-format.html#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-06-21&quot;</span>, </span>
-<span id="cb8-2"><a href="data-type-and-data-format.html#cb8-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb8-3"><a href="data-type-and-data-format.html#cb8-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-06-30&quot;</span>, </span>
-<span id="cb8-4"><a href="data-type-and-data-format.html#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb8-5"><a href="data-type-and-data-format.html#cb8-5" aria-hidden="true" tabindex="-1"></a>y <span class="sc">-</span> x</span></code></pre></div>
-<pre><code>## Time difference of 9 days</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-type-and-data-format.html#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-06-21&quot;</span>, </span>
+<span id="cb11-2"><a href="data-type-and-data-format.html#cb11-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb11-3"><a href="data-type-and-data-format.html#cb11-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-06-30&quot;</span>, </span>
+<span id="cb11-4"><a href="data-type-and-data-format.html#cb11-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb11-5"><a href="data-type-and-data-format.html#cb11-5" aria-hidden="true" tabindex="-1"></a>y <span class="sc">-</span> x</span></code></pre></div>
+<pre><code>Time difference of 9 days</code></pre>
 <p>In R, dates are represented as the number of days since 1970-01-01, with negative values for earlier dates. If you import dates in numeric values from an other software with a different origin you will have to specify that origin to convert the numeric values into the correct dates. Please see <em>as.Date()</em> help page for more details.</p>
 <p>The package <em>lubridate</em> can be particularly helpful for manipulating dates.</p>
 </div>
 <div id="stata-10" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-type-and-data-format.html#stata-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Dates and time variables are best read as strings. The numeric encoding that Stata uses is centered on the first millisecond of 01jan1960, that is, 01jan1960 00:00:00.000.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="data-type-and-data-format.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> birthday = <span class="fu">date</span>(<span class="st">&quot;21 Jan 1952&quot;</span>, <span class="st">&quot;DMY&quot;</span>)</span>
-<span id="cb10-2"><a href="data-type-and-data-format.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span></span>
-<span id="cb10-3"><a href="data-type-and-data-format.html#cb10-3" aria-hidden="true" tabindex="-1"></a># - 2902</span>
-<span id="cb10-4"><a href="data-type-and-data-format.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">format</span> birthday %td</span>
-<span id="cb10-5"><a href="data-type-and-data-format.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span></span>
-<span id="cb10-6"><a href="data-type-and-data-format.html#cb10-6" aria-hidden="true" tabindex="-1"></a># 21jan1952</span></code></pre></div>
+<p>Dates and time variables are best read as strings. The numeric encoding that Stata uses is centered on the first millisecond of 01jan1960, that is, 01jan1960 00:00:00.000. The example below shows how to generate a variable names <em>birthday</em> which is a date.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="data-type-and-data-format.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> birthday = <span class="fu">date</span>(<span class="st">&quot;21 Jan 1952&quot;</span>, <span class="st">&quot;DMY&quot;</span>)</span>
+<span id="cb13-2"><a href="data-type-and-data-format.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span></span>
+<span id="cb13-3"><a href="data-type-and-data-format.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">format</span> birthday %td</span>
+<span id="cb13-4"><a href="data-type-and-data-format.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span></span></code></pre></div>
 </div>
 </div>
 <div id="character" class="section level3 hasAnchor" number="2.1.4">
@@ -423,17 +422,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-11" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-type-and-data-format.html#r-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In our sleep data set for instance, the <em>gender</em> variable was imported as character.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-type-and-data-format.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(sleep<span class="sc">$</span>gender)</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-type-and-data-format.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(sleep<span class="sc">$</span>gender)</span></code></pre></div>
+<pre><code>[1] TRUE</code></pre>
 <p>However, gender is more of a categorical variable with levels and labels. You will see below how to convert a character string to a categorical variable or (<a href="data-type-and-data-format.html#Factor">factor</a>)</p>
 </div>
 <div id="stata-11" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-type-and-data-format.html#stata-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As seen above, you can convert string to numeric using <em>destring</em> or <em>generate</em> and vice versa. For instance, if sex is imported as numeric you can convert it into string using:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="data-type-and-data-format.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> sex_cat=<span class="fu">string</span>(sex)</span></code></pre></div>
+<p>As seen above, you can convert string to numeric using <em>destring</em> or <em>generate</em> and vice versa. For instance, if gensder is imported as numeric you can convert it into string using:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="data-type-and-data-format.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">generate</span> gender_cat=<span class="fu">string</span>(gender)</span></code></pre></div>
 <p>The above will only work if all of the data is numeric. However, sometimes it’s not. In a case where your string variables are in fact strings (e.g., “female” instead of “1”) you have to tell Stata to encode [varname] the string data.Running this command will cause Stata to make a new numeric categorical variable wherein the data has labels that correspond to the old string values.(see below for factor type)</p>
 <p>In <strong>Stata</strong>, the <em>format</em> function call is especially useful when rendering data in table of results for nice display.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="data-type-and-data-format.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">format</span> gender %6s</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="data-type-and-data-format.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">format</span> gender %6s</span></code></pre></div>
 </div>
 </div>
 <div id="factor" class="section level3 hasAnchor" number="2.1.5">
@@ -443,33 +442,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div id="r-12" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-type-and-data-format.html#r-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In <strong>R</strong>, the categorical variables are <em>factor</em>. Below, are example to convert or create factor.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-type-and-data-format.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span></code></pre></div>
-<pre><code>##    
-##     female male
-##   0     17   98
-##   1      2    7</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-type-and-data-format.html#cb17-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sleep<span class="sc">$</span>gender)</span>
-<span id="cb17-2"><a href="data-type-and-data-format.html#cb17-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>diabetes <span class="ot">&lt;-</span> <span class="fu">factor</span>(sleep<span class="sc">$</span>diabetes, </span>
-<span id="cb17-3"><a href="data-type-and-data-format.html#cb17-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
-<span id="cb17-4"><a href="data-type-and-data-format.html#cb17-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>))</span>
-<span id="cb17-5"><a href="data-type-and-data-format.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span></code></pre></div>
-<pre><code>##      
-##       female male
-##   No      17   98
-##   Yes      2    7</code></pre>
+<p>In <strong>R</strong>, the categorical variables are <em>factor</em>. Below, are example to convert or create a factor.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-type-and-data-format.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span></code></pre></div>
+<pre><code>   
+    female male
+  0     17   98
+  1      2    7</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-type-and-data-format.html#cb20-1" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sleep<span class="sc">$</span>gender)</span>
+<span id="cb20-2"><a href="data-type-and-data-format.html#cb20-2" aria-hidden="true" tabindex="-1"></a>sleep<span class="sc">$</span>diabetes <span class="ot">&lt;-</span> <span class="fu">factor</span>(sleep<span class="sc">$</span>diabetes, </span>
+<span id="cb20-3"><a href="data-type-and-data-format.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb20-4"><a href="data-type-and-data-format.html#cb20-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>,<span class="st">&quot;Yes&quot;</span>))</span>
+<span id="cb20-5"><a href="data-type-and-data-format.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sleep<span class="sc">$</span>diabetes, sleep<span class="sc">$</span>gender)</span></code></pre></div>
+<pre><code>     
+      female male
+  No      17   98
+  Yes      2    7</code></pre>
 </div>
 <div id="stata-12" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-type-and-data-format.html#stata-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In <strong>Stata</strong>, if <em>gender</em> is a string variable, you could create a new numeric variable <em>gender2</em> to manipulate it as binary categorical. The <em>encode</em> function will assign numeric codes in the string variable’s alphabetic order.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="data-type-and-data-format.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> sexlbl 1 <span class="st">&quot;male&quot;</span> 2 <span class="st">&quot;female&quot;</span></span>
-<span id="cb19-2"><a href="data-type-and-data-format.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span>(gender), <span class="kw">generate</span>(gender2) <span class="kw">label</span>(sexlbl)</span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="data-type-and-data-format.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> diabetes</span>
-<span id="cb20-2"><a href="data-type-and-data-format.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> yesno_lbl 1 <span class="st">&quot;yes&quot;</span> 0 <span class="st">&quot;no&quot;</span></span>
-<span id="cb20-3"><a href="data-type-and-data-format.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*then to assign value label</span></span>
-<span id="cb20-4"><a href="data-type-and-data-format.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">to variables*/</span></span>
-<span id="cb20-5"><a href="data-type-and-data-format.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">values</span> diabetes yesno_lbl</span>
-<span id="cb20-6"><a href="data-type-and-data-format.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> diabetes</span></code></pre></div>
+<p>In <strong>Stata</strong>, similar conversions are sometimes needed.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="data-type-and-data-format.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> diabetes gender</span></code></pre></div>
+<pre><code>           |        gender
+  diabetes |    female       male |     Total
+-----------+----------------------+----------
+         0 |        17         98 |       115 
+         1 |         2          7 |         9 
+        NA |         0          6 |         6 
+-----------+----------------------+----------
+     Total |        19        111 |       130 </code></pre>
+<p>Here <em>diabetes</em> is a string variable with the values 1-0-NA. You can replace the variable <em>diabetes</em> to manipulate it as categorical using the <em>destring</em> function and the force options to ignore missing values.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="data-type-and-data-format.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">destring</span> diabetes, <span class="kw">replace</span> <span class="kw">force</span></span>
+<span id="cb24-2"><a href="data-type-and-data-format.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> yesno_lbl 1 <span class="st">&quot;yes&quot;</span> 0 <span class="st">&quot;no&quot;</span></span>
+<span id="cb24-3"><a href="data-type-and-data-format.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">// assign value label to variables</span></span>
+<span id="cb24-4"><a href="data-type-and-data-format.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">values</span> diabetes yesno_lbl</span>
+<span id="cb24-5"><a href="data-type-and-data-format.html#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="data-type-and-data-format.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> diabetes gender</span></code></pre></div>
+<pre><code>diabetes: contains nonnumeric characters; replaced as byte
+(6 missing values generated)
+
+           |        gender
+  diabetes |    female       male |     Total
+-----------+----------------------+----------
+        no |        17         98 |       115 
+       yes |         2          7 |         9 
+-----------+----------------------+----------
+     Total |        19        105 |       124 </code></pre>
 </div>
 </div>
 </div>
@@ -483,37 +500,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>R<a href="data-type-and-data-format.html#r-13" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong>vector</strong> is the simplest R object.
 A vector combines values of the same type (all numeric or all character). In data science, it can correspond to a variable. The <code>&lt;-</code> symbolize the fact that you assign values to an object(variable).</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-type-and-data-format.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c for concatenate values</span></span>
-<span id="cb21-2"><a href="data-type-and-data-format.html#cb21-2" aria-hidden="true" tabindex="-1"></a>vector.a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">14</span>,<span class="dv">3</span>)</span>
-<span id="cb21-3"><a href="data-type-and-data-format.html#cb21-3" aria-hidden="true" tabindex="-1"></a>vector.a</span></code></pre></div>
-<pre><code>## [1]  1 14  3</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-type-and-data-format.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using sequence</span></span>
-<span id="cb23-2"><a href="data-type-and-data-format.html#cb23-2" aria-hidden="true" tabindex="-1"></a>vector.b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb23-3"><a href="data-type-and-data-format.html#cb23-3" aria-hidden="true" tabindex="-1"></a>vector.b</span></code></pre></div>
-<pre><code>## [1] 1 2 3</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-type-and-data-format.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># giving names(adress)</span></span>
-<span id="cb25-2"><a href="data-type-and-data-format.html#cb25-2" aria-hidden="true" tabindex="-1"></a>vector.c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span> <span class="ot">=</span> <span class="fl">11.0</span>, </span>
-<span id="cb25-3"><a href="data-type-and-data-format.html#cb25-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;y&quot;</span> <span class="ot">=</span> <span class="fl">23.4</span>, <span class="st">&quot;z&quot;</span> <span class="ot">=</span> <span class="fl">53.0</span>)</span>
-<span id="cb25-4"><a href="data-type-and-data-format.html#cb25-4" aria-hidden="true" tabindex="-1"></a>vector.c</span></code></pre></div>
-<pre><code>##    x    y    z 
-## 11.0 23.4 53.0</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-type-and-data-format.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c for concatenate values</span></span>
+<span id="cb26-2"><a href="data-type-and-data-format.html#cb26-2" aria-hidden="true" tabindex="-1"></a>vector.a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">14</span>,<span class="dv">3</span>)</span>
+<span id="cb26-3"><a href="data-type-and-data-format.html#cb26-3" aria-hidden="true" tabindex="-1"></a>vector.a</span></code></pre></div>
+<pre><code>[1]  1 14  3</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-type-and-data-format.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using sequence</span></span>
+<span id="cb28-2"><a href="data-type-and-data-format.html#cb28-2" aria-hidden="true" tabindex="-1"></a>vector.b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb28-3"><a href="data-type-and-data-format.html#cb28-3" aria-hidden="true" tabindex="-1"></a>vector.b</span></code></pre></div>
+<pre><code>[1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-type-and-data-format.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># giving names(adress)</span></span>
+<span id="cb30-2"><a href="data-type-and-data-format.html#cb30-2" aria-hidden="true" tabindex="-1"></a>vector.c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span> <span class="ot">=</span> <span class="fl">11.0</span>, </span>
+<span id="cb30-3"><a href="data-type-and-data-format.html#cb30-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;y&quot;</span> <span class="ot">=</span> <span class="fl">23.4</span>, <span class="st">&quot;z&quot;</span> <span class="ot">=</span> <span class="fl">53.0</span>)</span>
+<span id="cb30-4"><a href="data-type-and-data-format.html#cb30-4" aria-hidden="true" tabindex="-1"></a>vector.c</span></code></pre></div>
+<pre><code>   x    y    z 
+11.0 23.4 53.0 </code></pre>
 <p>With the concept of vector we can introduce the concept of <strong>indexing</strong>: the position/address of the value in the vector.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-type-and-data-format.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at position 1</span></span>
-<span id="cb27-2"><a href="data-type-and-data-format.html#cb27-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>##  x 
-## 11</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-type-and-data-format.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at position 1 and 3</span></span>
-<span id="cb29-2"><a href="data-type-and-data-format.html#cb29-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code></pre></div>
-<pre><code>##  x  z 
-## 11 53</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-type-and-data-format.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at address &quot;y&quot;</span></span>
-<span id="cb31-2"><a href="data-type-and-data-format.html#cb31-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="st">&quot;y&quot;</span>]</span></code></pre></div>
-<pre><code>##    y 
-## 23.4</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-type-and-data-format.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at position 1</span></span>
+<span id="cb32-2"><a href="data-type-and-data-format.html#cb32-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code> x 
+11 </code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-type-and-data-format.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at position 1 and 3</span></span>
+<span id="cb34-2"><a href="data-type-and-data-format.html#cb34-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code></pre></div>
+<pre><code> x  z 
+11 53 </code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-type-and-data-format.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value if vector.b at address &quot;y&quot;</span></span>
+<span id="cb36-2"><a href="data-type-and-data-format.html#cb36-2" aria-hidden="true" tabindex="-1"></a>vector.c[<span class="st">&quot;y&quot;</span>]</span></code></pre></div>
+<pre><code>   y 
+23.4 </code></pre>
 </div>
 <div id="stata-13" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-type-and-data-format.html#stata-13" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb33"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb33-1"><a href="data-type-and-data-format.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="kw">vector</span>.a=(1.0, 2.0, 3.0)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb38-1"><a href="data-type-and-data-format.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="kw">vector</span>.a=(1.0, 2.0, 3.0)</span></code></pre></div>
 </div>
 </div>
 <div id="matrix" class="section level3 hasAnchor" number="2.2.2">
@@ -523,22 +540,22 @@ A vector combines values of the same type (all numeric or all character). In dat
 <div id="r-14" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-type-and-data-format.html#r-14" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong>matrix</strong> is a 2 dimensional vector with rows and columns.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-type-and-data-format.html#cb34-1" aria-hidden="true" tabindex="-1"></a>matrix.b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
-<span id="cb34-2"><a href="data-type-and-data-format.html#cb34-2" aria-hidden="true" tabindex="-1"></a>matrix.b</span></code></pre></div>
-<pre><code>##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-type-and-data-format.html#cb39-1" aria-hidden="true" tabindex="-1"></a>matrix.b <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb39-2"><a href="data-type-and-data-format.html#cb39-2" aria-hidden="true" tabindex="-1"></a>matrix.b</span></code></pre></div>
+<pre><code>     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6</code></pre>
 <p>Similar to vector, one can access the values by indexation. <strong>Think Battle ship game !</strong></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-type-and-data-format.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#value at the third row and second column</span></span>
-<span id="cb36-2"><a href="data-type-and-data-format.html#cb36-2" aria-hidden="true" tabindex="-1"></a>matrix.b[ <span class="dv">3</span>, <span class="dv">2</span>]</span></code></pre></div>
-<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-type-and-data-format.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#value at the third row and second column</span></span>
+<span id="cb41-2"><a href="data-type-and-data-format.html#cb41-2" aria-hidden="true" tabindex="-1"></a>matrix.b[ <span class="dv">3</span>, <span class="dv">2</span>]</span></code></pre></div>
+<pre><code>[1] 6</code></pre>
 </div>
 <div id="stata-14" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-type-and-data-format.html#stata-14" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In <strong>Stata</strong>, a matrice is created as follow:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb38-1"><a href="data-type-and-data-format.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="fu">matrix</span>.b=(1, 2, 3  \ <span class="co">/// </span></span>
-<span id="cb38-2"><a href="data-type-and-data-format.html#cb38-2" aria-hidden="true" tabindex="-1"></a>                   4, 5, 6) </span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb43-1"><a href="data-type-and-data-format.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="fu">matrix</span>.b=(1, 2, 3  \ <span class="co">/// </span></span>
+<span id="cb43-2"><a href="data-type-and-data-format.html#cb43-2" aria-hidden="true" tabindex="-1"></a>                   4, 5, 6) </span></code></pre></div>
 </div>
 </div>
 <div id="data-set" class="section level3 hasAnchor" number="2.2.3">
@@ -548,28 +565,28 @@ A vector combines values of the same type (all numeric or all character). In dat
 <div id="r-15" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-type-and-data-format.html#r-15" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong>data.frame</strong> is a rectangular data set with rows and columns of possibly different types.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-type-and-data-format.html#cb39-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(vector.a, </span>
-<span id="cb39-2"><a href="data-type-and-data-format.html#cb39-2" aria-hidden="true" tabindex="-1"></a>                      matrix.b, </span>
-<span id="cb39-3"><a href="data-type-and-data-format.html#cb39-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;code&quot;</span><span class="ot">=</span>letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb39-4"><a href="data-type-and-data-format.html#cb39-4" aria-hidden="true" tabindex="-1"></a>dataset</span></code></pre></div>
-<pre><code>##   vector.a X1 X2 code
-## 1        1  1  4    a
-## 2       14  2  5    b
-## 3        3  3  6    c</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-type-and-data-format.html#cb44-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(vector.a, </span>
+<span id="cb44-2"><a href="data-type-and-data-format.html#cb44-2" aria-hidden="true" tabindex="-1"></a>                      matrix.b, </span>
+<span id="cb44-3"><a href="data-type-and-data-format.html#cb44-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;code&quot;</span><span class="ot">=</span>letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb44-4"><a href="data-type-and-data-format.html#cb44-4" aria-hidden="true" tabindex="-1"></a>dataset</span></code></pre></div>
+<pre><code>  vector.a X1 X2 code
+1        1  1  4    a
+2       14  2  5    b
+3        3  3  6    c</code></pre>
 <p>The majority of the data set you will be manipulating will be of class data.frame or inherit from that class (e.g. tibble, data.table).</p>
 <p>For accessing the variables, you can use indexation as for matrix or the name of the variable:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-type-and-data-format.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Before the comma, you select individuals </span></span>
-<span id="cb41-2"><a href="data-type-and-data-format.html#cb41-2" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">1</span>, ]</span></code></pre></div>
-<pre><code>##   vector.a X1 X2 code
-## 1        1  1  4    a</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-type-and-data-format.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># After the comma, you select the variables</span></span>
-<span id="cb43-2"><a href="data-type-and-data-format.html#cb43-2" aria-hidden="true" tabindex="-1"></a>dataset[, <span class="dv">4</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-type-and-data-format.html#cb45-1" aria-hidden="true" tabindex="-1"></a>dataset[, <span class="st">&quot;code&quot;</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-type-and-data-format.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine both, you select individuals and variables</span></span>
-<span id="cb47-2"><a href="data-type-and-data-format.html#cb47-2" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">&quot;code&quot;</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-type-and-data-format.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Before the comma, you select individuals </span></span>
+<span id="cb46-2"><a href="data-type-and-data-format.html#cb46-2" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">1</span>, ]</span></code></pre></div>
+<pre><code>  vector.a X1 X2 code
+1        1  1  4    a</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-type-and-data-format.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># After the comma, you select the variables</span></span>
+<span id="cb48-2"><a href="data-type-and-data-format.html#cb48-2" aria-hidden="true" tabindex="-1"></a>dataset[, <span class="dv">4</span>]</span></code></pre></div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-type-and-data-format.html#cb50-1" aria-hidden="true" tabindex="-1"></a>dataset[, <span class="st">&quot;code&quot;</span>]</span></code></pre></div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-type-and-data-format.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine both, you select individuals and variables</span></span>
+<span id="cb52-2"><a href="data-type-and-data-format.html#cb52-2" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">&quot;code&quot;</span>]</span></code></pre></div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot;</code></pre>
 </div>
 <div id="stata-15" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-type-and-data-format.html#stata-15" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -582,26 +599,26 @@ A vector combines values of the same type (all numeric or all character). In dat
 <div id="r-16" class="section level3 unnumbered hasAnchor">
 <h3>R<a href="data-type-and-data-format.html#r-16" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong>list</strong> is a primitive and complex element which can coerce different data type (format and length). It is the object return by many statistical function.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-type-and-data-format.html#cb49-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">50</span>),</span>
-<span id="cb49-2"><a href="data-type-and-data-format.html#cb49-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>,<span class="dv">50</span>))</span>
-<span id="cb49-3"><a href="data-type-and-data-format.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(t1)</span></code></pre></div>
-<pre><code>## List of 10
-##  $ statistic  : Named num 0.479
-##   ..- attr(*, &quot;names&quot;)= chr &quot;t&quot;
-##  $ parameter  : Named num 17.9
-##   ..- attr(*, &quot;names&quot;)= chr &quot;df&quot;
-##  $ p.value    : num 0.638
-##  $ conf.int   : num [1:2] -0.693 1.101
-##   ..- attr(*, &quot;conf.level&quot;)= num 0.95
-##  $ estimate   : Named num [1:2] 50 49.8
-##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mean of x&quot; &quot;mean of y&quot;
-##  $ null.value : Named num 0
-##   ..- attr(*, &quot;names&quot;)= chr &quot;difference in means&quot;
-##  $ stderr     : num 0.427
-##  $ alternative: chr &quot;two.sided&quot;
-##  $ method     : chr &quot;Welch Two Sample t-test&quot;
-##  $ data.name  : chr &quot;rnorm(1:10, 50) and rnorm(2:11, 50)&quot;
-##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-type-and-data-format.html#cb54-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">50</span>),</span>
+<span id="cb54-2"><a href="data-type-and-data-format.html#cb54-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>,<span class="dv">50</span>))</span>
+<span id="cb54-3"><a href="data-type-and-data-format.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(t1)</span></code></pre></div>
+<pre><code>List of 10
+ $ statistic  : Named num -2.18
+  ..- attr(*, &quot;names&quot;)= chr &quot;t&quot;
+ $ parameter  : Named num 15.3
+  ..- attr(*, &quot;names&quot;)= chr &quot;df&quot;
+ $ p.value    : num 0.0453
+ $ conf.int   : num [1:2] -1.4317 -0.0171
+  ..- attr(*, &quot;conf.level&quot;)= num 0.95
+ $ estimate   : Named num [1:2] 49.2 49.9
+  ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mean of x&quot; &quot;mean of y&quot;
+ $ null.value : Named num 0
+  ..- attr(*, &quot;names&quot;)= chr &quot;difference in means&quot;
+ $ stderr     : num 0.332
+ $ alternative: chr &quot;two.sided&quot;
+ $ method     : chr &quot;Welch Two Sample t-test&quot;
+ $ data.name  : chr &quot;rnorm(1:10, 50) and rnorm(2:11, 50)&quot;
+ - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
 </div>
 <div id="stata-16" class="section level3 unnumbered hasAnchor">
 <h3>Stata<a href="data-type-and-data-format.html#stata-16" class="anchor-section" aria-label="Anchor link to header"></a></h3>

@@ -4,6 +4,12 @@ output:
   pdf_document: default
 ---
 
+```{r include=TRUE, echo=FALSE}
+knitr::opts_chunk$set(engine.path = list(stata = '/Applications/Stata/StataBE.app/Contents/MacOS/StataBE'))
+library(Statamarkdown)
+```
+
+
 # Programming environment
 
 ## Installation R and Stata
@@ -73,7 +79,7 @@ fit <- lm(Petal.Length ~ Sepal.Length, data = iris)
 sink(file = "lm_output.log") 
 fit    # print in log
 sink() # closing log file
-`````
+```
 
 You also have the option of using specific packages such as *logger* [URL] or start thinking of generating reports as you do your analysis with the package *Rmarkdown*.
 :::
@@ -122,7 +128,7 @@ And R can many other proprietaries' files (Excel, SAS, SPS,...).
 :::{}
 ### Stata{-}
 Stata can only load one data set at a time, so it does not get assigned to an object. The CSV file import function is:
-```{}
+```{stata first-Stata, collectcode=TRUE}
 import delimited using SleepApnea
 ```
 This will load from Stata's current working directory. 
@@ -185,9 +191,9 @@ rm(sleep)
 
 :::{}
 ### Stata{-}
-The *drop* command is used to remove variables or observations from the dataset in memory
+The *drop* command is used to remove variables or observations from the dataset in memory. For instance here the *age* variable.
 ```{stata, eval=FALSE}
-drop sleep
+drop age
 ```
 If you want to clear out the data in memory, so that you start from fresk, use the *clear* function.
 ```{stata, eval=FALSE}
@@ -206,7 +212,7 @@ sleep<-read.csv("SleepApnea.csv",
                 dec=".")
 ```
 
-**For small and large datasets**, the *str()* is useful to see the variables and their types (str for structure)
+**For small and large datasets**, the *str()* is useful to see the variables and their types (*str* stands for structure). The output is equivalent to the elements displayed in the RStudio panel "Environment" under the name of the R object. 
 ```{r, eval=F}
 str(sleep)
 ```
@@ -226,10 +232,10 @@ View(sleep)
 
 :::{}
 ### Stata{-}
-The *describe* function returns the main characteristics of the data set, *i.e.* the number of observations, number of variables, and characteristics of variables.
+The *describe* function returns the main characteristics of the uploaded data set, *i.e.* the number of observations, number of variables, and characteristics of variables.
 
-```{r, eval=F}
-describe(sleep)
+```{stata second-Stata}
+describe
 ```
 :::
 ::::
@@ -268,7 +274,7 @@ In **R** and **Stata** most functions have required argument and optional argume
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 :::{}
 ### R{-}
-In **R** if the arguments are written in the order expected by the developer of the function (default order) no need to specify the name of the argument. If you want to change one optional argument listed at the end of the function you need to specify its name or you will generate an error.
+In **R** if the arguments are written in the order expected by the developer of the function (default order) no need to specify the name of the argument. If you want to change one optional argument listed at the end of the function you need to specify its name or R will return an error if the arguments does not match.
 
 ```{r, eval=F}
 # Here the expected arguments are
@@ -286,8 +292,9 @@ sleep<-read.csv("SleepApnea.csv",
 
 :::{}
 #### Stata{-}
+In **Stata** the ordering is also important. Help pages need to be consulted for details.
 ```{stata, eval=F}
-//same true for stata???
+
 ```
 :::
 ::::

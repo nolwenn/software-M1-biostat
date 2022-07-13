@@ -4,6 +4,13 @@ output:
   pdf_document: default
 ---
 
+```{r include=TRUE, echo=FALSE}
+knitr::opts_chunk$set(engine.path = list(
+  stata = '/Applications/Stata/StataBE.app/Contents/MacOS/StataBE'
+))
+library(Statamarkdown)
+```
+
 # Data type and data format 
 
 ## Data type
@@ -31,14 +38,18 @@ sleep$age <- as.numeric(sleep$age)
 :::{}
 ### Stata{-}
 In **Stata**, if age is encoded as a string and was therefore all numbers, you could use the destring command. If you want to replace the existing variable, the command is simply
-```{stata, eval=FALSE, echo=TRUE}
+```{stata first-Stata, echo=FALSE, collectcode=TRUE}
+import delimited using SleepApnea
+```
+
+```{stata second-Stata, eval=FALSE}
 destring age
 ``` 
 This will replace the existing specified variable with the same data but now in a nonstring format. 
 
 If you prefer to retain the existing variable, you can generate a new variable that is a nonstring version of the existing variable. 
-```{stata, eval=FALSE, echo=TRUE}
-generate age_num=real(age)
+```{stata third-Stata, eval=FALSE}
+generate age_num = real(age)
 ``` 
 :::
 ::::
@@ -91,15 +102,13 @@ The package *lubridate* can be particularly helpful for manipulating dates.
 
 :::{}
 ### Stata{-}
-Dates and time variables are best read as strings. The numeric encoding that Stata uses is centered on the first millisecond of 01jan1960, that is, 01jan1960 00:00:00.000.
+Dates and time variables are best read as strings. The numeric encoding that Stata uses is centered on the first millisecond of 01jan1960, that is, 01jan1960 00:00:00.000. The example below shows how to generate a variable names *birthday* which is a date.
 
 ```{stata, eval=FALSE}
 gen birthday = date("21 Jan 1952", "DMY")
 list
-# - 2902
 format birthday %td
 list
-# 21jan1952
 ```
 :::
 ::::
@@ -119,10 +128,10 @@ However, gender is more of a categorical variable with levels and labels. You wi
 
 :::{}
 ### Stata{-}
-As seen above, you can convert string to numeric using *destring* or *generate* and vice versa. For instance, if sex is imported as numeric you can convert it into string using:
+As seen above, you can convert string to numeric using *destring* or *generate* and vice versa. For instance, if gensder is imported as numeric you can convert it into string using:
 
 ```{stata, eval=FALSE, echo=TRUE}
-generate sex_cat=string(sex)
+generate gender_cat=string(gender)
 ``` 
 The above will only work if all of the data is numeric. However, sometimes it's not. In a case where your string variables are in fact strings (e.g., "female" instead of "1") you have to tell Stata to encode [varname] the string data.Running this command will cause Stata to make a new numeric categorical variable wherein the data has labels that correspond to the old string values.(see below for factor type)
 
@@ -139,7 +148,7 @@ As written above, you often want to convert character or string data into catego
 ::::{style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 :::{}
 ### R {-}
-In **R**, the categorical variables are *factor*. Below, are example to convert or create factor.
+In **R**, the categorical variables are *factor*. Below, are example to convert or create a factor.
 ```{r, echo=FALSE}
 load("sleepApnea.Rdata")
 ```
@@ -155,26 +164,28 @@ table(sleep$diabetes, sleep$gender)
 
 ```{r, echo=FALSE}
 save(sleep, file="sleepApnea-clean.Rdata")
+write.table(sleep, file="sleepApnea-clean.csv", sep=";", row.names = FALSE)
 ```
 
 :::
   
 :::{}
 ### Stata{-}
-In **Stata**, if *gender* is a string variable, you could create a new numeric variable *gender2* to manipulate it as binary categorical. The *encode* function will assign numeric codes in the string variable's alphabetic order.
-```{stata, eval=FALSE}
-label define sexlbl 1 "male" 2 "female"
-encode(gender), generate(gender2) label(sexlbl)
+In **Stata**, similar conversions are sometimes needed.
+```{stata, eval=TRUE}
+tab diabetes gender
 ```
 
-```{stata, eval=FALSE}
-tab diabetes
+Here *diabetes* is a string variable with the values 1-0-NA. You can replace the variable *diabetes* to manipulate it as  categorical using the _destring_ function and the force options to ignore missing values.
+```{stata, eval=TRUE}
+destring diabetes, replace force
 label define yesno_lbl 1 "yes" 0 "no"
-/*then to assign value label
-to variables*/
+// assign value label to variables
 label values diabetes yesno_lbl
-tab diabetes
+
+tab diabetes gender
 ```
+
 :::
 ::::   
   

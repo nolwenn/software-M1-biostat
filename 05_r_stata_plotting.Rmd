@@ -4,6 +4,14 @@ output:
   pdf_document: default
 ---
 
+```{r include=TRUE, echo=FALSE}
+knitr::opts_chunk$set(engine.path = list(
+  stata = '/Applications/Stata/StataBE.app/Contents/MacOS/StataBE'
+))
+library(Statamarkdown)
+```
+
+
 # Plotting
 
 Visualization are often of great help to explore and summarize your data. **The plots should be chosen wisely and according to your data type** (*i.e.* continuous, categorical). *Stata* presents rather basic graphical functions but *R* possess extensive libraries for a wide range of visual displays going from the basic we will cover here to some geomatic representations (ex library *mapsf*). A quick introduction to the *ggplot2* library (or grammar for graphic) is done here too but for more ressources see [https://ggplot2.tidyverse.org/](https://ggplot2.tidyverse.org/) 
@@ -42,15 +50,27 @@ ggplot(sleep, aes(age)) +
 
 :::{}
 ### Stata{-}
-
-In **Stata**, the width argument allows you to specify the interval range
-```{stata, eval=FALSE}
-//histogram of age with two year intervals
-hist age, width(2)
-//histogram of age with five year intervals
-hist age, width(5)
+```{stata first-Stata, echo=FALSE, include=FALSE, collectcode=TRUE}
+import delimited using sleepApnea-clean
 ```
 
+In **Stata**, the width argument allows you to specify the interval range.
+```{stata hist, echo=FALSE, results="hide"}
+hist age, width(2)
+quietly graph export hist1.svg, replace
+hist age, width(5)
+quietly graph export hist2.svg, replace
+```
+
+```{stata, eval=FALSE}
+hist age, width(2)
+```
+
+![Histogram of age with two year intervals](hist1.svg)
+```{stata, eval=FALSE}
+hist age, width(5)
+```
+![Histogram of age with five year intervals](hist2.svg)
 :::
 ::::
 
@@ -64,7 +84,7 @@ With **R** the syntax is:
 boxplot(age ~ gender , data=sleep, 
      main="Distribution of age \ by gender",
      xlab="gender",
-     col="lightblue")
+     col="lightblue", ylim=c(20,80))
 ```
 
 Note:  the `~` sign that is the symbol for the formula type syntax of Y function of X. You will see again that notation when performing statistical test and regression modeling. 
@@ -80,9 +100,11 @@ ggplot(sleep, aes(y=age, x=gender)) +
 :::{}
 ### Stata{-}
 In **Stata**, the grouping variable is called by the over() option.
-```{stata, eval=FALSE}
+```{stata, echo=1, results="hide"}
 graph box age, over(gender)
+quietly graph export boxplot.svg, replace
 ```
+![Distribution of age by gender](boxplot.svg)
 :::
 ::::
 
